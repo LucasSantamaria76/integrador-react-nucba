@@ -72,7 +72,7 @@ export const DblClickForImg = styled.h4`
   text-align: center;
   padding: 10px;
   color: #000;
-  z-index: 999;
+  z-index: 99;
 `;
 
 /* 

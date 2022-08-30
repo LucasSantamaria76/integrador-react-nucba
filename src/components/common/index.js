@@ -4,3 +4,4 @@ export * from './Column';
 export * from './Text';
 export * from './MainContainer';
 export * from './Cart';
+export * from './Wrapper';

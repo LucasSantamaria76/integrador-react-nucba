@@ -11,15 +11,26 @@ export default createGlobalStyle`
     margin: 0;
     font-family: "Roboto";
     user-select: none;
+    overflow-y: auto;
+    padding-left: 4px;
+  }
+  body::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+    background: transparent;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.primary};
+    border-radius: 8px;
   }
 
   page {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    align-content: center;
+    justify-content: center;    
   }
 `;

@@ -2,15 +2,20 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const SearchInputWrapper = styled.div`
-  width: 100%;
-  height: 40px;
-  display: flex;
-  align-items: center;
   position: relative;
+  height: 40px;
+  width: 380px;
+  margin: 0 auto;
+  margin-top: 5px;
+  display: flex;
   padding: 2px 10px;
   background-color: ${({ theme }) => theme.colors.surface};
   box-shadow: ${({ theme }) => theme.boxShadow};
   border-radius: 2px;
+  @media screen and (min-width: 900px) {
+    width: 100%;
+    margin: 0;
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -35,7 +40,6 @@ export const SearchIcon = styled.span`
   font-size: 1.7rem;
   margin-right: 1rem;
   margin-top: 6px;
-  vertical-align: middle;
   cursor: pointer;
 `;
 

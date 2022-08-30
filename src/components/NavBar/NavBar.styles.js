@@ -1,31 +1,26 @@
 import styled from 'styled-components';
 
 export const WrapperNav = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100px;
+  position: relative;
   padding: 0 1rem;
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 2px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-
-  @media screen and (min-width: 909px) {
-    justify-content: start;
-  }
+  z-index: 100;
 `;
 
 export const NavBarContainer = styled.div`
   position: absolute;
-  top: 108px;
-  right: 8px;
+  //top: 112px;
+  top: ${({ showMenu }) => (showMenu ? '112px' : '-400px')};
+  //right: ${({ showMenu }) => (showMenu ? '10px' : '-400px')};
+  right: 5px;
   width: 100%;
   height: auto;
-  max-width: 1000px;
   z-index: 99;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -35,10 +30,9 @@ export const NavBarContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 2px;
   box-shadow: ${({ theme }) => theme.boxShadow};
-  opacity: ${({ showMenu }) => (showMenu ? '1' : '0')};
   pointer-events: ${({ showMenu }) => (showMenu ? 'auto' : 'none')};
-  padding: 20px;
-  transition: opacity 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  padding: 10px 0;
 
   @media screen and (min-width: 450px) {
     width: 400px;
@@ -48,6 +42,7 @@ export const NavBarContainer = styled.div`
     position: static;
     width: 60%;
     height: 100px;
+    max-width: 1000px;
     padding: 5px 5px 25px;
     display: grid;
     grid-template-columns: 70% 30%;
@@ -94,8 +89,8 @@ export const TextLogo = styled.h2`
 
 export const Label = styled.label`
   display: inline-block;
-
   margin-left: 10px;
+  padding-top: 10px;
   color: ${({ theme }) => theme.colors.text};
 `;
 
@@ -103,46 +98,56 @@ export const Menu = styled.nav`
   font-size: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 
   & a {
     text-decoration: none;
     color: ${({ theme }) => theme.colors.text};
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
     &:hover {
       text-decoration: underline;
+      background-color: ${({ theme }) => theme.colors.hover};
     }
     &.active {
       color: ${({ theme }) => theme.colors.text2};
+      cursor: default;
     }
     &.active:hover {
       text-decoration: none;
-      cursor: default;
+      background-color: transparent;
     }
   }
   @media screen and (min-width: 900px) {
     flex-direction: row;
     font-size: 1rem;
-  }
-`;
-
-export const MobileIcon = styled.div`
-  display: none;
-
-  @media screen and (max-width: 900px) {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-
-    svg {
-      fill: ${({ theme }) => theme.colors.text};
-      margin-right: 0.5rem;
-      font-size: 2.5rem;
+    gap: 20px;
+    & a {
+      &:hover {
+        background-color: transparent;
+      }
     }
   }
 `;
 
-export const ContainerBlock = styled.div`
+export const MobileIcon = styled.div`
+  cursor: pointer;
+  font-size: 2.5rem;
+  padding-top: 5px;
+
+  @media screen and (min-width: 900px) {
+    display: none;
+
+    svg {
+      fill: ${({ theme }) => theme.colors.text};
+    }
+  }
+`;
+
+export const ContainerDarkMode = styled.div`
   display: flex;
   gap: 5px;
-  ${({ column }) => column && 'flex-direction: column'};
+  @media screen and (min-width: 900px) {
+    flex-direction: column;
+  }
 `;
