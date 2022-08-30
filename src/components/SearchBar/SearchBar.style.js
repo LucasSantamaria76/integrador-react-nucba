@@ -2,14 +2,15 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const SearchInputWrapper = styled.div`
-  width: 70%;
+  width: 100%;
   height: 40px;
   display: flex;
   align-items: center;
   position: relative;
   padding: 2px 10px;
   background-color: ${({ theme }) => theme.colors.surface};
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: ${({ theme }) => theme.boxShadow};
+  border-radius: 2px;
 `;
 
 export const SearchInput = styled.input`
@@ -19,7 +20,6 @@ export const SearchInput = styled.input`
   border: none;
   font-size: 1.2rem;
   color: ${({ theme }) => theme.colors.text};
-  border-radius: 6px;
   background-color: transparent;
 
   &::focus {
@@ -38,8 +38,9 @@ export const SearchIcon = styled.span`
   vertical-align: middle;
   cursor: pointer;
 `;
+
 export const CloseIcon = styled(motion.span)`
-  color: #bebebe;
+  color: ${({ theme }) => theme.colors.text};
   font-size: 1.2rem;
   margin-top: 6px;
   vertical-align: middle;
@@ -47,6 +48,6 @@ export const CloseIcon = styled(motion.span)`
   cursor: pointer;
 
   &:hover {
-    color: #dfdfdf;
+    color: ${({ theme }) => theme.colors.text2};
   }
 `;

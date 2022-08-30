@@ -5,10 +5,10 @@ import { themes } from './styles/themes';
 import NavBar from './components/NavBar/NavBar';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from './redux/slices';
+import { getCategories, getProducts } from './redux/slices';
 import Layout from './components/Layout/Layout';
 import Routes from './routes/Routes';
-import { getDBProducts } from './firebase/firebase-utils';
+import { getDBCategories, getDBProducts } from './firebase/firebase-utils';
 
 const App = () => {
   const { theme } = useSelector((state) => state.theme);
@@ -16,13 +16,20 @@ const App = () => {
 
   useEffect(() => {
     getDBProducts().then((data) => dispatch(getProducts(data)));
+    getDBCategories().then((data) => {
+      const objCategory = data?.reduce((acc, doc) => {
+        acc = { ...acc, [doc.id]: doc.data().subCategory };
+        return acc;
+      }, {});
+      dispatch(getCategories(objCategory));
+    });
   }, []);
 
   return (
     <ThemeProvider theme={themes[theme]}>
       <GlobalStyles />
+      <NavBar />
       <Layout>
-        <NavBar />
         <Routes />
       </Layout>
     </ThemeProvider>

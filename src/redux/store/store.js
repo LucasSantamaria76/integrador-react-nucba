@@ -1,7 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { userSlice } from '../slices';
-import { themeSlice } from '../slices';
-import { productsSlice } from '../slices';
+import { categoriesSlice, productsSlice, themeSlice, unitsSlice, userSlice } from '../slices';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -10,6 +8,8 @@ const reducers = combineReducers({
   user: userSlice.reducer,
   theme: themeSlice.reducer,
   products: productsSlice.reducer,
+  categories: categoriesSlice.reducer,
+  units: unitsSlice.reducer,
 });
 
 const persistConfig = {

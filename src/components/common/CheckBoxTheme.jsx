@@ -13,21 +13,12 @@ export const CheckBoxTheme = ({ color = '#000' }) => {
   }, [toggle]);
 
   return (
-    <Container>
-      <Switch>
-        <Input {...{ color }} type='checkbox' defaultChecked={toggle} />
-        <Slider {...{ toggle, color }} onClick={() => setToggle(!toggle)} />
-      </Switch>
-    </Container>
+    <Switch>
+      <Input {...{ color }} type='checkbox' defaultChecked={toggle} />
+      <Slider {...{ toggle, color }} onClick={() => setToggle(!toggle)} />
+    </Switch>
   );
 };
-
-const Container = styled.div`
-  display: none;
-  @media screen and (min-width: 1024px) {
-    display: inline-block;
-  }
-`;
 
 const Switch = styled.label`
   margin-top: 8px;

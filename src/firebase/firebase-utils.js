@@ -78,3 +78,12 @@ export const getDBProducts = async () => {
   const query = await getDocs(collection(db, 'products'));
   return query?.docs.map((doc) => doc.data());
 };
+
+export const addDbProduct = async (product) => {
+  await setDoc(doc(db, 'products', product.id), product);
+};
+
+export const getDBCategories = async () => {
+  const query = await getDocs(collection(db, 'categories'));
+  return query?.docs;
+};

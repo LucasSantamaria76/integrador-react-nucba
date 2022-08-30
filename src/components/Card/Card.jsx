@@ -3,12 +3,10 @@ import styled from 'styled-components';
 import { formatPrice } from '../../utils/formatPrice';
 import { Text } from '../common';
 
-const urlBase = 'https://imagenes.preciosclaros.gob.ar/productos/';
-
-const Card = ({ id, name, price }) => {
+const Card = ({ id, name, price, urlPhoto }) => {
   return (
     <WrapperCard height='450px' width='300px'>
-      <Image url={`${urlBase}${id}.jpg`} />
+      <Image url={urlPhoto} />
       <Title>{name}</Title>
       <Info>{formatPrice(price)}</Info>
     </WrapperCard>
@@ -23,7 +21,7 @@ const WrapperCard = styled.div`
   background-color: ${({ theme }) => theme.colors.surface};
   border-radius: 2px;
   flex-grow: 1;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: ${({ theme }) => theme.boxShadow};
   align-items: center;
   justify-content: space-between;
   display: flex;
