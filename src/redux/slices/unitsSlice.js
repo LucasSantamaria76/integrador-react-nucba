@@ -20,6 +20,14 @@ export const unitsSlice = createSlice({
         conv: 'Litro',
         unit: 1,
       },
+      Mililitro: {
+        conv: 'Litro',
+        unit: 1000,
+      },
+      'cm³': {
+        conv: 'Litro',
+        unit: 1000,
+      },
     },
   },
   reducers: {

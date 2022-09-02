@@ -9,6 +9,7 @@ import {
   sendPasswordResetEmail,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  updateProfile,
 } from 'firebase/auth';
 
 import { collection, getDocs, getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
@@ -44,17 +45,21 @@ export const getOrCreateUserProfile = async (userAuthenticated) => {
 export const auth = getAuth(app);
 
 // Crear un usuario
-export const register = async (email, password) => {
-  const credentials = await createUserWithEmailAndPassword(auth, email, password);
+export const register = async ({ email, name, password }) => {
+  try {
+    const credentials = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(auth.currentUser, { displayName: name, photoURL: 'https://cdn-icons-png.flaticon.com/512/149/149071.png' });
 
-  await sendEmailVerification(credentials.user, {
-    url: 'http://localhost:3000',
-  });
+    /*  await sendEmailVerification(credentials.user, {
+      url: 'http://localhost:5173',
+    });
+  
+    alert(`Se envió un correo de verificación a ${email}`); */
 
-  alert(`Se envió un correo de verificación a ${email}`);
-  localStorage.setItem('username', credentials.user);
-
-  return credentials;
+    return credentials;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // Iniciar sesion con correo contraseña
@@ -63,7 +68,7 @@ export const signIn = (email, password) => signInWithEmailAndPassword(auth, emai
 // Reiniciar una pass
 export const resetPassword = async (email) => {
   await sendPasswordResetEmail(auth, email, {
-    url: 'http://localhost:3000/login',
+    url: 'http://localhost:5173/login',
   });
   alert(`Se envió un correo de recuperación de contraseña a ${email}`);
 };
@@ -86,4 +91,12 @@ export const addDbProduct = async (product) => {
 export const getDBCategories = async () => {
   const query = await getDocs(collection(db, 'categories'));
   return query?.docs;
+};
+
+export const updateDBFav = async (user, fav) => {
+  const userDoc = doc(db, `favorites/${user}`);
+
+  await setDoc(userDoc, {
+    favorites: fav,
+  });
 };

@@ -2,67 +2,59 @@ import styled from 'styled-components';
 
 export const WrapperForm = styled.div`
   max-width: 100%;
-  height: auto;
-  padding: 15px;
-  background-color: ${({ theme }) => theme.colors.primary};
-  border-radius: 2px;
-  box-shadow: ${({ theme }) => theme.boxShadow};
+  height: calc(100vh - 120px);
+  @media screen and (min-width: 600px) {
+    width: 600px;
+    height: auto;
+  }
 `;
 
 export const ContainerForm = styled.div`
   position: relative;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
-  overflow: hidden;
-
-  & div {
+  overflow-y: hidden;
+  background-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 2px;
+  box-shadow: ${({ theme }) => theme.boxShadow};
+  div {
     display: flex;
-    flex-direction: column-reverse;
+    justify-content: center;
+    flex-wrap: wrap;
 
-    & div {
-      display: flex;
+    @media screen and (min-width: 600px) {
       flex-direction: column;
     }
-    @media screen and (min-width: 600px) {
-      flex-direction: row;
-
-      justify-content: space-between;
-    }
-  }
-  & div:nth-child(2),
-  div:nth-child(3) {
-    flex-direction: column;
-    width: 80%;
-  }
-  .unit {
-    flex-direction: row;
   }
 `;
 
 export const ImgWrapper = styled.div`
+  order: -1;
   position: relative;
-  width: 100%;
+  width: 80%;
   height: 300px;
   margin: 0 auto;
   margin-bottom: 20px;
   @media screen and (min-width: 600px) {
-    width: 270px;
-    height: 270px;
+    position: absolute;
+    top: 70px;
+    right: 30px;
+    height: 310px;
+    width: 330px;
   }
 `;
 
 export const ImgContainer = styled.img`
   background-color: ${({ theme }) => theme.colors.surface};
   width: 100%;
-  height: 300px;
+  height: 100%;
   box-shadow: ${({ theme }) => theme.boxShadow};
-  margin: 0 auto;
-  margin-bottom: 20px;
   @media screen and (min-width: 600px) {
-    width: 270px;
-    height: 270px;
+    width: 350px;
+    height: 310px;
   }
 `;
 
@@ -71,7 +63,7 @@ export const DblClickForImg = styled.h4`
   width: 100%;
   text-align: center;
   padding: 10px;
-  color: #000;
+  color: ${({ theme }) => theme.colors.text2};
   z-index: 99;
 `;
 

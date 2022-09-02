@@ -3,45 +3,44 @@ import { motion } from 'framer-motion';
 
 export const InputContainerStyled = styled.div`
   position: relative;
-  width: ${({ size }) => (size ? size + 'rem' : 'auto')};
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-  margin-right: 20px;
+  width: ${({ width }) => (width ? width + 50 + 'px' : '100%')};
+  height: 68px;
 `;
 
 export const InputStyled = styled.input`
-  width: ${({ size }) => size + 'rem'};
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: ${({ width }) => (width ? width + 'px' : '100%')};
   height: 40px;
-  padding: 1.5rem 2rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: ${({ theme }) => theme.colors.text};
-  padding: 2px 10px;
+  padding: 0 10px;
   background-color: ${({ theme }) => theme.colors.surface};
-  border: ${({ isError }) => (!isError ? 'none' : '1px solid #ff000099')};
+  border: ${({ isError }) => (!isError ? 'none' : '1px solid #FF0000')};
   box-shadow: ${({ theme }) => theme.boxShadow};
   border-radius: 3px;
   outline: none;
 
-  ::placeholder {
-    font-size: 1.2rem;
-    opacity: 80%;
+  &::placeholder {
+    opacity: 0.9;
   }
 `;
 
 export const SelectStyled = styled.select`
-  width: ${({ width }) => width + 'rem'};
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: ${({ width }) => (width ? width + 'px' : '100%')};
   height: 40px;
-  padding: 1rem 1rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: ${({ theme }) => theme.colors.text};
-  padding: 2px 10px;
-  // background-color: ${({ isError, theme }) => (!isError ? theme.colors.surface : '#ff000099')};
+  padding: 0 10px;
   background-color: ${({ theme }) => theme.colors.surface};
   box-shadow: ${({ theme }) => theme.boxShadow};
   border-radius: 3px;
   outline: none;
-  border: ${({ isError }) => (!isError ? 'none' : '1px solid #ff000099')};
+  border: ${({ isError }) => (!isError ? 'none' : '1px solid #ff0000')};
 
   option {
     font-size: 1rem;
@@ -49,16 +48,21 @@ export const SelectStyled = styled.select`
 `;
 
 export const ErrorMessageStyled = styled.p`
+  position: absolute;
+  bottom: 8px;
+  left: 0;
   margin: 0;
-  margin-top: 5px;
-  color: #fb103d;
-  font-size: 14px;
+  padding: 0;
+  color: #ff0000;
+  font-family: Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 100;
 `;
 
 export const CloseIcon = styled(motion.span)`
   position: absolute;
   top: 5px;
-  left: ${({ pos }) => pos - 1.3 + 'rem'};
+  left: ${({ width }) => (width ? width - 24 + 'px' : 'calc(100% - 24px)')};
   color: ${({ theme }) => theme.colors.text};
   font-size: 1.2rem;
   margin-top: 6px;

@@ -12,7 +12,7 @@ export default createGlobalStyle`
     font-family: "Roboto";
     user-select: none;
     overflow-y: auto;
-    padding-left: 4px;
+    padding: 0px;
   }
   body::-webkit-scrollbar {
     height: 4px;
@@ -24,13 +24,9 @@ export default createGlobalStyle`
     background: ${({ theme }) => theme.colors.primary};
     border-radius: 8px;
   }
-
-  page {
+  .page{
     width: 100%;
-    height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;    
-  }
+    justify-content: center;
+  }  
 `;

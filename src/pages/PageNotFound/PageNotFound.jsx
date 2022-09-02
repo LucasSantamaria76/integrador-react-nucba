@@ -1,8 +1,12 @@
+import { MainContainer } from '../../components/common';
+
 const PageNotFound = () => {
   return (
-    <div>
-      <h2>Error 404: Page not found</h2>
-    </div>
+    <MainContainer>
+      <div>
+        <h2>Error 404: Page not found</h2>
+      </div>
+    </MainContainer>
   );
 };
 

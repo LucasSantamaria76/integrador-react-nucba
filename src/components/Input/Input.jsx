@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { CloseIcon, ErrorMessageStyled, InputContainerStyled, InputStyled } from './Input.styles';
 
-const Input = ({ name, type = 'text', placeholder, size }) => {
+const Input = ({ currency, name, type = 'text', placeholder, width }) => {
   const inputRef = useRef(null);
   const handleEnter = (e) => {
     if (e.key.toLowerCase() === 'enter') {
@@ -17,26 +17,27 @@ const Input = ({ name, type = 'text', placeholder, size }) => {
 
   return (
     <Field name={name}>
-      {({ field, form: { errors, setFieldTouched, setFieldValue, touched } }) => (
-        <InputContainerStyled size={size}>
+      {({ field, form: { errors, setFieldTouched, setFieldValue, submitCount, touched } }) => (
+        <InputContainerStyled width={width}>
           <InputStyled
+            autoComplete='off'
             ref={inputRef}
             type={type}
             placeholder={placeholder}
             {...field}
-            isError={errors[field.name] && touched[field.name]}
-            size={size}
-            autoComplete='off'
+            isError={errors[field.name] && touched[field.name] && !!submitCount}
+            width={width}
             onKeyDown={handleEnter}
+            currency={!!currency}
           />
           <AnimatePresence>
             {!!field.value && (
               <CloseIcon
-                pos={size}
                 key='close-icon'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
+                width={width}
                 onClick={() => {
                   setFieldValue(field.name, '');
                   setFieldTouched(field.name, false);
@@ -47,7 +48,7 @@ const Input = ({ name, type = 'text', placeholder, size }) => {
               </CloseIcon>
             )}
           </AnimatePresence>
-          <ErrorMessage name={field.name}>{(message) => <ErrorMessageStyled>{message}</ErrorMessageStyled>}</ErrorMessage>
+          {!!submitCount && <ErrorMessage name={field.name}>{(message) => <ErrorMessageStyled>{message}</ErrorMessageStyled>}</ErrorMessage>}
         </InputContainerStyled>
       )}
     </Field>

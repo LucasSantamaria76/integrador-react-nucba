@@ -2,6 +2,7 @@ export const registerInitialValues = {
   name: '',
   email: '',
   password: '',
+  RepeatPassword: '',
 };
 
 export const loginInitialValues = {
@@ -14,7 +15,7 @@ export const productInitialValues = {
   name: '',
   description: '',
   price: '',
-  discount: '',
+  discount: 0,
   stock: '',
   unit: '',
   volume: '',

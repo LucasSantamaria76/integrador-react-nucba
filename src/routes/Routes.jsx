@@ -4,16 +4,81 @@ import Home from '../pages/Home/Home';
 import PageNotFound from '../pages/PageNotFound/PageNotFound';
 import Products from '../pages/Products/Products';
 import AddProducts from '../pages/AddProducts/AddProducts';
+import Login from '../pages/Auth/Login';
+import Register from './../pages/Auth/Register';
+import { AnimatePresence, motion } from 'framer-motion';
+
+const pageTransition = {
+  in: {
+    opacity: 1,
+  },
+  out: {
+    opacity: 0,
+  },
+};
 
 const Routes = () => {
   return (
-    <ReactRoutes>
-      <Route path='/' element={<Home />} />
-      <Route path='/productos' element={<Products />} />
-      <Route path='/agregarProductos' element={<AddProducts />} />
-
-      <Route path='*' element={<PageNotFound />} />
-    </ReactRoutes>
+    <AnimatePresence>
+      <ReactRoutes>
+        <Route
+          path='/'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <Home />
+            </motion.div>
+          }
+        />
+        <Route
+          path='/inicio'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <Home />
+            </motion.div>
+          }
+        />
+        <Route
+          path='/productos'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <Products />
+            </motion.div>
+          }
+        />
+        <Route
+          path='/agregarproductos'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <AddProducts />
+            </motion.div>
+          }
+        />
+        <Route
+          path='/login'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <Login />
+            </motion.div>
+          }
+        />
+        <Route
+          path='/register'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <Register />
+            </motion.div>
+          }
+        />
+        <Route
+          path='*'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <PageNotFound />
+            </motion.div>
+          }
+        />
+      </ReactRoutes>
+    </AnimatePresence>
   );
 };
 

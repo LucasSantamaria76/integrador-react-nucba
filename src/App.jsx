@@ -5,17 +5,33 @@ import { themes } from './styles/themes';
 import NavBar from './components/NavBar/NavBar';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories, getProducts } from './redux/slices';
+import { getCategories, getProducts, setCurrentUser } from './redux/slices';
 import Layout from './components/Layout/Layout';
 import Routes from './routes/Routes';
-import { getDBCategories, getDBProducts } from './firebase/firebase-utils';
+import { auth, getDBCategories, getDBProducts, getOrCreateUserProfile } from './firebase/firebase-utils';
+import { onAuthStateChanged } from 'firebase/auth';
+
+const onAuthChange = (dispatch, action) => {
+  return onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const snapshot = await getOrCreateUserProfile(user);
+      localStorage.setItem('username', JSON.stringify(user));
+      dispatch(action({ id: snapshot.id, ...snapshot.data() }));
+    } else {
+      dispatch(action(null));
+    }
+  });
+};
 
 const App = () => {
   const { theme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const unsuscribe = onAuthChange(dispatch, setCurrentUser);
+
     getDBProducts().then((data) => dispatch(getProducts(data)));
+
     getDBCategories().then((data) => {
       const objCategory = data?.reduce((acc, doc) => {
         acc = { ...acc, [doc.id]: doc.data().subCategory };
@@ -23,6 +39,7 @@ const App = () => {
       }, {});
       dispatch(getCategories(objCategory));
     });
+    return () => unsuscribe();
   }, []);
 
   return (

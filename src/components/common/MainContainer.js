@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.main`
+  position: relative;
+  margin-top: 120px;
   width: 100%;
-  max-width: 1400px;
-  height: auto;
-  margin-top: 100px;
+  height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   justify-content: center;
   align-items: center;
+  @media screen and (min-width: 600px) {
+    max-width: 1400px;
+  }
 `;

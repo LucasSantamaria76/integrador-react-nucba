@@ -9,6 +9,7 @@ import Select from './../../components/Input/Select';
 import { addDbProduct } from '../../firebase/firebase-utils';
 import { addProductStore } from '../../redux/slices';
 import Swal from 'sweetalert2';
+import toast, { Toaster } from 'react-hot-toast';
 
 let urlBase = '';
 
@@ -24,15 +25,13 @@ const UploadImage = () => {
     const { value: url } = await Swal.fire({
       input: 'url',
       inputLabel: 'Ingresa URL de la imagen',
-      confirmButtonText: 'Aceptar',
       cancelButtonText: 'Cancelar',
       showCancelButton: true,
+      validationMessage: 'URL inválida',
+      confirmButtonText: 'Aceptar',
       confirmButtonColor: theme === 'light' ? '#5e8278' : '#215b6d',
       background: theme === 'light' ? '#add1c7' : '#00313F',
       color: theme === 'light' ? '#000' : '#fff',
-      validationMessage: 'URL inválida',
-
-      //confirmButtonColor: `${theme === 'ligth' ? '#add1c7' : '#00313F'}`,
     });
 
     if (url) {
@@ -46,7 +45,7 @@ const UploadImage = () => {
   }, [id, urlPhoto]);
   return (
     <ImgWrapper>
-      {!urlPhoto && <DblClickForImg>Doble click para Cargar imagen o ingresar código barras</DblClickForImg>}
+      {!urlPhoto && <DblClickForImg>Doble click para Cargar imagen o ingresar código en el campo código barras</DblClickForImg>}
 
       <ImgContainer src={urlPhoto} onDoubleClick={handleDblClick} />
     </ImgWrapper>
@@ -71,9 +70,22 @@ const AddProducts = () => {
           onSubmit={async (values, { resetForm }) => {
             try {
               const productsExists = products.filter((product) => product.id === values.id);
-              if (!productsExists) {
-                dispatch(addProductStore({ ...values, urlPhoto: urlBase }));
-                addDbProduct({ ...values });
+              if (!productsExists.length) {
+                dispatch(addProductStore(values));
+                addDbProduct(values);
+                resetForm();
+                toast.success('Producto cargado correctamente', {
+                  position: 'top-center',
+                  duration: 2000,
+                  style: {
+                    padding: '10px',
+                    marginTop: '115px',
+                    borderRadius: '4px',
+                    background: theme === 'light' ? '#add1c7ca' : '#00313fca',
+                    color: theme === 'light' ? '#000' : '#fff',
+                    fontSize: '1.5rem',
+                  },
+                });
               } else
                 Swal.fire({
                   icon: 'error',
@@ -81,8 +93,8 @@ const AddProducts = () => {
                   confirmButtonText: 'Aceptar',
                   confirmButtonColor: theme === 'light' ? '#5e8278' : '#215b6d',
                   background: theme === 'light' ? '#add1c7' : '#00313F',
+                  color: theme === 'light' ? '#000' : '#fff',
                 });
-              resetForm();
             } catch (error) {
               console.log(error);
             }
@@ -91,28 +103,21 @@ const AddProducts = () => {
             return (
               <Form>
                 <ContainerForm>
+                  <Input name={'name'} type='text' placeholder='Nombre' />
                   <div>
-                    <div>
-                      <Input name={'id'} placeholder='Código de barras' size={12} />
-                      <Input name={'price'} placeholder='Precio' size={10} />
-                      <Input name={'discount'} placeholder='Descuento' size={10} />
-                      <Input name={'stock'} placeholder='Stock' size={10} />
-                      <div className='unit'>
-                        <Input name={'volume'} placeholder='Volumen' size={6} />
-                        <Select name={'unit'} placeholder='Unidad' options={unitsList} width={8} />
-                      </div>
-                    </div>
-                    <UploadImage />
+                    <Input name={'id'} placeholder='Código de barras' width={170} />
+                    <Input name={'price'} placeholder='Precio' width={170} currency />
+                    <Input name={'discount'} placeholder='Descuento' width={170} />
+                    <Input name={'stock'} placeholder='Stock' width={170} />
+                    <Input name={'volume'} placeholder='Volumen' width={170} />
+                    <Select name={'unit'} placeholder='Unidad' options={unitsList} width={170} />
                   </div>
-                  <div>
-                    <Input name={'name'} type='text' placeholder='Nombre' size={30} />
-                    <Input name={'description'} type='text' placeholder='Descripción' size={30} />
-                  </div>
+                  <UploadImage />
                   {!!category && (
-                    <div>
+                    <>
                       <Select name={'category'} options={category} placeholder='Ingrese categoria' />
                       <Select name={'subCategory'} options={categories[values.category]} placeholder='Ingrese subcategoria' />
-                    </div>
+                    </>
                   )}
                   <Button type='submit'>Agregar</Button>
                 </ContainerForm>
@@ -121,6 +126,7 @@ const AddProducts = () => {
           }}
         </Formik>
       </WrapperForm>
+      <Toaster />
     </MainContainer>
   );
 };
