@@ -8,7 +8,6 @@ export const WrapperCard = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  cursor: pointer;
 `;
 
 export const CardBody = styled.div`
@@ -40,6 +39,7 @@ export const Info = styled.h3`
 `;
 
 export const Image = styled.div`
+  position: relative;
   width: 300px;
   height: 300px;
   margin: 0;
@@ -47,21 +47,14 @@ export const Image = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  cursor: pointer;
 `;
 
 export const CartContainer = styled.div`
   position: absolute;
   bottom: 35px;
   right: 10px;
-`;
-
-export const ButtonFav = styled.button`
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  background-color: transparent;
-  border: none;
-  font-size: 1rem;
+  cursor: ${({ stock }) => (!!stock ? 'pointer' : 'not-allowed')};
 `;
 
 export const CardFooter = styled.div`
@@ -72,4 +65,18 @@ export const CardFooter = styled.div`
     margin: 0 10px;
     padding: 0;
   }
+`;
+
+export const BoxInfo = styled.div`
+  position: absolute;
+  top: 75px;
+  left: -150px;
+  display: ${({ show }) => (show ? 'inline-block' : 'none')};
+  width: 500px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: ${({ stock }) => (stock ? '#00ff08bf' : '#ff0000aa')};
+  transform: rotate(-45deg);
 `;

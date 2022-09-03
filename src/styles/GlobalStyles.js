@@ -24,6 +24,9 @@ export default createGlobalStyle`
     background: ${({ theme }) => theme.colors.primary};
     border-radius: 8px;
   }
+  h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
   .page{
     width: 100%;
     display: flex;

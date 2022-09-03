@@ -12,20 +12,20 @@ export const unitsSlice = createSlice({
         conv: 'kg',
         unit: 1000,
       },
-      Kilogramo: {
+      Kilogramos: {
         conv: 'kg',
         unit: 1,
       },
       Litro: {
-        conv: 'Litro',
+        conv: 'Lt',
         unit: 1,
       },
       Mililitro: {
-        conv: 'Litro',
+        conv: 'Lt',
         unit: 1000,
       },
       'cm³': {
-        conv: 'Litro',
+        conv: 'Lt',
         unit: 1000,
       },
     },

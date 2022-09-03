@@ -8,7 +8,10 @@ export const FormWrapper = styled.div`
   border-radius: 2px;
   background-color: ${({ theme }) => theme.colors.primary};
   box-shadow: ${({ theme }) => theme.boxShadow};
-
+  h2,
+  h4 {
+    margin: 10px 0;
+  }
   overflow: hidden;
   @media screen and (min-width: 600px) {
     width: 500px;

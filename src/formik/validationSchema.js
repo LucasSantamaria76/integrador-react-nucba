@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 const NUMBER = 'Solo puede contener un número positivo';
 const REQUIRED = '* Campo Requerido';
-const ID_SIZE = 'El código de ser de 13 números';
+const ID_SIZE = 'El código debe ser de 13 números';
 const EMAIL = 'Correo electrónico inválido';
 
 export const registerValidationSchema = Yup.object({

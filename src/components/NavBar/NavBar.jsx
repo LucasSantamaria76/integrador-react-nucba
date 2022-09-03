@@ -15,19 +15,18 @@ import {
 } from './NavBar.styles';
 import imageLogo from '../../assets/Free-Market-1080x675.webp';
 import cartImg from '../../assets/cart.png';
-import { Cart, CheckBoxTheme, Wrapper } from '../common';
+import { Badge, Cart, CheckBoxTheme, Wrapper } from '../common';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { VscChromeClose, VscMenu } from 'react-icons/vsc';
 import { FaUserCircle } from 'react-icons/fa';
 import { logout } from '../../redux/slices';
 import { useDispatch, useSelector } from 'react-redux';
-import { ButtonFav } from '../CardProducts/CardProducts.style';
 
 const NavBar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isLogged, user } = useSelector((state) => state.user);
+  const { cart, isLogged, user } = useSelector((state) => state.user);
 
   const menu = ['inicio', 'productos', 'agregar productos'];
 
@@ -37,6 +36,7 @@ const NavBar = () => {
   const handleLogin = () => {
     isLogged ? dispatch(logout()) : navigate('/login');
   };
+  const amountOfProductsInCart = cart.items.reduce((acc, item) => (acc += item.quantity), 0);
 
   return (
     <Wrapper>
@@ -64,11 +64,17 @@ const NavBar = () => {
         </NavBarContainer>
         <UserContainer>
           <div>
+            <Badge itemsInCart={amountOfProductsInCart} card={false}>
+              {amountOfProductsInCart}
+            </Badge>
             <Cart src={cartImg} />
           </div>
           <ButtonUser onClick={handleLogin}>
             {isLogged ? (
-              <img src={!!user?.photoURL ? user?.photoURL : 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} alt='logo user' />
+              <img
+                src={!!user?.photoURL ? user?.photoURL : 'https://cdn-icons-png.flaticon.com/512/149/149071.png'}
+                alt='logo user'
+              />
             ) : (
               <FaUserCircle />
             )}
@@ -76,7 +82,9 @@ const NavBar = () => {
             {isLogged ? user?.name : 'Iniciar Sesión'}
           </ButtonUser>
         </UserContainer>
-        <MobileIcon>{isMobile ? <VscChromeClose onClick={handleShowMenu} /> : <VscMenu onClick={handleShowMenu} />}</MobileIcon>
+        <MobileIcon>
+          {isMobile ? <VscChromeClose onClick={handleShowMenu} /> : <VscMenu onClick={handleShowMenu} />}
+        </MobileIcon>
       </WrapperNav>
     </Wrapper>
   );

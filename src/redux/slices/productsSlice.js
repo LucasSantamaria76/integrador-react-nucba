@@ -12,7 +12,16 @@ export const productsSlice = createSlice({
     addProductStore: (state, action) => {
       state.products.push(action.payload);
     },
+    reduceStockProduct: (state, action) => {
+      const product = state.products.find((item) => item.id === action.payload);
+      !!product?.stock && product.stock--;
+    },
+    restoreStockProduct: (state, action) => {
+      const product = state.products.find((item) => item.id === action.payload.id);
+      const newStock = +product.stock + action.payload.quantity;
+      product.stock = '' + newStock;
+    },
   },
 });
 
-export const { getProducts, addProductStore } = productsSlice.actions;
+export const { addProductStore, getProducts, reduceStockProduct, restoreStockProduct } = productsSlice.actions;

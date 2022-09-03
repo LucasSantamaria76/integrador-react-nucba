@@ -1,37 +1,36 @@
 import { formatPrice } from '../../utils/formatPrice';
-import { ButtonFav, CardBody, CardFooter, CartContainer, Image, Info, Title, WrapperCard } from './CardProducts.style';
+import { BoxInfo, CardBody, CardFooter, CartContainer, Image, Info, Title, WrapperCard } from './CardProducts.style';
 import cartImg from '../../assets/cart.png';
-import { Cart } from '../common';
+import { Badge, ButtonFav, Cart } from '../common';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRemoveFavorite } from '../../redux/slices';
-import { Toaster, toast } from 'react-hot-toast';
+import { addProductToCart, reduceStockProduct } from '../../redux/slices';
 
-const CardProducts = ({ id, name, price, stock, unit, urlPhoto, volume }) => {
+import { useNavigate } from 'react-router-dom';
+
+const CardProducts = ({ discount, id, name, price, stock, unit, urlPhoto, volume }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { cart, user } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
   const { units } = useSelector((state) => state.units);
-  const { favorites, user } = useSelector((state) => state.user);
 
-  const handleFav = () => {
-    !!user
-      ? dispatch(addRemoveFavorite(id))
-      : toast.error('Debes iniciar sesión para agregar a favoritos', {
-          position: 'top-center',
-          duration: 1500,
-          style: {
-            padding: '10px',
-            marginTop: '115px',
-            borderRadius: '4px',
-            background: theme === 'light' ? '#add1c7ca' : '#00313fca',
-            color: theme === 'light' ? '#000' : '#fff',
-            fontSize: '1.5rem',
-          },
-        });
+  const handleAddCart = () => {
+    if (!!stock) {
+      dispatch(addProductToCart({ id, price, discount }));
+      dispatch(reduceStockProduct(id));
+    }
   };
+
+  const amountOfProductInCart = cart.items?.find((item) => item.id === id)?.quantity;
 
   return (
     <WrapperCard>
-      <Image url={urlPhoto} />
+      <Image url={urlPhoto} onClick={() => navigate(`/productDetails/${id}`)}>
+        <BoxInfo stock={!!stock} show={!stock || !!discount}>
+          {!stock && 'Sin stock'}
+          {!!stock && !!discount && `${discount}% de descuento`}
+        </BoxInfo>
+      </Image>
       <CardBody>
         <Title>{name}</Title>
         <Info>
@@ -43,16 +42,16 @@ const CardProducts = ({ id, name, price, stock, unit, urlPhoto, volume }) => {
           {stock}
         </Info>
         <CardFooter>
-          <h4>{`Precio x ${units[unit].conv} ${formatPrice(price * (units[unit].unit / volume))}`}</h4>
+          <h4>{`Precio x ${units[unit]?.conv} ${formatPrice(price * (units[unit]?.unit / volume))}`}</h4>
         </CardFooter>
-        <CartContainer>
+        <CartContainer stock={stock} onClick={handleAddCart}>
+          <Badge itemsInCart={amountOfProductInCart} card={true}>
+            {amountOfProductInCart}
+          </Badge>
           <Cart src={cartImg} />
         </CartContainer>
-        <ButtonFav type='button' onClick={handleFav}>
-          {favorites?.includes(id) ? '❤️' : '🤍'}
-        </ButtonFav>
+        <ButtonFav id={id} size={1} pos='true' />
       </CardBody>
-      <Toaster />
     </WrapperCard>
   );
 };

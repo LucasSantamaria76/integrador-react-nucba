@@ -7,6 +7,8 @@ import AddProducts from '../pages/AddProducts/AddProducts';
 import Login from '../pages/Auth/Login';
 import Register from './../pages/Auth/Register';
 import { AnimatePresence, motion } from 'framer-motion';
+import { ProtectedRoute } from './ProtectedRoute';
+import ProductDetails from '../pages/ProductDetails/ProductDetails';
 
 const pageTransition = {
   in: {
@@ -49,7 +51,9 @@ const Routes = () => {
           path='/agregarproductos'
           element={
             <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
-              <AddProducts />
+              <ProtectedRoute to='/login'>
+                <AddProducts />
+              </ProtectedRoute>
             </motion.div>
           }
         />
@@ -66,6 +70,14 @@ const Routes = () => {
           element={
             <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
               <Register />
+            </motion.div>
+          }
+        />
+        <Route
+          path='/productDetails/:Id'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <ProductDetails />
             </motion.div>
           }
         />

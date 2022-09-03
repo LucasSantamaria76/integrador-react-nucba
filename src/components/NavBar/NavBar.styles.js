@@ -168,7 +168,8 @@ export const MobileIcon = styled.div`
 
 export const UserContainer = styled.div`
   width: 100%;
-  div {
+  & > div {
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: flex-end;
