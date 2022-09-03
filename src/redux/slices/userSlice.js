@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { auth, updateDBFav } from '../../firebase/firebase-utils';
+import { auth, updateDBCart, updateDBFav } from '../../firebase/firebase-utils';
 
 export const userSlice = createSlice({
   name: 'user',
@@ -38,12 +38,17 @@ export const userSlice = createSlice({
     },
     addProductToCart: (state, action) => {
       const productInCart = state.cart.items.find((item) => item.id === action.payload.id);
-
       !productInCart ? state.cart.items.push({ ...action.payload, quantity: 1 }) : (productInCart.quantity += 1);
+      updateDBCart(state.user.id, state.cart);
     },
     removeProductToCart: (state, action) => {
-      const item = state.cart.items.find((item) => item.id === action.payload);
-      !!item.quantity && item.quantity--;
+      const items = state.cart.items.find((item) => item.id === action.payload.id);
+      items?.quantity > 1
+        ? (items.quantity -= action.payload.quantity)
+        : !!items
+        ? (state.cart.items = state.cart.items.filter((item) => item.id !== action.payload.id))
+        : null;
+      updateDBCart(state.user.id, state.cart);
     },
   },
 });

@@ -113,11 +113,13 @@ export const BtnCart = styled.div`
     width: 40px;
     height: 40px;
     padding: 6px;
+    fill: ${({ disabled, theme }) => (disabled ? '#999' : theme.colors.text)};
+    box-shadow: ${({ disabled }) => disabled && 'none'};
     cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
     background-color: ${({ theme }) => theme.colors.text2};
     &:active {
-      fill: ${({ disabled }) => !disabled && '#f00'};
-      box-shadow: none;
+      fill: ${({ disabled, theme }) => (!disabled ? '#f00' : '#999')};
+      box-shadow: ${({ disabled }) => !disabled && 'none'};
     }
   }
 `;

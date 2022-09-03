@@ -8,7 +8,7 @@ export const themes = {
       primary: '#add1c7ee',
       hover: '#8ecebc',
     },
-    boxShadow: '1px 2px 6px rgba(0, 0, 0, 0.2), 1px 2px 6px rgba(0, 0, 0, 0.3)',
+    boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 1px 1px 3px rgba(0, 0, 0, 0.8)',
   },
   dark: {
     colors: {
@@ -19,6 +19,6 @@ export const themes = {
       primary: '#091E2Fee',
       hover: '#88bac7ee',
     },
-    boxShadow: '1px 2px 6px rgba(255, 255, 255, 0.2), 1px 2px 6px rgba(255, 255, 255, 0.3)',
+    boxShadow: '1px 1px 3px rgba(255, 255, 255, 0.7), 1px 1px 3px rgba(255, 255, 255, 0.8)',
   },
 };

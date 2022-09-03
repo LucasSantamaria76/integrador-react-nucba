@@ -12,7 +12,7 @@ import {
   updateProfile,
 } from 'firebase/auth';
 
-import { collection, getDocs, getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { collection, getDocs, getFirestore, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 
 const app = initializeApp(firebaseConfig);
 
@@ -48,7 +48,10 @@ export const auth = getAuth(app);
 export const register = async ({ email, name, password }) => {
   try {
     const credentials = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(auth.currentUser, { displayName: name, photoURL: 'https://cdn-icons-png.flaticon.com/512/149/149071.png' });
+    await updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
+    });
 
     /*  await sendEmailVerification(credentials.user, {
       url: 'http://localhost:5173',
@@ -88,6 +91,11 @@ export const addDbProduct = async (product) => {
   await setDoc(doc(db, 'products', product.id), product);
 };
 
+export const updateDbStockProduct = async (id, stock) => {
+  const productDoc = doc(db, 'products', id);
+  await updateDoc(productDoc, { stock: stock });
+};
+
 export const getDBCategories = async () => {
   const query = await getDocs(collection(db, 'categories'));
   return query?.docs;
@@ -95,8 +103,15 @@ export const getDBCategories = async () => {
 
 export const updateDBFav = async (user, fav) => {
   const userDoc = doc(db, `favorites/${user}`);
-
   await setDoc(userDoc, {
     favorites: fav,
+  });
+};
+
+export const updateDBCart = async (user, fav) => {
+  const userDoc = doc(db, `cart/${user}`);
+
+  await setDoc(userDoc, {
+    cart: fav,
   });
 };

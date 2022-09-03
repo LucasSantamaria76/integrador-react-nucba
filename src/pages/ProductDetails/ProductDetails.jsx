@@ -42,10 +42,8 @@ const ProductDetails = () => {
   };
 
   const handleRemoveCart = () => {
-    if (!!amountOfProductInCart) {
-      dispatch(removeProductToCart(id));
-      dispatch(restoreStockProduct({ id, quantity: 1 }));
-    }
+    dispatch(removeProductToCart({ id, quantity: 1 }));
+    !!amountOfProductInCart && dispatch(restoreStockProduct({ id, quantity: 1 }));
   };
 
   return (
