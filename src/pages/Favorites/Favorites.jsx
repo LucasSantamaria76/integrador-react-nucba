@@ -3,14 +3,17 @@ import { useSelector } from 'react-redux';
 import { MainContainer } from '../../components/common';
 import CardProducts from '../../components/CardProducts/CardProducts';
 
-const Products = () => {
+const Favorites = () => {
+  const { favorites } = useSelector((state) => state.user);
   const { products } = useSelector((state) => state.products);
   const { filters } = useSelector((state) => state.filter);
 
-  const filteredProducts = () => {
-    if (!!filters?.search) return products.filter((el) => el.name.toLowerCase().startsWith(filters.search));
+  const prodFav = products?.filter((el) => favorites?.includes(el.id));
 
-    return products;
+  const filteredProducts = () => {
+    if (!!filters?.search) return prodFav.filter((el) => el.name.toLowerCase().startsWith(filters.search));
+
+    return prodFav;
   };
 
   const listProducts = filteredProducts();
@@ -21,11 +24,11 @@ const Products = () => {
         {!!listProducts?.length ? (
           listProducts?.map((prod) => <CardProducts key={prod.id} {...prod} />)
         ) : (
-          <h2>Error al cargar los productos</h2>
+          <h2>No hay productos agregados a favoritos</h2>
         )}
       </Column>
     </MainContainer>
   );
 };
 
-export default Products;
+export default Favorites;

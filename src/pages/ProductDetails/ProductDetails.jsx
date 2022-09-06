@@ -49,7 +49,7 @@ const ProductDetails = () => {
   return (
     <MainContainer>
       <ProductContainer>
-        <Image url={urlPhoto} onClick={() => navigate('/productos')}>
+        <Image url={urlPhoto} onClick={() => navigate(-1)}>
           <BoxInfo stock={!!stock} show={!stock || !!discount}>
             {!stock && 'Sin stock'}
             {!!stock && !!discount && `${discount}% de descuento`}

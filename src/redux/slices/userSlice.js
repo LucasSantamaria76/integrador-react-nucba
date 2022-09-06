@@ -39,6 +39,12 @@ export const userSlice = createSlice({
         : state.favorites.push(action.payload);
       updateDBFav(state.user.id, state.favorites);
     },
+    setFavorites: (state, action) => {
+      state.favorites = action.payload;
+    },
+    setCart: (state, action) => {
+      state.cart = action.payload;
+    },
     addProductToCart: (state, action) => {
       const {
         payload: { discount, id, price },
@@ -87,5 +93,7 @@ export const {
   removeProductToCart,
   setCurrentUser,
   logout,
+  setCart,
+  setFavorites,
   toggleVisibleCart,
 } = userSlice.actions;

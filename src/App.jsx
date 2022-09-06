@@ -5,10 +5,17 @@ import { themes } from './styles/themes';
 import NavBar from './components/NavBar/NavBar';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories, getProducts, setCurrentUser } from './redux/slices';
+import { getCategories, getProducts, setCart, setCurrentUser, setFavorites } from './redux/slices';
 import Layout from './components/Layout/Layout';
 import Routes from './routes/Routes';
-import { auth, getDBCategories, getDBProducts, getOrCreateUserProfile } from './firebase/firebase-utils';
+import {
+  auth,
+  getDBCart,
+  getDBCategories,
+  getDBFavoritos,
+  getDBProducts,
+  getOrCreateUserProfile,
+} from './firebase/firebase-utils';
 import { onAuthStateChanged } from 'firebase/auth';
 
 const onAuthChange = (dispatch, action) => {
@@ -17,6 +24,13 @@ const onAuthChange = (dispatch, action) => {
       const snapshot = await getOrCreateUserProfile(user);
       localStorage.setItem('username', JSON.stringify(user));
       dispatch(action({ id: snapshot.id, ...snapshot.data() }));
+
+      getDBFavoritos(user.uid).then((data) => {
+        dispatch(setFavorites(data));
+      });
+      getDBCart(user.uid).then((data) => {
+        dispatch(setCart(data));
+      });
     } else {
       dispatch(action(null));
     }

@@ -29,7 +29,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const { cart, isLogged, user } = useSelector((state) => state.user);
 
-  const menu = ['inicio', 'productos', 'agregar productos'];
+  const menu = ['inicio', 'productos', 'favoritos', 'agregar productos'];
 
   const handleClickLogo = () => navigate('/');
   const handleShowMenu = () => setIsMobile(!isMobile);
@@ -56,6 +56,7 @@ const NavBar = () => {
           <Menu isMobile={isMobile} onClick={handleShowMenu}>
             {menu.map((item) => {
               if (item === 'agregar productos' && !isLogged) return;
+              if (item === 'favorites' && !isLogged) return;
               return (
                 <NavLink to={`/${item.replace(/ /g, '')}`} key={item} end>
                   {item}

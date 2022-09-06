@@ -15,9 +15,11 @@ import { BsCartDash, BsCartPlus, BsCartX } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { addProductToCart, reduceStockProduct, removeProductToCart, restoreStockProduct } from '../../redux/slices';
 import { BoxInfo } from '../common';
+import { useResize } from './../../hooks/useResize';
 
 const CardCart = ({ discount, id, name, price, quantity, stock, urlPhoto }) => {
   const dispatch = useDispatch();
+  const { isPhone } = useResize();
 
   const handleAddCart = () => {
     if (!!stock) {
@@ -30,6 +32,7 @@ const CardCart = ({ discount, id, name, price, quantity, stock, urlPhoto }) => {
     dispatch(removeProductToCart({ discount, id, price, quantity: amount }));
     !!quantity && dispatch(restoreStockProduct({ id, quantity: amount }));
   };
+
   return (
     <>
       <CardCartContainer>
@@ -43,22 +46,24 @@ const CardCart = ({ discount, id, name, price, quantity, stock, urlPhoto }) => {
           <ProductName>{name}</ProductName>
           <ProductPrice>
             <div>
-              Precio x un.<span>{formatPrice(price)}</span>
+              Precio<span>{formatPrice(price)}</span>
             </div>
             <div>
               descuento
               <span className='discount'>{discount ? `- ${formatPrice(price * (discount / 100) * quantity)}` : 0}</span>
             </div>
           </ProductPrice>
-          <StockStyled>stock: {stock}</StockStyled>
+          {!isPhone && <StockStyled>stock: {stock}</StockStyled>}
           <QuantityContainer>
-            <BtnCart disabled={!quantity}>
-              <BsCartDash onClick={() => handleRemoveCart(1)} />
-            </BtnCart>
-            <span>{quantity}</span>
-            <BtnCart disabled={!stock}>
-              <BsCartPlus onClick={handleAddCart} />
-            </BtnCart>
+            <div>
+              <BtnCart disabled={!quantity}>
+                <BsCartDash onClick={() => handleRemoveCart(1)} />
+              </BtnCart>
+              <span>{quantity}</span>
+              <BtnCart disabled={!stock}>
+                <BsCartPlus onClick={handleAddCart} />
+              </BtnCart>
+            </div>
             <BtnDeleteProduct onClick={() => handleRemoveCart(quantity)}>
               <BsCartX />
             </BtnDeleteProduct>

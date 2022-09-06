@@ -100,6 +100,29 @@ export const getDBCategories = async () => {
   const query = await getDocs(collection(db, 'categories'));
   return query?.docs;
 };
+export const getDBFavoritos = async (id) => {
+  const docRef = doc(db, 'favorites', id);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data().favorites;
+  } else return [];
+};
+
+export const getDBCart = async (id) => {
+  const docRef = doc(db, 'cart', id);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data().cart;
+  } else
+    return {
+      items: [],
+      totalCost: 0,
+      totalDiscount: 0,
+      visible: false,
+    };
+};
 
 export const updateDBFav = async (user, fav) => {
   const userDoc = doc(db, `favorites/${user}`);

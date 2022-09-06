@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { categoriesSlice, productsSlice, themeSlice, unitsSlice, userSlice } from '../slices';
+import { categoriesSlice, filterSlice, productsSlice, themeSlice, unitsSlice, userSlice } from '../slices';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -10,6 +10,7 @@ const reducers = combineReducers({
   products: productsSlice.reducer,
   categories: categoriesSlice.reducer,
   units: unitsSlice.reducer,
+  filter: filterSlice.reducer,
 });
 
 const persistConfig = {

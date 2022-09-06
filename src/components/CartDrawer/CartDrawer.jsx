@@ -1,11 +1,12 @@
 import { AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { emptyCart, restoreStockProduct, toggleVisibleCart } from '../../redux/slices';
-import { Button } from '../common';
+import { Button, Overlay } from '../common';
 import CardCart from './CardCart';
 import { FaTrash } from 'react-icons/fa';
-import { BodyFooter, CardsContainer, CartFooter, CartTitle, ContainerStyled, Overlay } from './CartDrawer.styles';
+import { BodyFooter, CardsContainer, CartFooter, CartTitle, ContainerStyled } from './CartDrawer.styles';
 import { formatPrice } from './../../utils/formatPrice';
+import { SHIPPING_COST } from '../../utils';
 
 const CartDrawer = () => {
   const dispatch = useDispatch();
@@ -81,11 +82,11 @@ const CartDrawer = () => {
                   </div>
                   <div>
                     <h3>Envío</h3>
-                    <span>{formatPrice(299)}</span>
+                    <span>{formatPrice(SHIPPING_COST)}</span>
                   </div>
                   <div className='totalContainer'>
                     <h2>Total</h2>
-                    <span className='total'>{formatPrice(totalCost + 299 - totalDiscount)}</span>
+                    <span className='total'>{formatPrice(totalCost + SHIPPING_COST - totalDiscount)}</span>
                   </div>
                 </BodyFooter>
                 <Button>Iniciar pedido</Button>

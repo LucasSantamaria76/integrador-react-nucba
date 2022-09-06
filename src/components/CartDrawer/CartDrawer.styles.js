@@ -1,6 +1,5 @@
-import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
-import { Button } from '../common';
+import styled, { css } from 'styled-components';
 
 export const ContainerStyled = styled(motion.div)`
   position: fixed;
@@ -20,22 +19,6 @@ export const ContainerStyled = styled(motion.div)`
   @media screen and (min-width: 900px) {
     width: 700px;
   }
-`;
-
-export const Overlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 110;
-  width: 100%;
-  height: 100vh;
-  background-color: #000000aa;
-
-  ${({ isHidden }) =>
-    !isHidden &&
-    css`
-      backdrop-filter: blur(3px);
-    `}
 `;
 
 export const CardsContainer = styled.div`
@@ -62,13 +45,16 @@ export const CardsContainer = styled.div`
 
 export const CardCartContainer = styled.div`
   width: 99%;
-  height: 100px;
+  height: 180px;
   background-color: ${({ theme }) => theme.colors.background02};
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.text2};
   overflow: hidden;
   display: flex;
   justify-content: flex-start;
+  @media screen and (min-width: 450px) {
+    height: 100px;
+  }
 `;
 
 export const CartTitle = styled.div`
@@ -87,13 +73,12 @@ export const CardImage = styled.div`
   position: relative;
   width: 80px;
   height: 100%;
-  margin: 0;
   border-right: 1px solid ${({ theme }) => theme.colors.text2};
   background-color: #fff;
   background-image: url(${({ url }) => url});
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: 100%;
   overflow: hidden;
 `;
 
@@ -102,21 +87,30 @@ export const CardBody = styled.div`
   height: 100%;
   padding: 10px;
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 `;
 
 export const ProductName = styled.h5`
-  width: 65%;
+  width: 50%;
+  padding-right: 5px;
+  @media screen and (min-width: 450px) {
+    width: 65%;
+  }
 `;
 
 export const QuantityContainer = styled.div`
-  width: 50%;
+  width: 60%;
   height: 60px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  div {
+    display: flex;
+  }
   button {
-    margin-left: 30px;
     align-self: center;
   }
   span {
@@ -130,6 +124,11 @@ export const QuantityContainer = styled.div`
     background-color: ${({ theme }) => theme.colors.text2};
     border-radius: 5px;
   }
+  @media screen and (min-width: 450px) {
+    width: 45%;
+    flex-direction: row;
+    gap: 0;
+  }
 `;
 
 export const ProductPrice = styled.div`
@@ -140,24 +139,35 @@ export const ProductPrice = styled.div`
   font-size: 0.8rem;
   div {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
   }
   span {
     color: #f00;
+    text-align: right;
   }
   .discount {
     color: #0f0;
   }
+  @media screen and (min-width: 450px) {
+    flex-direction: row;
+  }
 `;
 
 export const SubTotal = styled(ProductPrice)`
-  width: 40%;
-  flex-direction: row;
+  width: 35%;
+  height: 50px;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  @media screen and (min-width: 450px) {
+    flex-direction: row;
+  }
 `;
 
 export const StockStyled = styled.p`
-  width: 10%;
+  width: 20%;
+  margin: 0;
   font-size: 0.8rem;
   line-height: 50px;
 `;

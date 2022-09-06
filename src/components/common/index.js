@@ -5,3 +5,4 @@ export * from './MainContainer';
 export * from './Cart';
 export * from './Wrapper';
 export * from './BoxInfo';
+export * from './Overlay';

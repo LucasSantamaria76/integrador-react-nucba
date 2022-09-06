@@ -9,6 +9,7 @@ import Register from './../pages/Auth/Register';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ProtectedRoute } from './ProtectedRoute';
 import ProductDetails from '../pages/ProductDetails/ProductDetails';
+import Favorites from '../pages/Favorites/Favorites';
 
 const pageTransition = {
   in: {
@@ -44,6 +45,16 @@ const Routes = () => {
           element={
             <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
               <Products />
+            </motion.div>
+          }
+        />
+        <Route
+          path='/favorites'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <ProtectedRoute to='/login'>
+                <Favorites />
+              </ProtectedRoute>
             </motion.div>
           }
         />
