@@ -49,7 +49,7 @@ const Routes = () => {
           }
         />
         <Route
-          path='/favorites'
+          path='/favoritos'
           element={
             <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
               <ProtectedRoute to='/login'>
