@@ -133,7 +133,7 @@ export const ImgLogo = styled.img`
 
 export const TextLogo = styled.h2`
   position: absolute;
-  top: 15px;
+  top: 40px;
   left: 0;
   width: 120px;
   height: 50px;
@@ -142,7 +142,7 @@ export const TextLogo = styled.h2`
   color: white;
   cursor: pointer;
   text-shadow: 0 0 0.05em #ff0000, 0 0 0.2em #ff0000, 0 0 0.3em #ff0000;
-  transform: rotate(-12deg);
+  transform: rotate(-20deg);
 `;
 
 export const Label = styled.label`

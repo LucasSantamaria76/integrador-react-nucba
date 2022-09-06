@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const StyledButton = styled.button`
   width: ${({ width }) => (width ? width : '100%')};
-  height: 50px;
+  height: ${({ height }) => (height ? height : '50px')};
   background: none;
   outline: none;
   border: 1px solid ${({ theme }) => theme.colors.text2};
@@ -13,13 +13,17 @@ const StyledButton = styled.button`
   border-radius: 3px;
   font-size: 1.2rem;
   box-shadow: ${({ theme }) => theme.boxShadow};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
   &:active {
     box-shadow: none;
   }
 `;
 
-export const Button = ({ type = 'button', children, handleClick, width }) => (
-  <StyledButton type={type} onClick={handleClick} width={width}>
+export const Button = ({ type = 'button', children, handleClick, width, height }) => (
+  <StyledButton type={type} onClick={handleClick} width={width} height={height}>
     {children}
   </StyledButton>
 );

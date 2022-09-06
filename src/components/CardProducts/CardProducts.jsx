@@ -1,7 +1,7 @@
 import { formatPrice } from '../../utils/formatPrice';
-import { BoxInfo, CardBody, CardFooter, CartContainer, Image, Info, Title, WrapperCard } from './CardProducts.style';
+import { CardBody, CardFooter, CartContainer, Image, Info, Title, WrapperCard } from './CardProducts.style';
 import cartImg from '../../assets/cart.png';
-import { Badge, ButtonFav, Cart } from '../common';
+import { Badge, BoxInfo, ButtonFav, Cart } from '../common';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCart, reduceStockProduct } from '../../redux/slices';
 
@@ -39,7 +39,7 @@ const CardProducts = ({ discount, id, name, price, stock, unit, urlPhoto, volume
         </Info>
         <Info>
           <span>Stock</span>
-          {stock}
+          {stock ? stock : '0'}
         </Info>
         <CardFooter>
           <h4>{`Precio x ${units[unit]?.conv} ${formatPrice(price * (units[unit]?.unit / volume))}`}</h4>

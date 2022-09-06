@@ -66,17 +66,3 @@ export const CardFooter = styled.div`
     padding: 0;
   }
 `;
-
-export const BoxInfo = styled.div`
-  position: absolute;
-  top: 75px;
-  left: -150px;
-  display: ${({ show }) => (show ? 'inline-block' : 'none')};
-  width: 500px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  font-size: 1.5rem;
-  background-color: ${({ stock }) => (stock ? '#00ff08bf' : '#ff0000aa')};
-  transform: rotate(-45deg);
-`;

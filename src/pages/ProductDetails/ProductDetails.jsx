@@ -42,7 +42,7 @@ const ProductDetails = () => {
   };
 
   const handleRemoveCart = () => {
-    dispatch(removeProductToCart({ id, quantity: 1 }));
+    dispatch(removeProductToCart({ discount, id, price, quantity: 1 }));
     !!amountOfProductInCart && dispatch(restoreStockProduct({ id, quantity: 1 }));
   };
 

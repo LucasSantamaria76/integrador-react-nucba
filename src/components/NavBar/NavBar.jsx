@@ -19,8 +19,9 @@ import { Badge, Cart, CheckBoxTheme, Wrapper } from '../common';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { VscChromeClose, VscMenu } from 'react-icons/vsc';
 import { FaUserCircle } from 'react-icons/fa';
-import { logout } from '../../redux/slices';
+import { logout, toggleVisibleCart } from '../../redux/slices';
 import { useDispatch, useSelector } from 'react-redux';
+import CartDrawer from './../CartDrawer/CartDrawer';
 
 const NavBar = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -41,6 +42,7 @@ const NavBar = () => {
   return (
     <Wrapper>
       <WrapperNav>
+        <CartDrawer />
         <Logo>
           <ImgLogo src={imageLogo} onClick={handleClickLogo} />
           <TextLogo onClick={handleClickLogo}>Free Market</TextLogo>
@@ -63,7 +65,7 @@ const NavBar = () => {
           </Menu>
         </NavBarContainer>
         <UserContainer>
-          <div>
+          <div onClick={() => dispatch(toggleVisibleCart())}>
             <Badge itemsInCart={amountOfProductsInCart} card={false}>
               {amountOfProductsInCart}
             </Badge>

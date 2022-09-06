@@ -19,10 +19,14 @@ export const productsSlice = createSlice({
       updateDbStockProduct(action.payload, product.stock);
     },
     restoreStockProduct: (state, action) => {
-      const product = state.products.find((item) => item.id === action.payload.id);
-      const newStock = +product.stock + action.payload.quantity;
-      product.stock = '' + newStock;
-      updateDbStockProduct(action.payload.id, product.stock);
+      try {
+        const product = state.products.find((item) => item.id === action.payload.id);
+        const newStock = +product?.stock + action.payload.quantity;
+        product.stock = !newStock ? '' : '' + newStock;
+        updateDbStockProduct(action.payload.id, product.stock);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 });
