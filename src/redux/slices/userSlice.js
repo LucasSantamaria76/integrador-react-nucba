@@ -31,6 +31,7 @@ export const userSlice = createSlice({
     },
     toggleVisibleCart: (state) => {
       state.cart.visible = !state.cart.visible;
+      updateDBCart(state.user.id, state.cart);
     },
     addRemoveFavorite: (state, action) => {
       const isFavorite = state.favorites.includes(action.payload);
