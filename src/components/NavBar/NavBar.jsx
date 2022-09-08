@@ -12,6 +12,7 @@ import {
   ContainerDarkMode,
   UserContainer,
   ButtonUser,
+  MenuCategoryText,
 } from './NavBar.styles';
 import imageLogo from '../../assets/Free-Market-1080x675.webp';
 import cartImg from '../../assets/cart.png';
@@ -22,9 +23,13 @@ import { FaUserCircle } from 'react-icons/fa';
 import { logout, toggleVisibleCart } from '../../redux/slices';
 import { useDispatch, useSelector } from 'react-redux';
 import CartDrawer from './../CartDrawer/CartDrawer';
+import { useResize } from './../../hooks/useResize';
+import MenuCategory from '../Categories/MenuCategory';
 
 const NavBar = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [showMenuCategory, setShowMenuCategory] = useState(false);
+  const { isTablet } = useResize();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { cart, isLogged, user } = useSelector((state) => state.user);
@@ -45,8 +50,12 @@ const NavBar = () => {
         <CartDrawer />
         <Logo>
           <ImgLogo src={imageLogo} onClick={handleClickLogo} />
-          <TextLogo onClick={handleClickLogo}>Free Market</TextLogo>
+          <TextLogo>Free Market</TextLogo>
         </Logo>
+        {isTablet && (
+          <MenuCategoryText onClick={() => setShowMenuCategory(!showMenuCategory)}>CATEGORIAS</MenuCategoryText>
+        )}
+        {showMenuCategory && <MenuCategory />}
         <NavBarContainer showMenu={isMobile}>
           <SearchBar />
           <ContainerDarkMode>

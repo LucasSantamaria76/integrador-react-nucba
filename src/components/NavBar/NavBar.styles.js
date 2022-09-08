@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const WrapperNav = styled.div`
   position: relative;
   width: 100%;
+  height: 140px;
   padding: 0 20px;
   z-index: 100;
   background-color: ${({ theme }) => theme.colors.primary};
@@ -10,14 +11,14 @@ export const WrapperNav = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
   display: grid;
-  grid-template-columns: 15% 70% 15%;
+  grid-template-columns: 15% 65% 20%;
   justify-items: center;
 `;
 
 export const NavBarContainer = styled.div`
   position: absolute;
-  top: ${({ showMenu }) => (showMenu ? '112px' : '-400px')};
-  right: 0;
+  top: ${({ showMenu }) => (showMenu ? '42px' : '-400px')};
+  right: 2px;
   width: 100%;
   height: auto;
   z-index: 99;
@@ -29,7 +30,7 @@ export const NavBarContainer = styled.div`
 
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 2px;
-  box-shadow: ${({ theme }) => theme.boxShadow};
+  border: 1px solid ${({ theme }) => theme.colors.text};
   pointer-events: ${({ showMenu }) => (showMenu ? 'auto' : 'none')};
   transition: all 0.3s ease-in-out;
   padding: 10px 0;
@@ -41,34 +42,35 @@ export const NavBarContainer = styled.div`
   @media screen and (min-width: 900px) {
     position: static;
     width: 100%;
-    height: 110px;
     gap: 0;
     padding-top: 10px;
-
     max-width: 800px;
+    background-color: transparent;
 
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 75% 25%;
     grid-template-rows: 50% 50%;
     justify-items: start;
-    align-items: start;
-    /*     display: flex;
-    flex-wrap: wrap; */
+    align-items: center;
 
     border-radius: 0;
-    box-shadow: none;
+    border: none;
     opacity: 1;
     pointer-events: auto;
   }
 `;
 
+export const MenuCategoryText = styled.h4`
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
 export const ContainerDarkMode = styled.div`
+  width: 100%;
   display: flex;
   gap: 5px;
-  @media screen and (min-width: 900px) {
-    width: 100%;
-    flex-direction: column;
-  }
 `;
 
 export const Menu = styled.nav`
@@ -98,9 +100,9 @@ export const Menu = styled.nav`
     }
   }
   @media screen and (min-width: 900px) {
+    padding-top: 20px;
     flex-direction: row;
     font-size: 0.8rem;
-    padding-top: 10px;
     gap: 10px;
     & a {
       &:hover {
@@ -153,9 +155,13 @@ export const Label = styled.label`
 `;
 
 export const MobileIcon = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 0;
+  height: 50px;
   cursor: pointer;
   font-size: 2.5rem;
-  padding-top: 5px;
+  margin-bottom: 10px;
 
   @media screen and (min-width: 900px) {
     display: none;
@@ -167,15 +173,16 @@ export const MobileIcon = styled.div`
 `;
 
 export const UserContainer = styled.div`
-  width: 100%;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
   & > div {
     position: relative;
-    width: 100%;
+    //width: 100%;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
     img {
-      margin: 5px 50px 0 0;
+      margin: 5px 10px 0 0;
     }
   }
 `;
@@ -183,6 +190,7 @@ export const UserContainer = styled.div`
 export const ButtonUser = styled.button`
   width: 100%;
   height: 50px;
+  line-height: 30px;
   background-color: transparent;
   cursor: pointer;
   border: none;
@@ -190,7 +198,7 @@ export const ButtonUser = styled.button`
   color: ${({ theme }) => theme.colors.text};
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;
   gap: 10px;
   img {
     width: 35px;

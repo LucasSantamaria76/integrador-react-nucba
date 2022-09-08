@@ -9,7 +9,7 @@ export const Cart = styled.img`
 export const Badge = styled.div`
   position: absolute;
   bottom: ${({ card }) => (card ? '30px' : '25px')};
-  right: ${({ card }) => (card ? '-2px' : '45px')};
+  right: ${({ card }) => (card ? '-2px' : '7px')};
   display: ${({ itemsInCart }) => (!!itemsInCart ? 'inline-block' : 'none')};
   width: 20px;
   height: 20px;

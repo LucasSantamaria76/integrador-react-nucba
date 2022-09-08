@@ -14,7 +14,7 @@ export const SearchInputWrapper = styled.div`
   border-radius: 2px;
   @media screen and (min-width: 900px) {
     width: 100%;
-    margin: 0;
+    margin: 10px 0;
   }
 `;
 
@@ -46,7 +46,7 @@ export const SearchIcon = styled.span`
 export const CloseIcon = styled(motion.span)`
   color: ${({ theme }) => theme.colors.text};
   font-size: 1.2rem;
-  margin-top: 6px;
+  margin-top: 7px;
   vertical-align: middle;
   transition: all 200ms ease-in-out;
   cursor: pointer;

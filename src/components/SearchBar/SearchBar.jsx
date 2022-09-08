@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'framer-motion';
 import { CloseIcon, SearchIcon, SearchInput, SearchInputWrapper } from './SearchBar.style';
 import { IoClose, IoSearch } from 'react-icons/io5';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { addFilter } from '../../redux/slices/filterSlice';
 import { debounce } from 'lodash';
@@ -9,9 +9,11 @@ import { debounce } from 'lodash';
 const SearchBar = () => {
   const [search, setSearch] = useState('');
   const dispatch = useDispatch();
+  const inputRef = useRef(null);
 
   useEffect(() => {
     dispatch(addFilter({ key: 'search', value: search }));
+    !search && (inputRef.current.value = '');
   }, [search]);
 
   const handleSearch = debounce((e) => {
@@ -23,7 +25,7 @@ const SearchBar = () => {
       <SearchIcon onClick={handleSearch}>
         <IoSearch />
       </SearchIcon>
-      <SearchInput placeholder='Buscar un producto' onChange={handleSearch} />
+      <SearchInput ref={inputRef} placeholder='Buscar un producto' onChange={handleSearch} />
       <AnimatePresence>
         {!!search && (
           <CloseIcon
@@ -31,7 +33,9 @@ const SearchBar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSearch('')}
+            onClick={(e) => {
+              setSearch('');
+            }}
             transition={{ duration: 0.1 }}>
             <IoClose />
           </CloseIcon>

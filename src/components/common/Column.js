@@ -5,7 +5,7 @@ export const Column = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 15px;
-  padding: 15px;
+  padding: 15px 0;
   @media screen and (min-width: 600px) {
     position: absolute;
     top: 0;

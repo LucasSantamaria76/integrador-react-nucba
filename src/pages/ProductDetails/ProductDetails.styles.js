@@ -25,7 +25,7 @@ export const Image = styled.div`
   background-image: url(${({ url }) => url});
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 100%;
+  background-size: 70%;
   cursor: pointer;
   @media screen and (min-width: 500px) and (max-width: 899px) {
     background-size: 55%;
