@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 export const Overlay = styled(motion.div)`
   position: fixed;
-  top: 0;
+  top: ${({ full }) => (full ? '0' : '140px')};
   left: 0;
   z-index: 110;
   width: 100%;

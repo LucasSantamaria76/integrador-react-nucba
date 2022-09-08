@@ -32,6 +32,7 @@ const CartDrawer = () => {
             dispatch(toggleVisibleCart());
           }}
           isHidden={!visible}
+          full
         />
       )}
       <AnimatePresence>

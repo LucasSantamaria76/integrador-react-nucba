@@ -17,19 +17,29 @@ export const SubCategoryStyled = styled(CategoryStyled)`
   display: block;
   font-size: 0.9rem;
   color: ${({ selected }) => (selected ? '#f00' : '#00f')};
-  overflow-y: auto;
 `;
 
 export const MenuCategoryStyled = styled.div`
   position: absolute;
-  top: 150px;
-  left: 2px;
-  z-index: 100;
+  top: 141px;
+  left: 0;
+  z-index: 111;
   display: flex;
   flex-direction: column;
-  width: 320px;
+  width: 310px;
   border: 1px solid ${({ theme }) => theme.colors.text};
   background: ${({ theme }) => theme.colors.primary};
+  height: calc(100vh - 160px);
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    height: 1px;
+    width: 1px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
   @media screen and (min-width: 900px) {
     display: none;
   }

@@ -11,7 +11,7 @@ export default createGlobalStyle`
     margin: 0;
     font-family: "Roboto";
     user-select: none;
-    overflow-y: auto;
+    overflow: hidden;
     padding: 0px;
   }
   body::-webkit-scrollbar {

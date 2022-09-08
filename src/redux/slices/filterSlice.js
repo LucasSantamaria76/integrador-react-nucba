@@ -3,20 +3,24 @@ import { createSlice } from '@reduxjs/toolkit';
 export const filterSlice = createSlice({
   name: 'filter',
   initialState: {
-    filters: {
-      search: '',
-      category: '',
-      subCategory: '',
-    },
+    FilterSearch: '',
+    FilterCategory: '',
+    FilterSubCategory: '',
   },
   reducers: {
-    addFilter: (state, action) => {
-      const {
-        payload: { key, value },
-      } = action;
-      state.filters[key] = value;
+    addFilterSearch: (state, action) => {
+      state.FilterSearch = action.payload;
+    },
+    addFilterCategory: (state, action) => {
+      state.FilterCategory === action.payload ? (state.FilterCategory = '') : (state.FilterCategory = action.payload);
+      state.FilterSubCategory = '';
+    },
+    addFilterSubCategory: (state, action) => {
+      state.FilterSubCategory === action.payload
+        ? (state.FilterSubCategory = '')
+        : (state.FilterSubCategory = action.payload);
     },
   },
 });
 
-export const { addFilter } = filterSlice.actions;
+export const { addFilterCategory, addFilterSearch, addFilterSubCategory } = filterSlice.actions;

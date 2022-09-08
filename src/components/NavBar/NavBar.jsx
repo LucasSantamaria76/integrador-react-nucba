@@ -16,7 +16,7 @@ import {
 } from './NavBar.styles';
 import imageLogo from '../../assets/Free-Market-1080x675.webp';
 import cartImg from '../../assets/cart.png';
-import { Badge, Cart, CheckBoxTheme, Wrapper } from '../common';
+import { Badge, Cart, CheckBoxTheme, Overlay, Wrapper } from '../common';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { VscChromeClose, VscMenu } from 'react-icons/vsc';
 import { FaUserCircle } from 'react-icons/fa';
@@ -37,7 +37,16 @@ const NavBar = () => {
   const menu = ['inicio', 'productos', 'favoritos', 'agregar productos'];
 
   const handleClickLogo = () => navigate('/');
-  const handleShowMenu = () => setIsMobile(!isMobile);
+
+  const handleShowMenu = () => {
+    setIsMobile(!isMobile);
+    setShowMenuCategory(false);
+  };
+
+  const handleShowMenuCategory = () => {
+    setIsMobile(false);
+    setShowMenuCategory(!showMenuCategory);
+  };
 
   const handleLogin = () => {
     isLogged ? dispatch(logout()) : navigate('/login');
@@ -52,8 +61,14 @@ const NavBar = () => {
           <ImgLogo src={imageLogo} onClick={handleClickLogo} />
           <TextLogo>Free Market</TextLogo>
         </Logo>
-        {isTablet && (
-          <MenuCategoryText onClick={() => setShowMenuCategory(!showMenuCategory)}>CATEGORIAS</MenuCategoryText>
+        {isTablet && <MenuCategoryText onClick={handleShowMenuCategory}>CATEGORIAS</MenuCategoryText>}
+        {showMenuCategory && (
+          <Overlay
+            onClick={() => {
+              setShowMenuCategory(false);
+            }}
+            isHidden={!showMenuCategory}
+          />
         )}
         {showMenuCategory && <MenuCategory />}
         <NavBarContainer showMenu={isMobile}>

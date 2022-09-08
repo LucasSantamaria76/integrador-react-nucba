@@ -18,7 +18,7 @@ export const WrapperNav = styled.div`
 export const NavBarContainer = styled.div`
   position: absolute;
   top: ${({ showMenu }) => (showMenu ? '42px' : '-400px')};
-  right: 2px;
+  right: 0;
   width: 100%;
   height: auto;
   z-index: 99;

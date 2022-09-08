@@ -15,13 +15,23 @@ export const Container = styled.div`
 
 export const ProductsContainer = styled.div`
   width: 100%;
-  padding-top: 10px;
+  height: calc(100vh - 160px);
+  padding: 10px 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
+  overflow-y: auto;
   @media screen and (min-width: 900px) {
     grid-column: 2 / 3;
+  }
+  &::-webkit-scrollbar {
+    height: 1px;
+    width: 1px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
   }
 `;
 
@@ -29,11 +39,20 @@ export const CategoryContainer = styled.div`
   display: none;
   @media screen and (min-width: 900px) {
     grid-column: 1 / 2;
-    gap: 10px;
     width: 100%;
-    padding-top: 30px;
+    padding: 20px 0;
     text-align: center;
     display: flex;
     flex-direction: column;
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+  }
+  &::-webkit-scrollbar {
+    height: 1px;
+    width: 1px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
   }
 `;

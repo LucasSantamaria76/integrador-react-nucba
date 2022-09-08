@@ -8,11 +8,15 @@ import { Category } from '../../components/Categories/Category';
 const Products = () => {
   const { products } = useSelector((state) => state.products);
   const { values: categories } = useSelector((state) => state.categories);
-  const { filters } = useSelector((state) => state.filter);
+  const { FilterCategory, FilterSearch, FilterSubCategory } = useSelector((state) => state.filter);
 
   const filteredProducts = () => {
-    if (!!filters?.search) return products.filter((el) => el.name.toLowerCase().startsWith(filters.search));
-    return products;
+    let productsFiltered = products;
+    !!FilterCategory && (productsFiltered = productsFiltered.filter((el) => el.category === FilterCategory));
+    !!FilterSubCategory && (productsFiltered = productsFiltered.filter((el) => el.subCategory === FilterSubCategory));
+    productsFiltered = productsFiltered.filter((el) => el.name.toLowerCase().startsWith(FilterSearch));
+
+    return productsFiltered;
   };
 
   const listProducts = filteredProducts();

@@ -46,7 +46,8 @@ export const Image = styled.div`
   background-image: url(${({ url }) => url});
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: 90%;
+  background-color: #fff;
   cursor: pointer;
 `;
 

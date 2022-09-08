@@ -3,7 +3,7 @@ import { CloseIcon, SearchIcon, SearchInput, SearchInputWrapper } from './Search
 import { IoClose, IoSearch } from 'react-icons/io5';
 import { useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { addFilter } from '../../redux/slices/filterSlice';
+import { addFilterSearch } from '../../redux/slices/filterSlice';
 import { debounce } from 'lodash';
 
 const SearchBar = () => {
@@ -12,7 +12,7 @@ const SearchBar = () => {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    dispatch(addFilter({ key: 'search', value: search }));
+    dispatch(addFilterSearch(search.toLowerCase()));
     !search && (inputRef.current.value = '');
   }, [search]);
 

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const SearchInputWrapper = styled.div`
   position: relative;
   height: 40px;
-  width: 380px;
+  width: 300px;
   margin: 0 auto;
   margin-top: 5px;
   display: flex;
