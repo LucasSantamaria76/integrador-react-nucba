@@ -9,7 +9,4 @@ export const MainContainer = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* @media screen and (min-width: 600px) {
-    max-width: 1400px;
-  } */
 `;

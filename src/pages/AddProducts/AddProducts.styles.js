@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+export const Container = styled.main`
+  position: relative;
+  margin-top: 150px;
+  width: 100%;
+  height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://www.buscador.com/wp-content/uploads/2020/02/producto2.jpg');
+  background-size: contain;
+`;
+
 export const WrapperForm = styled.div`
   max-width: 100%;
   height: calc(100vh - 120px);

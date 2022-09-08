@@ -1,9 +1,9 @@
 import { Form, Formik, useFormikContext } from 'formik';
 import { useEffect } from 'react';
-import { Button, MainContainer } from '../../components/common';
+import { Button } from '../../components/common';
 import Input from '../../components/Input/Input';
 import { productInitialValues, productSchema } from '../../formik';
-import { ContainerForm, DblClickForImg, ImgContainer, ImgWrapper, WrapperForm } from './AddProducts.styles';
+import { Container, ContainerForm, DblClickForImg, ImgContainer, ImgWrapper, WrapperForm } from './AddProducts.styles';
 import { useSelector, useDispatch } from 'react-redux';
 import Select from './../../components/Input/Select';
 import { addDbProduct } from '../../firebase/firebase-utils';
@@ -41,11 +41,15 @@ const UploadImage = () => {
   };
 
   useEffect(() => {
-    id.length === 13 && !urlBase && setFieldValue('urlPhoto', `https://imagenes.preciosclaros.gob.ar/productos/${id}.jpg`);
+    id.length === 13 &&
+      !urlBase &&
+      setFieldValue('urlPhoto', `https://imagenes.preciosclaros.gob.ar/productos/${id}.jpg`);
   }, [id, urlPhoto]);
   return (
     <ImgWrapper>
-      {!urlPhoto && <DblClickForImg>Doble click para Cargar imagen o ingresar código en el campo código barras</DblClickForImg>}
+      {!urlPhoto && (
+        <DblClickForImg>Doble click para Cargar imagen o ingresar código en el campo código barras</DblClickForImg>
+      )}
 
       <ImgContainer src={urlPhoto} onDoubleClick={handleDblClick} />
     </ImgWrapper>
@@ -62,7 +66,7 @@ const AddProducts = () => {
   const unitsList = !!units && Object.keys(units);
 
   return (
-    <MainContainer>
+    <Container>
       <WrapperForm>
         <Formik
           initialValues={productInitialValues}
@@ -116,7 +120,11 @@ const AddProducts = () => {
                   {!!category && (
                     <>
                       <Select name={'category'} options={category} placeholder='Ingrese categoria' />
-                      <Select name={'subCategory'} options={categories[values.category]} placeholder='Ingrese subcategoria' />
+                      <Select
+                        name={'subCategory'}
+                        options={categories[values.category]}
+                        placeholder='Ingrese subcategoria'
+                      />
                     </>
                   )}
                   <Button type='submit'>Agregar</Button>
@@ -127,7 +135,7 @@ const AddProducts = () => {
         </Formik>
       </WrapperForm>
       <Toaster />
-    </MainContainer>
+    </Container>
   );
 };
 
