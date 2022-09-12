@@ -2,14 +2,15 @@ import { Form, Formik, useFormikContext } from 'formik';
 import { useEffect } from 'react';
 import { Button } from '../../components/common';
 import Input from '../../components/Input/Input';
-import { productInitialValues, productSchema } from '../../formik';
 import { Container, ContainerForm, DblClickForImg, ImgContainer, ImgWrapper, WrapperForm } from './AddProducts.styles';
 import { useSelector, useDispatch } from 'react-redux';
 import Select from './../../components/Input/Select';
-import { addDbProduct } from '../../firebase/firebase-utils';
-import { addProductStore } from '../../redux/slices';
 import Swal from 'sweetalert2';
 import toast, { Toaster } from 'react-hot-toast';
+import { addProductStore } from '../../redux/slices';
+import { addDbProduct } from '../../firebase/firebase-utils';
+import { productInitialValues } from './../../formik/initialValues';
+import { productSchema } from '../../formik/validationSchema';
 
 let urlBase = '';
 
@@ -60,7 +61,7 @@ const AddProducts = () => {
   const dispatch = useDispatch();
   const { theme } = useSelector((state) => state.theme);
   const { products } = useSelector((state) => state.products);
-  const { categories } = useSelector((state) => state.categories);
+  const { values: categories } = useSelector((state) => state.categories);
   const category = !!categories && Object.keys(categories);
   const { units } = useSelector((state) => state.units);
   const unitsList = !!units && Object.keys(units);

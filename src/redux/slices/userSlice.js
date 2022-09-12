@@ -25,6 +25,9 @@ export const userSlice = createSlice({
       state.user = action.payload;
       state.isLogged = !!state.user;
     },
+    updateUser: (state, action) => {
+      state.user = { ...state.user, ...action.payload };
+    },
     logout: (state) => {
       state.isLogged = false;
       auth.signOut();
@@ -97,4 +100,5 @@ export const {
   setCart,
   setFavorites,
   toggleVisibleCart,
+  updateUser,
 } = userSlice.actions;

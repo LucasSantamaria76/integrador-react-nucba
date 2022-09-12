@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyles from './styles/GlobalStyles';
 import { themes } from './styles/themes';
 import NavBar from './components/NavBar/NavBar';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories, getProducts, setCart, setCurrentUser, setFavorites } from './redux/slices';
+import { getCategories, getProducts, setCart, setCurrentUser, setFavorites, setOrders } from './redux/slices';
 import Layout from './components/Layout/Layout';
 import Routes from './routes/Routes';
 import {
@@ -13,8 +13,10 @@ import {
   getDBCart,
   getDBCategories,
   getDBFavoritos,
+  getDBOrders,
   getDBProducts,
   getOrCreateUserProfile,
+  getUser,
 } from './firebase/firebase-utils';
 import { onAuthStateChanged } from 'firebase/auth';
 
@@ -22,14 +24,15 @@ const onAuthChange = (dispatch, action) => {
   return onAuthStateChanged(auth, async (user) => {
     if (user) {
       const snapshot = await getOrCreateUserProfile(user);
-      localStorage.setItem('username', JSON.stringify(user));
-      dispatch(action({ id: snapshot.id, ...snapshot.data() }));
-
+      getUser(snapshot.id).then((data) => dispatch(action(data)));
       getDBFavoritos(user.uid).then((data) => {
         dispatch(setFavorites(data));
       });
       getDBCart(user.uid).then((data) => {
         dispatch(setCart(data));
+      });
+      getDBOrders().then((data) => {
+        dispatch(setOrders(data));
       });
     } else {
       dispatch(action(null));

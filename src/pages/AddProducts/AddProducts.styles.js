@@ -9,8 +9,6 @@ export const Container = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url('https://www.buscador.com/wp-content/uploads/2020/02/producto2.jpg');
-  background-size: contain;
 `;
 
 export const WrapperForm = styled.div`

@@ -7,6 +7,7 @@ import { FaTrash } from 'react-icons/fa';
 import { BodyFooter, CardsContainer, CartFooter, CartTitle, ContainerStyled } from './CartDrawer.styles';
 import { formatPrice } from './../../utils/formatPrice';
 import { SHIPPING_COST } from '../../utils';
+import { useNavigate } from 'react-router-dom';
 
 const CartDrawer = () => {
   const dispatch = useDispatch();
@@ -14,12 +15,18 @@ const CartDrawer = () => {
   const {
     cart: { items, visible, totalDiscount, totalCost },
   } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const emptyingCart = () => {
     items.forEach((el) => {
       dispatch(restoreStockProduct({ id: el.id, quantity: el.quantity }));
     });
     dispatch(emptyCart());
+  };
+
+  const handleInitCheckout = () => {
+    navigate('/checkout');
+    dispatch(toggleVisibleCart());
   };
 
   const amountOfProductsInCart = items.reduce((acc, item) => (acc += item.quantity), 0);
@@ -90,7 +97,7 @@ const CartDrawer = () => {
                     <span className='total'>{formatPrice(totalCost + SHIPPING_COST - totalDiscount)}</span>
                   </div>
                 </BodyFooter>
-                <Button>Iniciar pedido</Button>
+                <Button handleClick={handleInitCheckout}>Iniciar pedido</Button>
               </CartFooter>
             )}
           </ContainerStyled>

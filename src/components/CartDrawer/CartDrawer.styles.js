@@ -121,8 +121,8 @@ export const QuantityContainer = styled.div`
     line-height: 37px;
     font-size: 1rem;
     color: ${({ theme }) => theme.colors.text};
-    background-color: ${({ theme }) => theme.colors.text2};
-    border-radius: 5px;
+    //background-color: ${({ theme }) => theme.colors.text2};
+    //border-radius: 5px;
   }
   @media screen and (min-width: 450px) {
     width: 45%;

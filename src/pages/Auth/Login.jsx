@@ -1,6 +1,6 @@
 import { Form, Formik, useFormikContext } from 'formik';
 import { Button, MainContainer } from '../../components/common';
-import Input from '../../components/Input/Input';
+import InputLogin from '../../components/Input/Input';
 import { loginInitialValues, loginValidationSchema } from '../../formik';
 import { FormContainer, FormWrapper } from './auth.styles';
 import { FcGoogle } from 'react-icons/fc';
@@ -50,8 +50,8 @@ const Login = () => {
             return (
               <Form>
                 <FormContainer>
-                  <Input type='email' name={'email'} placeholder='Ingrese su e-mail' />
-                  <Input type='password' name={'password'} placeholder='Ingrese su contraseña' />
+                  <InputLogin type='email' name={'email'} placeholder='Ingrese su e-mail' />
+                  <InputLogin type='password' name={'password'} placeholder='Ingrese su contraseña' />
                   <Button type='submit'>Enviar</Button>
                   <div>
                     <h4 style={{ textAlign: 'center' }}>o puedes iniciar sesión con</h4>

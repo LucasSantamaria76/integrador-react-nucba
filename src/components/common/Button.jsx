@@ -17,13 +17,18 @@ const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 15px;
+  &:disabled {
+    color: #ccc;
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+  }
   &:active {
     box-shadow: none;
   }
 `;
 
-export const Button = ({ type = 'button', children, handleClick, width, height }) => (
-  <StyledButton type={type} onClick={handleClick} width={width} height={height}>
+export const Button = ({ type = 'button', children, handleClick, width, height, disabled }) => (
+  <StyledButton type={type} onClick={handleClick} width={width} height={height} disabled={disabled}>
     {children}
   </StyledButton>
 );

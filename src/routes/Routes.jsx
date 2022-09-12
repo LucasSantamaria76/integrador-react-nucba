@@ -9,6 +9,9 @@ import Register from './../pages/Auth/Register';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ProtectedRoute } from './ProtectedRoute';
 import ProductDetails from '../pages/ProductDetails/ProductDetails';
+import { ModifyProfile } from '../pages/ModifyProfile/ModifyProfile';
+import Checkout from '../pages/Checkout/Checkout';
+import MyShopping from '../pages/MyShopping/MyShopping';
 
 const pageTransition = {
   in: {
@@ -63,6 +66,36 @@ const Routes = () => {
             <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
               <ProtectedRoute to='/login'>
                 <AddProducts />
+              </ProtectedRoute>
+            </motion.div>
+          }
+        />
+        <Route
+          path='/miscompras'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <ProtectedRoute to='/login'>
+                <MyShopping />
+              </ProtectedRoute>
+            </motion.div>
+          }
+        />
+        <Route
+          path='/modifyprofile'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <ProtectedRoute to='/login'>
+                <ModifyProfile />
+              </ProtectedRoute>
+            </motion.div>
+          }
+        />
+        <Route
+          path='/checkout'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <ProtectedRoute to='/login'>
+                <Checkout />
               </ProtectedRoute>
             </motion.div>
           }

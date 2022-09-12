@@ -25,10 +25,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import CartDrawer from './../CartDrawer/CartDrawer';
 import { useResize } from './../../hooks/useResize';
 import MenuCategory from '../Categories/MenuCategory';
+import MenuUser from '../UserNav/MenuUser';
 
 const NavBar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [showMenuCategory, setShowMenuCategory] = useState(false);
+  const [showMenuUser, setShowMenuUser] = useState(false);
   const { isTablet } = useResize();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -36,21 +38,26 @@ const NavBar = () => {
 
   const menu = ['inicio', 'productos', 'favoritos', 'agregar productos'];
 
-  const handleClickLogo = () => navigate('/');
+  const handleClickLogo = () => {
+    navigate('/');
+    setShowMenuCategory(false);
+    setShowMenuUser(false);
+  };
 
   const handleShowMenu = () => {
     setIsMobile(!isMobile);
     setShowMenuCategory(false);
+    setShowMenuUser(false);
   };
 
   const handleShowMenuCategory = () => {
-    setIsMobile(false);
     setShowMenuCategory(!showMenuCategory);
+    setShowMenuUser(false);
+    setIsMobile(false);
   };
 
-  const handleLogin = () => {
-    isLogged ? dispatch(logout()) : navigate('/login');
-  };
+  const handleButtonUser = () => (isLogged ? setShowMenuUser(!showMenuUser) : navigate('/login'));
+
   const amountOfProductsInCart = cart.items.reduce((acc, item) => (acc += item.quantity), 0);
 
   return (
@@ -90,13 +97,18 @@ const NavBar = () => {
           </Menu>
         </NavBarContainer>
         <UserContainer>
-          <div onClick={() => dispatch(toggleVisibleCart())}>
+          <div
+            onClick={() => {
+              setShowMenuCategory(false);
+              setShowMenuUser(false);
+              dispatch(toggleVisibleCart());
+            }}>
             <Badge itemsInCart={amountOfProductsInCart} card={false}>
               {amountOfProductsInCart}
             </Badge>
             <Cart src={cartImg} />
           </div>
-          <ButtonUser onClick={handleLogin}>
+          <ButtonUser onClick={handleButtonUser}>
             {isLogged ? (
               <img
                 src={!!user?.photoURL ? user?.photoURL : 'https://cdn-icons-png.flaticon.com/512/149/149071.png'}
@@ -113,6 +125,7 @@ const NavBar = () => {
           {isMobile ? <VscChromeClose onClick={handleShowMenu} /> : <VscMenu onClick={handleShowMenu} />}
         </MobileIcon>
       </WrapperNav>
+      {showMenuUser && <MenuUser setShowMenuUser={setShowMenuUser} />}
     </Wrapper>
   );
 };

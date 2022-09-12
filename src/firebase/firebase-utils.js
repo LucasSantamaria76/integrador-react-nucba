@@ -10,9 +10,22 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   updateProfile,
+  updateEmail,
 } from 'firebase/auth';
 
-import { collection, getDocs, getFirestore, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  query,
+  collectionGroup,
+} from 'firebase/firestore';
+import { format } from 'date-fns';
+import { formatDate } from '../utils/formatDate';
 
 const app = initializeApp(firebaseConfig);
 
@@ -25,13 +38,16 @@ export const getOrCreateUserProfile = async (userAuthenticated) => {
   const snapshot = await getDoc(userReference);
 
   if (!snapshot.exists()) {
-    const { email, photoURL, displayName } = userAuthenticated;
+    const { email, photoURL, displayName, uid } = userAuthenticated;
     try {
       await setDoc(userReference, {
+        id: uid,
         name: displayName,
         email,
         photoURL,
-        createdAt: new Date(),
+        createdAt: formatDate(new Date()),
+        address: '',
+        phone: '',
       });
     } catch (error) {
       console.log({ error });
@@ -109,6 +125,25 @@ export const getDBFavoritos = async (id) => {
   } else return [];
 };
 
+export const getUser = async (id) => {
+  const docRef = doc(db, 'users', id);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else return null;
+};
+
+export const updateDBUser = async (id, data) => {
+  const docRef = doc(db, 'users', id);
+  try {
+    await updateDoc(docRef, data);
+    if (auth.currentUser.email !== data.email && !!data.email) await updateEmail(auth.currentUser, data.email);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getDBCart = async (id) => {
   const docRef = doc(db, 'cart', id);
   const docSnap = await getDoc(docRef);
@@ -131,10 +166,23 @@ export const updateDBFav = async (user, fav) => {
   });
 };
 
-export const updateDBCart = async (user, fav) => {
+export const updateDBCart = async (user, cart) => {
   const userDoc = doc(db, `cart/${user}`);
-
   await setDoc(userDoc, {
-    cart: fav,
+    cart: cart,
   });
+};
+
+export const updateBDOrders = async (orders) => {
+  const ordersDoc = doc(db, 'orders', auth.currentUser.uid);
+  await setDoc(ordersDoc, orders);
+};
+
+export const getDBOrders = async () => {
+  const ordersDoc = doc(db, 'orders', auth.currentUser.uid);
+  const docSnap = await getDoc(ordersDoc);
+
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else return {};
 };

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { ImgContainer } from './../../pages/AddProducts/AddProducts.styles';
 
 export const InputContainerStyled = styled.div`
   position: relative;
@@ -49,7 +50,7 @@ export const SelectStyled = styled.select`
 
 export const ErrorMessageStyled = styled.p`
   position: absolute;
-  bottom: 8px;
+  bottom: 5px;
   left: 0;
   margin: 0;
   padding: 0;
@@ -61,11 +62,11 @@ export const ErrorMessageStyled = styled.p`
 
 export const CloseIcon = styled(motion.span)`
   position: absolute;
-  top: 5px;
+  bottom: 33px;
   left: ${({ width }) => (width ? width - 24 + 'px' : 'calc(100% - 24px)')};
   color: ${({ theme }) => theme.colors.text};
   font-size: 1.2rem;
-  margin-top: 6px;
+
   vertical-align: middle;
   transition: all 200ms ease-in-out;
   cursor: pointer;

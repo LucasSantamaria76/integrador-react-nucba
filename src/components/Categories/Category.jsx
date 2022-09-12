@@ -9,7 +9,11 @@ export const Category = ({ menu, text }) => {
 
   return (
     <>
-      <CategoryStyled onClick={() => dispatch(addFilterCategory(text))} selected={FilterCategory === text} menu={menu}>
+      <CategoryStyled
+        onClick={() => dispatch(addFilterCategory(text))}
+        selected={FilterCategory === text}
+        menu={menu}
+        noSelected={!!FilterCategory}>
         {text}
       </CategoryStyled>
       {FilterCategory === text &&

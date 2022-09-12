@@ -7,9 +7,6 @@ const EMAIL = 'Correo electrónico inválido';
 
 export const registerValidationSchema = Yup.object({
   name: Yup.string().required(REQUIRED),
-  /* phone: Yup.string()
-    .trim()
-    .matches(/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/g, 'Número de teléfono inválido'), */
   email: Yup.string().email(EMAIL).required(REQUIRED),
   password: Yup.string().min(6, 'Minimo 6 caracteres').required(REQUIRED),
   RepeatPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Su contraseña no coincide'),
@@ -36,4 +33,28 @@ export const productSchema = Yup.object({
   volume: Yup.number().typeError(NUMBER).positive(NUMBER).required(REQUIRED),
   category: Yup.string().trim().required(REQUIRED),
   subCategory: Yup.string().trim().required(REQUIRED),
+});
+
+export const profileValidationSchema = Yup.object({
+  name: Yup.string().required(REQUIRED),
+  email: Yup.string().email(EMAIL).required(REQUIRED),
+  address: Yup.string(),
+  phone: Yup.string()
+    .trim()
+    .matches(
+      /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/g,
+      'Número de teléfono inválido'
+    ),
+});
+export const checkoutValidationSchema = Yup.object({
+  name: Yup.string().required(REQUIRED),
+  email: Yup.string().email(EMAIL).required(REQUIRED),
+  address: Yup.string().required(REQUIRED),
+  phone: Yup.string()
+    .trim()
+    .matches(
+      /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/g,
+      'Número de teléfono inválido'
+    )
+    .required(REQUIRED),
 });

@@ -9,7 +9,7 @@ export const themes = {
       primary: '#add1c7ee',
       hover: '#8ecebc',
     },
-    boxShadow: '1px 1px 3px rgba(0, 0, 0, 0.7), 1px 1px 3px rgba(0, 0, 0, 0.8)',
+    boxShadow: '1px 1px 3px rgba(160,160,160, 0.5), 1px 1px 3px rgba(160,160,160, 0.6)',
   },
   dark: {
     colors: {
