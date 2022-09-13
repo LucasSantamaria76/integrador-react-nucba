@@ -11,9 +11,10 @@ export default createGlobalStyle`
     margin: 0;
     font-family: "Roboto";
     user-select: none;
-    overflow: hidden;
+    //overflow: hidden;
     padding: 0px;
   }
+  
   body::-webkit-scrollbar {
     height: 4px;
     width: 4px;
@@ -32,4 +33,6 @@ export default createGlobalStyle`
     display: flex;
     justify-content: center;
   }  
+
+ 
 `;

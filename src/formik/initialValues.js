@@ -15,7 +15,7 @@ export const productInitialValues = {
   name: '',
   description: '',
   price: '',
-  discount: 0,
+  discount: '',
   stock: '',
   unit: '',
   volume: '',

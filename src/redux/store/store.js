@@ -1,5 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { categoriesSlice, filterSlice, ordersSlice, productsSlice, themeSlice, unitsSlice, userSlice } from '../slices';
+import {
+  categoriesSlice,
+  filterSlice,
+  ordersSlice,
+  productsSlice,
+  sliderSlice,
+  themeSlice,
+  unitsSlice,
+  userSlice,
+} from '../slices';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -12,6 +21,7 @@ const reducers = combineReducers({
   units: unitsSlice.reducer,
   filter: filterSlice.reducer,
   orders: ordersSlice.reducer,
+  slider: sliderSlice.reducer,
 });
 
 const persistConfig = {

@@ -27,7 +27,9 @@ export const productSchema = Yup.object({
   name: Yup.string().trim().required(REQUIRED),
   description: Yup.string().trim(),
   price: Yup.number().typeError(NUMBER).positive(NUMBER).required(REQUIRED),
-  discount: Yup.number().typeError(NUMBER),
+  discount: Yup.string()
+    .trim()
+    .matches(/^[0-9]+$/, NUMBER),
   stock: Yup.number().typeError(NUMBER).positive(NUMBER).required(REQUIRED),
   unit: Yup.string().required(REQUIRED),
   volume: Yup.number().typeError(NUMBER).positive(NUMBER).required(REQUIRED),
