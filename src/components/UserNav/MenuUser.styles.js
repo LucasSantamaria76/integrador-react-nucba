@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-export const MenuUserContainer = styled.div`
+export const MenuUserContainer = styled(motion.div)`
   position: absolute;
   top: 141px;
   right: 0;
@@ -9,6 +10,8 @@ export const MenuUserContainer = styled.div`
   flex-direction: column;
   width: 180px;
   border: 1px solid ${({ theme }) => theme.colors.text};
+  border-radius: 5px;
+  box-shadow: ${({ theme }) => theme.boxShadow};
   background: ${({ theme }) => theme.colors.primary};
 `;
 

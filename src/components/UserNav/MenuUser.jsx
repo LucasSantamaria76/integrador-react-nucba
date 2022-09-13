@@ -2,6 +2,7 @@ import { MenuUserContainer, MenuUserItem } from './MenuUser.styles';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/slices';
 import { useNavigate } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 const MenuUser = ({ setShowMenuUser }) => {
   const dispatch = useDispatch();
@@ -26,13 +27,20 @@ const MenuUser = ({ setShowMenuUser }) => {
   };
   return (
     <>
-      <MenuUserContainer>
-        {menuItems.map((item) => (
-          <MenuUserItem key={item} onClick={handleClick}>
-            {item}
-          </MenuUserItem>
-        ))}
-      </MenuUserContainer>
+      <AnimatePresence>
+        <MenuUserContainer
+          initial={{ translateX: 700 }}
+          animate={{ translateX: 0 }}
+          exit={{ translateX: 700 }}
+          transition={{ type: 'spring', damping: 20 }}
+          key='user-menu'>
+          {menuItems.map((item) => (
+            <MenuUserItem key={item} onClick={handleClick}>
+              {item}
+            </MenuUserItem>
+          ))}
+        </MenuUserContainer>
+      </AnimatePresence>
     </>
   );
 };

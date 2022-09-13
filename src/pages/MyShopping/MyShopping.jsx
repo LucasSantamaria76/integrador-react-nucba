@@ -17,12 +17,18 @@ import { limitString } from './../../utils';
 import { formatPrice } from './../../utils/formatPrice';
 import { useState } from 'react';
 
+const compare = (a, b) => {
+  if (a.date > b.date) return 1;
+  if (a.date < b.date) return -1;
+  return 0;
+};
+
 const MyShopping = () => {
   const [date, setDate] = useState('');
   const { orders } = useSelector((state) => state);
   const { products } = useSelector((state) => state.products);
   let shopping = Object.values(orders).reduce((acc, val) => [...acc, ...val], []);
-  shopping = !!date ? shopping.filter((el) => el.date === date) : shopping;
+  shopping = !!date ? shopping.filter((el) => el.date === date) : shopping.sort(compare);
 
   return (
     <MyShoppingWrapper>
