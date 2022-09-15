@@ -12,6 +12,7 @@ import ProductDetails from '../pages/ProductDetails/ProductDetails';
 import { ModifyProfile } from '../pages/ModifyProfile/ModifyProfile';
 import Checkout from '../pages/Checkout/Checkout';
 import MyShopping from '../pages/MyShopping/MyShopping';
+import UpdateProducts from '../pages/AddProducts/UpdateProducts';
 
 const pageTransition = {
   in: {
@@ -66,6 +67,16 @@ const Routes = () => {
             <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
               <ProtectedRoute to='/login'>
                 <AddProducts />
+              </ProtectedRoute>
+            </motion.div>
+          }
+        />
+        <Route
+          path='/updateproducts'
+          element={
+            <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
+              <ProtectedRoute to='/login'>
+                <UpdateProducts />
               </ProtectedRoute>
             </motion.div>
           }

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { updateDbStockProduct } from '../../firebase/firebase-utils';
+import { updateDbProduct, updateDbStockProduct } from '../../firebase/firebase-utils';
 
 export const productsSlice = createSlice({
   name: 'products',
@@ -12,6 +12,18 @@ export const productsSlice = createSlice({
     },
     addProductStore: (state, action) => {
       state.products.push(action.payload);
+    },
+    updateProductStore: (state, action) => {
+      const {
+        payload: { id, name, price, discount, stock, urlPhoto },
+      } = action;
+      const product = state.products.find((item) => item.id === id);
+      product.name = name;
+      product.price = price;
+      product.discount = discount;
+      product.stock = stock;
+      product.urlPhoto = urlPhoto;
+      updateDbProduct(id, action.payload);
     },
     reduceStockProduct: (state, action) => {
       const product = state.products.find((item) => item.id === action.payload);
@@ -31,4 +43,5 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { addProductStore, getProducts, reduceStockProduct, restoreStockProduct } = productsSlice.actions;
+export const { addProductStore, getProducts, reduceStockProduct, restoreStockProduct, updateProductStore } =
+  productsSlice.actions;

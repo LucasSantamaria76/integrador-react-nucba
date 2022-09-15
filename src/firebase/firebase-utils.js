@@ -112,6 +112,11 @@ export const updateDbStockProduct = async (id, stock) => {
   await updateDoc(productDoc, { stock: stock });
 };
 
+export const updateDbProduct = async (id, values) => {
+  const productDoc = doc(db, 'products', id);
+  await updateDoc(productDoc, values);
+};
+
 export const getDBCategories = async () => {
   const query = await getDocs(collection(db, 'categories'));
   return query?.docs;

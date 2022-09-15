@@ -35,16 +35,21 @@ export const MenuCategoryStyled = styled.div`
   width: 310px;
   border: 1px solid ${({ theme }) => theme.colors.text};
   background: ${({ theme }) => theme.colors.primary};
-  height: 45vh;
+  height: 50vh;
   overflow-y: auto;
 
   &::-webkit-scrollbar {
-    height: 1px;
-    width: 1px;
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: transparent;
+    background-color: ${({ theme }) => theme.colors.background02};
+    outline: 1px solid slategrey;
+    border-radius: 2px;
   }
   @media screen and (min-width: 900px) {
     display: none;

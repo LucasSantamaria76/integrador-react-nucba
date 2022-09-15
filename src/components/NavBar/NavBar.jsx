@@ -17,7 +17,7 @@ import {
 import imageLogo from '../../assets/Free-Market-1080x675.webp';
 import cartImg from '../../assets/cart.png';
 import { Badge, Cart, CheckBoxTheme, Overlay, Wrapper } from '../common';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { VscChromeClose, VscMenu } from 'react-icons/vsc';
 import { FaUserCircle } from 'react-icons/fa';
 import { logout, toggleVisibleCart } from '../../redux/slices';
@@ -36,7 +36,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const { cart, isLogged, user } = useSelector((state) => state.user);
 
-  const menu = ['inicio', 'productos', 'favoritos', 'agregar productos'];
+  const menu = ['inicio', 'productos', 'favoritos'];
 
   const handleClickLogo = () => {
     navigate('/');
@@ -86,7 +86,7 @@ const NavBar = () => {
           </ContainerDarkMode>
           <Menu isMobile={isMobile} onClick={handleShowMenu}>
             {menu.map((item) => {
-              if (item === 'agregar productos' && !isLogged) return;
+              /* if (item === 'agregar productos' && !isLogged) return; */
               if (item === 'favorites' && !isLogged) return;
               return (
                 <NavLink to={`/${item.replace(/ /g, '')}`} key={item} end>

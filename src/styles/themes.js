@@ -2,7 +2,7 @@ export const themes = {
   light: {
     colors: {
       background: '#f1f1f1',
-      background02: '#ffffff33',
+      background02: '#d2d2d288',
       surface: '#fff',
       text: '#000',
       text2: '#38997c',
@@ -14,7 +14,7 @@ export const themes = {
   dark: {
     colors: {
       background: '#23292d',
-      background02: '#4b505233',
+      background02: '#505b6088',
       surface: '#4b5052',
       text: '#fff',
       text2: '#317e94',

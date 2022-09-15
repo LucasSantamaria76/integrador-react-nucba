@@ -8,7 +8,7 @@ export const MenuUserContainer = styled(motion.div)`
   z-index: 111;
   display: flex;
   flex-direction: column;
-  width: 180px;
+  width: 200px;
   border: 1px solid ${({ theme }) => theme.colors.text};
   border-radius: 5px;
   box-shadow: ${({ theme }) => theme.boxShadow};

@@ -7,7 +7,7 @@ import { AnimatePresence } from 'framer-motion';
 const MenuUser = ({ setShowMenuUser }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const menuItems = ['Mis compras', 'Modificar perfil', 'Cerrar sesión'];
+  const menuItems = ['Mis compras', 'Modificar perfil', 'Agregar productos', 'Modificar productos', 'Cerrar sesión'];
 
   const handleClick = (e) => {
     switch (e.target.textContent) {
@@ -20,6 +20,14 @@ const MenuUser = ({ setShowMenuUser }) => {
         navigate('/modifyprofile');
         break;
       case menuItems[2]:
+        setShowMenuUser(false);
+        navigate('/agregarproductos');
+        break;
+      case menuItems[3]:
+        setShowMenuUser(false);
+        navigate('/updateproducts');
+        break;
+      case menuItems[4]:
         dispatch(logout());
         setShowMenuUser(false);
         break;

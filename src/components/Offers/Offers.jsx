@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import CardProducts from '../CardProducts/CardProducts';
 
 const compare = (a, b) => {
-  if (a.discount < b.discount) return 1;
-  if (a.discount > b.discount) return -1;
+  if (+a.discount < +b.discount) return 1;
+  if (+a.discount > +b.discount) return -1;
   return 0;
 };
 

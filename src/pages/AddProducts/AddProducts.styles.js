@@ -28,7 +28,7 @@ export const ContainerForm = styled.div`
   justify-content: space-between;
   align-items: stretch;
   overflow-y: hidden;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.background02};
   border-radius: 2px;
   box-shadow: ${({ theme }) => theme.boxShadow};
   div {
