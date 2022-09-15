@@ -12,9 +12,9 @@ const Products = ({ isFavorites }) => {
   const filteredProducts = () => {
     let productsFiltered = isFavorites ? products?.filter((el) => favorites?.includes(el.id)) : products;
 
-    !!FilterCategory && (productsFiltered = productsFiltered.filter((el) => el.category === FilterCategory));
-    !!FilterSubCategory && (productsFiltered = productsFiltered.filter((el) => el.subCategory === FilterSubCategory));
-    productsFiltered = productsFiltered.filter((el) => el.name.toLowerCase().startsWith(FilterSearch));
+    !!FilterCategory && (productsFiltered = productsFiltered?.filter((el) => el.category === FilterCategory));
+    !!FilterSubCategory && (productsFiltered = productsFiltered?.filter((el) => el.subCategory === FilterSubCategory));
+    productsFiltered = productsFiltered?.filter((el) => el.name.toLowerCase().startsWith(FilterSearch));
 
     return productsFiltered;
   };

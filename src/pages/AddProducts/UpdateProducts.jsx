@@ -85,9 +85,9 @@ const UpdateProducts = () => {
     };
 
     let productsFiltered = [...prod];
-    productsFiltered.sort(compare);
+    productsFiltered?.sort(compare);
 
-    productsFiltered = productsFiltered.filter((el) => el.name.toLowerCase().startsWith(FilterSearch));
+    productsFiltered = productsFiltered?.filter((el) => el.name.toLowerCase().startsWith(FilterSearch));
 
     return productsFiltered;
   };
@@ -102,6 +102,18 @@ const UpdateProducts = () => {
         onSubmit={async (values) => {
           try {
             dispatch(updateProductStore(values));
+            toast.success('Producto Actualizado correctamente', {
+              position: 'top-center',
+              duration: 2000,
+              style: {
+                padding: '10px',
+                marginTop: '115px',
+                borderRadius: '4px',
+                background: theme === 'light' ? '#add1c7ca' : '#00313fca',
+                color: theme === 'light' ? '#000' : '#fff',
+                fontSize: '1.5rem',
+              },
+            });
           } catch (error) {
             console.log(error);
           }
