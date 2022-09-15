@@ -14,7 +14,7 @@ export const CheckBoxTheme = ({ color = '#000' }) => {
 
   return (
     <Switch>
-      <Input {...{ color }} type='checkbox' defaultChecked={toggle} />
+      <Input {...{ color }} type='checkbox' checked={toggle} />
       <Slider {...{ toggle, color }} onClick={() => setToggle(!toggle)} />
     </Switch>
   );
