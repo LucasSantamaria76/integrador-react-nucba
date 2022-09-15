@@ -92,7 +92,8 @@ const UpdateProducts = () => {
     return productsFiltered;
   };
 
-  const listProducts = filteredProducts(products);
+  //const listProducts = filteredProducts(products);
+  const listProducts = products;
 
   return (
     <UpContainer>
