@@ -64,39 +64,37 @@ const ProductDetails = () => {
   };
 
   return (
-    <MainContainer>
-      <ProductContainer>
-        <Image url={urlPhoto} onClick={() => navigate(-1)}>
-          <BoxInfo stock={!!stock} show={!stock || !!discount}>
-            {!stock && 'Sin stock'}
-            {!!stock && !!discount && `${discount}% de descuento`}
-          </BoxInfo>
-        </Image>
-        <DetailsContainer>
-          <h2>{name}</h2>
-          <BoxPrice discount={!!discount}>
-            {!!discount && <h5>Antes</h5>}
-            <h3>{formatPrice(price)}</h3>
-            {!!discount && <h5>Ahora</h5>}
-            {!!discount && <h2>{formatPrice(price - price * (discount / 100))}</h2>}
-          </BoxPrice>
-          <p>{`Volumen: ${volume} ${units[unit].conv}`}</p>
-          <p>{`Stock: ${stock} unidades`}</p>
-          <p>{`Categoria: ${category}, ${subCategory}`}</p>
-          <BoxCart>
-            <BtnCart disabled={!amountOfProductInCart}>
-              <BsCartDash onClick={handleRemoveCart} />
-            </BtnCart>
-            <span>{amountOfProductInCart}</span>
-            <BtnCart disabled={!stock}>
-              <BsCartPlus onClick={handleAddCart} />
-            </BtnCart>
-            <ButtonFav size={2.8} id={id} />
-          </BoxCart>
-          <Barcode value={id} {...options} />
-        </DetailsContainer>
-      </ProductContainer>
-    </MainContainer>
+    <ProductContainer>
+      <Image url={urlPhoto} onClick={() => navigate(-1)}>
+        <BoxInfo stock={!!stock} show={!stock || !!discount}>
+          {!stock && 'Sin stock'}
+          {!!stock && !!discount && `${discount}% de descuento`}
+        </BoxInfo>
+      </Image>
+      <DetailsContainer>
+        <h2>{name}</h2>
+        <BoxPrice discount={!!discount}>
+          {!!discount && <h5>Antes</h5>}
+          <h3>{formatPrice(price)}</h3>
+          {!!discount && <h5>Ahora</h5>}
+          {!!discount && <h2>{formatPrice(price - price * (discount / 100))}</h2>}
+        </BoxPrice>
+        <p>{`Volumen: ${volume} ${units[unit].conv}`}</p>
+        <p>{`Stock: ${stock} unidades`}</p>
+        <p>{`Categoria: ${category}, ${subCategory}`}</p>
+        <BoxCart>
+          <BtnCart disabled={!amountOfProductInCart}>
+            <BsCartDash onClick={handleRemoveCart} />
+          </BtnCart>
+          <span>{amountOfProductInCart}</span>
+          <BtnCart disabled={!stock}>
+            <BsCartPlus onClick={handleAddCart} />
+          </BtnCart>
+          <ButtonFav size={2.8} id={id} />
+        </BoxCart>
+        <Barcode value={id} {...options} />
+      </DetailsContainer>
+    </ProductContainer>
   );
 };
 
