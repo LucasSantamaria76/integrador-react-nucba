@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
 export const ProductContainer = styled.div`
-  height: 100%;
+  height: 125vh;
   width: 100%;
+  margin-top: 160px;
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.surface};
   border-radius: 5px;
-  overflow: hidden;
+  overflow-y: auto;
   @media screen and (min-width: 900px) {
     width: 80%;
+    overflow: hidden;
     height: 500px;
     display: grid;
     grid-template-columns: 45% 55%;
@@ -19,22 +21,32 @@ export const ProductContainer = styled.div`
 export const Image = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 50vh;
   margin: 0;
   background-color: #fff;
   background-image: url(${({ url }) => url});
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 60%;
+  background-size: contain;
   cursor: pointer;
-  @media screen and (min-width: 500px) and (max-width: 899px) {
-    background-size: 55%;
+  overflow: hidden;
+  @media screen and (min-width: 500px) {
+    background-size: 30%;
+  }
+  @media screen and (min-width: 768px) {
+    background-size: 25%;
+  }
+  @media screen and (min-width: 900px) {
+    background-size: 100%;
+  }
+  @media screen and (min-width: 1200px) {
+    background-size: 400px;
   }
 `;
 
 export const DetailsContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 75vh;
   margin: 0;
   padding: 10px 15px;
   border-top: 1px solid ${({ theme }) => theme.colors.text};
@@ -43,6 +55,7 @@ export const DetailsContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
+  overflow: hidden;
   & > p {
     margin: 0;
   }
