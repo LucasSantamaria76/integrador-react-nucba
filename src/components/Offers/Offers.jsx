@@ -10,7 +10,8 @@ const compare = (a, b) => {
 
 const Offers = () => {
   const { products } = useSelector((state) => state.products);
-  const offersProducts = products.filter((prod) => prod.discount > 0).sort(compare);
+  //const offersProducts = products.filter((prod) => prod.discount > 0).sort(compare);
+  const offersProducts = products;
 
   return (
     <Container>

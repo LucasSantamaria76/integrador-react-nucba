@@ -19,7 +19,8 @@ const Products = ({ isFavorites }) => {
     return productsFiltered;
   };
 
-  const listProducts = filteredProducts();
+  //const listProducts = filteredProducts();
+  const listProducts = products;
 
   return (
     <Container>
