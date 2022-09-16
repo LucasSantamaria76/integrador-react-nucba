@@ -9,12 +9,12 @@ export const CheckBoxTheme = ({ color = '#000' }) => {
   const [toggle, setToggle] = useState(theme === 'dark');
 
   useEffect(() => {
-    dispatch(toggleTheme());
+    dispatch(toggleTheme(toggle));
   }, [toggle]);
 
   return (
     <Switch>
-      <Input {...{ color }} type='checkbox' checked={toggle} />
+      <Input {...{ color }} type='checkbox' defaultChecked={toggle} />
       <Slider {...{ toggle, color }} onClick={() => setToggle(!toggle)} />
     </Switch>
   );
