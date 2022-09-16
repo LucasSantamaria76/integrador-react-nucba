@@ -10,17 +10,19 @@ const Products = ({ isFavorites }) => {
   const { FilterCategory, FilterSearch, FilterSubCategory } = useSelector((state) => state.filter);
 
   const filteredProducts = () => {
-    let productsFiltered = isFavorites ? products?.filter((el) => favorites?.includes(el.id)) : products;
+    if (!!products.length) {
+      let productsFiltered = isFavorites ? products?.filter((el) => favorites?.includes(el.id)) : products;
 
-    !!FilterCategory && (productsFiltered = productsFiltered?.filter((el) => el.category === FilterCategory));
-    !!FilterSubCategory && (productsFiltered = productsFiltered?.filter((el) => el.subCategory === FilterSubCategory));
-    productsFiltered = productsFiltered?.filter((el) => el.name.toLowerCase().startsWith(FilterSearch));
-
-    return productsFiltered;
+      !!FilterCategory && (productsFiltered = productsFiltered?.filter((el) => el.category === FilterCategory));
+      !!FilterSubCategory &&
+        (productsFiltered = productsFiltered?.filter((el) => el.subCategory === FilterSubCategory));
+      productsFiltered = productsFiltered?.filter((el) => el.name.toLowerCase().startsWith(FilterSearch));
+      return productsFiltered;
+    }
+    return products;
   };
 
-  //const listProducts = filteredProducts();
-  const listProducts = products;
+  const listProducts = filteredProducts();
 
   return (
     <Container>
@@ -33,7 +35,7 @@ const Products = ({ isFavorites }) => {
       </CategoryContainer>
       <ProductsContainer>
         {!!listProducts?.length ? (
-          listProducts?.map((prod) => <CardProducts key={prod.id} {...prod} />)
+          listProducts.map((prod) => <CardProducts key={prod.id} {...prod} />)
         ) : (
           <h2>No hay productos para mostrar</h2>
         )}

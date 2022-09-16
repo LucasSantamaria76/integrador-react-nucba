@@ -10,13 +10,12 @@ const compare = (a, b) => {
 
 const Offers = () => {
   const { products } = useSelector((state) => state.products);
-  //const offersProducts = products.filter((prod) => prod.discount > 0).sort(compare);
-  const offersProducts = products;
+  const offersProducts = !!products.length && products.filter((prod) => prod.discount > 0).sort(compare);
 
   return (
     <Container>
       {!!offersProducts?.length ? (
-        offersProducts?.map((prod) => <CardProducts key={prod.id} {...prod} />)
+        offersProducts.map((prod) => <CardProducts key={prod.id} {...prod} />)
       ) : (
         <h2>No hay productos para mostrar</h2>
       )}

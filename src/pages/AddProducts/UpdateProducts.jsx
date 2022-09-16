@@ -85,15 +85,15 @@ const UpdateProducts = () => {
     };
 
     let productsFiltered = [...prod];
-    productsFiltered?.sort(compare);
-
-    productsFiltered = productsFiltered?.filter((el) => el.name.toLowerCase().startsWith(FilterSearch));
+    if (!!productsFiltered.length) {
+      productsFiltered?.sort(compare);
+      productsFiltered = productsFiltered?.filter((el) => el.name.toLowerCase().startsWith(FilterSearch));
+    }
 
     return productsFiltered;
   };
 
-  //const listProducts = filteredProducts(products);
-  const listProducts = products;
+  const listProducts = filteredProducts(products);
 
   return (
     <UpContainer>
@@ -134,7 +134,7 @@ const UpdateProducts = () => {
                         href='#'
                         key={prod.id}
                         onClick={() => {
-                          const product = products.find((p) => p.id === prod.id);
+                          const product = listProducts.find((p) => p.id === prod.id);
                           urlBase = product.urlPhoto;
                           Object.keys(product).map((key) => setFieldValue(key, product[key]));
                         }}>
