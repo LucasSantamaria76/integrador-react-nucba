@@ -33,6 +33,7 @@ const NavBar = () => {
   const [showMenuUser, setShowMenuUser] = useState(false);
   const { isTablet } = useResize();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const { cart, isLogged, user } = useSelector((state) => state.user);
 
@@ -68,7 +69,9 @@ const NavBar = () => {
           <ImgLogo src={imageLogo} onClick={handleClickLogo} />
           <TextLogo>Free Market</TextLogo>
         </Logo>
-        {isTablet && <MenuCategoryText onClick={handleShowMenuCategory}>CATEGORIAS</MenuCategoryText>}
+        {isTablet && ['/favoritos', '/productos'].includes(pathname) && (
+          <MenuCategoryText onClick={handleShowMenuCategory}>CATEGORIAS</MenuCategoryText>
+        )}
         {showMenuCategory && (
           <Overlay
             onClick={() => {
