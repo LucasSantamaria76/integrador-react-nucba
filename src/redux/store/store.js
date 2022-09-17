@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import {
   categoriesSlice,
   filterSlice,
+  menusSlice,
   ordersSlice,
   productsSlice,
   sliderSlice,
@@ -22,11 +23,13 @@ const reducers = combineReducers({
   filter: filterSlice.reducer,
   orders: ordersSlice.reducer,
   slider: sliderSlice.reducer,
+  menus: menusSlice.reducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['menus', 'slider', 'units'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

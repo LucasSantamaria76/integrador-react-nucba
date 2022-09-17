@@ -3,7 +3,7 @@ import Input from '../../components/Input/Input';
 import { Container, FormWrapper, ImgContainer, InfoContent, InfoWrapper } from './ModifyProfile.styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateDBUser } from '../../firebase/firebase-utils';
-import { updateUser } from '../../redux/slices';
+import { hideMenus, updateUser } from '../../redux/slices';
 import { profileValidationSchema } from '../../formik/validationSchema';
 import { Button } from '../../components/common';
 import toast, { Toaster } from 'react-hot-toast';
@@ -28,7 +28,7 @@ export const ModifyProfile = () => {
   const buttonWidth = isPhone ? '280px' : '100%';
 
   return (
-    <Container>
+    <Container onClick={() => dispatch(hideMenus())}>
       <InfoWrapper>
         <h2>Modificar perfil</h2>
         <InfoContent>

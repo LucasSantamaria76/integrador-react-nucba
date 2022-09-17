@@ -3,12 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.div`
   margin-top: 150px;
   width: 100%;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 160px);
   display: flex;
 
   @media screen and (min-width: 900px) {
     display: grid;
-    grid-template-columns: 17% 66% 17%;
+    grid-template-columns: 17% 83%;
     grid-template-rows: auto;
   }
 `;

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const ProductContainer = styled.div`
   height: 125vh;
   width: 100%;
-  margin-top: 160px;
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.surface};
@@ -53,7 +52,6 @@ export const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
   gap: 10px;
   overflow: hidden;
   & > p {

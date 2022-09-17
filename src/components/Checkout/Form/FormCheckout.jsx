@@ -10,6 +10,7 @@ import { format } from 'date-fns';
 import { emptyCart } from '../../../redux/slices';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useResize } from '../../../hooks/useResize';
 
 const FormCheckout = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const FormCheckout = () => {
   } = useSelector((state) => state.user);
   const { orders } = useSelector((state) => state);
   const { theme } = useSelector((state) => state.theme);
+  const { isPhone } = useResize();
 
   const profileInitialValues = {
     name,
@@ -27,6 +29,9 @@ const FormCheckout = () => {
     address,
     phone,
   };
+
+  const inputWidth = isPhone ? 280 : 450;
+  const buttonWidth = isPhone ? '280px' : '100%';
 
   return (
     <FormWrapper>
@@ -72,15 +77,15 @@ const FormCheckout = () => {
           <Form>
             <div>
               <label>Nombre</label>
-              <Input name={'name'} width={500} />
+              <Input name={'name'} width={inputWidth} />
               <label>Correo electrónico</label>
-              <Input type='email' name={'email'} width={450} />
+              <Input type='email' name={'email'} width={inputWidth} />
               <label>Dirección de envío</label>
-              <Input name={'address'} width={600} />
+              <Input name={'address'} width={inputWidth} />
               <label>Teléfono de contacto</label>
-              <Input name={'phone'} width={300} />
+              <Input name={'phone'} width={280} />
             </div>
-            <Button type='submit' disabled={!items.length}>
+            <Button type='submit' width={buttonWidth} disabled={!items.length}>
               {isSubmitting ? <Loader /> : 'Enviar Pedido'}
             </Button>
           </Form>

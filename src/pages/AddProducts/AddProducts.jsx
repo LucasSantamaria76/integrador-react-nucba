@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Select from './../../components/Input/Select';
 import Swal from 'sweetalert2';
 import toast, { Toaster } from 'react-hot-toast';
-import { addProductStore } from '../../redux/slices';
+import { addProductStore, hideMenus } from '../../redux/slices';
 import { addDbProduct } from '../../firebase/firebase-utils';
 import { productInitialValues } from './../../formik/initialValues';
 import { productSchema } from '../../formik/validationSchema';
@@ -67,7 +67,7 @@ const AddProducts = () => {
   const unitsList = !!units && Object.keys(units);
 
   return (
-    <Container>
+    <Container onClick={() => dispatch(hideMenus())}>
       <WrapperForm>
         <Formik
           initialValues={productInitialValues}

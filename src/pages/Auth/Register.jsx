@@ -7,14 +7,19 @@ import { Link } from 'react-router-dom';
 import { registerInitialValues, registerValidationSchema } from '../../formik';
 import { register, signInGoogle } from '../../firebase/firebase-utils';
 import { FcGoogle } from 'react-icons/fc';
+import { useDispatch } from 'react-redux';
+import { hideMenus } from '../../redux/slices';
+import { useRedirect } from '../../hooks/useRedirect';
 
 const ERROR_CODES = {
   'auth/email-already-in-use': 'El correo ya se encuentra registrado',
 };
 
 const Register = () => {
+  useRedirect('/');
+  const dispatch = useDispatch();
   return (
-    <MainContainer>
+    <MainContainer onClick={() => dispatch(hideMenus())}>
       <FormWrapper>
         <h2 style={{ textAlign: 'center' }}>Formulario de registro</h2>
         <Formik
