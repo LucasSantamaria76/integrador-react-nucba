@@ -26,12 +26,17 @@ export const ProductsContainer = styled.div`
     grid-column: 2 / 3;
   }
   &::-webkit-scrollbar {
-    height: 1px;
-    width: 1px;
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: transparent;
+    background-color: ${({ theme }) => theme.colors.primary};
+    outline: 1px solid slategrey;
+    border-radius: 2px;
   }
 `;
 

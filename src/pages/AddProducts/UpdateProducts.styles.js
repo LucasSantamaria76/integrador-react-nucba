@@ -85,7 +85,7 @@ export const LisWrapper = styled.div`
     margin: 10px;
   }
   select {
-    width: 200px;
+    width: 230px;
   }
   @media (min-width: 900px) {
     width: 35%;

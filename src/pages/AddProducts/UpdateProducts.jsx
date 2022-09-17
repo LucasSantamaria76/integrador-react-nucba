@@ -74,9 +74,9 @@ const UpdateProducts = () => {
 
   const filteredProducts = (prod) => {
     const compare = (a, b) => {
-      if (order === 'discount' || order === 'price') {
-        if (+a[order] < +b[order]) return 1;
-        if (+a[order] > +b[order]) return -1;
+      if (['discount', 'price', 'stock'].includes(order)) {
+        if (+a[order] < +b[order]) return order === 'stock' ? -1 : 1;
+        if (+a[order] > +b[order]) return order === 'stock' ? 1 : -1;
       } else {
         if (a[order].toLowerCase() > b[order].toLowerCase()) return 1;
         if (a[order].toLowerCase() < b[order].toLowerCase()) return -1;
