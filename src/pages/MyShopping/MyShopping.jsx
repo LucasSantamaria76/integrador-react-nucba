@@ -19,8 +19,8 @@ import { useState } from 'react';
 import { hideMenus } from '../../redux/slices';
 
 const compare = (a, b) => {
-  if (a.date > b.date) return 1;
-  if (a.date < b.date) return -1;
+  if (a.date < b.date) return 1;
+  if (a.date > b.date) return -1;
   return 0;
 };
 
@@ -40,7 +40,7 @@ const MyShopping = () => {
           <h3>Filtrar por fecha de compra</h3>
           <SelectDate
             name={'orders'}
-            options={Object.keys(orders).sort()}
+            options={Object.keys(orders).sort(compare)}
             placeholder='Todas'
             width={250}
             setDate={setDate}
