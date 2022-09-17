@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CardImage } from '../../components/CartDrawer/CartDrawer.styles';
 
 import {
@@ -16,6 +16,7 @@ import SelectDate from './SelectDate';
 import { limitString } from './../../utils';
 import { formatPrice } from './../../utils/formatPrice';
 import { useState } from 'react';
+import { hideMenus } from '../../redux/slices';
 
 const compare = (a, b) => {
   if (a.date > b.date) return 1;
@@ -27,11 +28,12 @@ const MyShopping = () => {
   const [date, setDate] = useState('');
   const { orders } = useSelector((state) => state);
   const { products } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
   let shopping = Object.values(orders).reduce((acc, val) => [...acc, ...val], []);
   shopping = !!date ? shopping.filter((el) => el.date === date) : shopping.sort(compare);
 
   return (
-    <MyShoppingWrapper>
+    <MyShoppingWrapper onClick={() => dispatch(hideMenus())}>
       {!!orders && (
         <div id='header'>
           <h2>MIS COMPRAS</h2>

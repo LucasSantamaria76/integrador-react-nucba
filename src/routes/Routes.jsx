@@ -72,7 +72,7 @@ const Routes = () => {
           }
         />
         <Route
-          path='/updateproducts'
+          path='/modificarproductos'
           element={
             <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
               <ProtectedRoute to='/login'>
@@ -92,7 +92,7 @@ const Routes = () => {
           }
         />
         <Route
-          path='/modifyprofile'
+          path='/modificarperfil'
           element={
             <motion.div className='page' initial='out' animate='in' exit='out' variants={pageTransition}>
               <ProtectedRoute to='/login'>

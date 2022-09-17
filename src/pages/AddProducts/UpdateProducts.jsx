@@ -18,7 +18,7 @@ import {
   UpWrapperForm,
   BoxFlex,
 } from './UpdateProducts.styles';
-import { updateProductStore } from '../../redux/slices';
+import { hideMenus, updateProductStore } from '../../redux/slices';
 import SelectSort from './SelectSort';
 
 let urlBase = '';
@@ -96,7 +96,7 @@ const UpdateProducts = () => {
   const listProducts = filteredProducts(products);
 
   return (
-    <UpContainer>
+    <UpContainer onClick={() => dispatch(hideMenus())}>
       <Formik
         initialValues={productInitialValues}
         validationSchema={productSchema}

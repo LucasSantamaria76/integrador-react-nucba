@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import {
   ImgLogo,
@@ -20,7 +19,14 @@ import { Badge, Cart, CheckBoxTheme, Overlay, Wrapper } from '../common';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { VscChromeClose, VscMenu } from 'react-icons/vsc';
 import { FaUserCircle } from 'react-icons/fa';
-import { logout, toggleVisibleCart } from '../../redux/slices';
+import {
+  hideMenus,
+  logout,
+  setShowMenuCategory,
+  setShowMenuMobile,
+  setShowMenuUser,
+  toggleVisibleCart,
+} from '../../redux/slices';
 import { useDispatch, useSelector } from 'react-redux';
 import CartDrawer from './../CartDrawer/CartDrawer';
 import { useResize } from './../../hooks/useResize';
@@ -28,41 +34,39 @@ import MenuCategory from '../Categories/MenuCategory';
 import MenuUser from '../UserNav/MenuUser';
 
 const NavBar = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [showMenuCategory, setShowMenuCategory] = useState(false);
-  const [showMenuUser, setShowMenuUser] = useState(false);
-  const { isTablet } = useResize();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const dispatch = useDispatch();
+  const { isTablet } = useResize();
   const { cart, isLogged, user } = useSelector((state) => state.user);
+  const { showMenuCategory, showMenuUser, showMenuMobile } = useSelector((state) => state.menus);
+  const dispatch = useDispatch();
 
   const menu = ['inicio', 'productos', 'favoritos'];
 
   const handleClickLogo = () => {
+    dispatch(hideMenus());
     navigate('/');
-    setShowMenuCategory(false);
-    setShowMenuUser(false);
   };
 
-  const handleShowMenu = () => {
-    setIsMobile(!isMobile);
-    setShowMenuCategory(false);
-    setShowMenuUser(false);
+  const handleShowMenu = (e) => {
+    e.stopPropagation();
+    dispatch(setShowMenuMobile(!showMenuMobile));
   };
 
-  const handleShowMenuCategory = () => {
-    setShowMenuCategory(!showMenuCategory);
-    setShowMenuUser(false);
-    setIsMobile(false);
+  const handleShowMenuCategory = (e) => {
+    e.stopPropagation();
+    dispatch(setShowMenuCategory(!showMenuCategory));
   };
 
-  const handleButtonUser = () => (isLogged ? setShowMenuUser(!showMenuUser) : navigate('/login'));
+  const handleButtonUser = (e) => {
+    e.stopPropagation();
+    isLogged ? dispatch(setShowMenuUser(!showMenuUser)) : navigate('/login');
+  };
 
   const amountOfProductsInCart = cart.items.reduce((acc, item) => (acc += item.quantity), 0);
 
   return (
-    <Wrapper>
+    <Wrapper onClick={() => dispatch(hideMenus())}>
       <WrapperNav>
         <CartDrawer />
         <Logo>
@@ -73,23 +77,17 @@ const NavBar = () => {
           <MenuCategoryText onClick={handleShowMenuCategory}>CATEGORIAS</MenuCategoryText>
         )}
         {showMenuCategory && (
-          <Overlay
-            onClick={() => {
-              setShowMenuCategory(false);
-            }}
-            isHidden={!showMenuCategory}
-          />
+          <Overlay onClick={() => dispatch(setShowMenuCategory(false))} isHidden={!showMenuCategory} />
         )}
         {showMenuCategory && <MenuCategory />}
-        <NavBarContainer showMenu={isMobile}>
+        <NavBarContainer showMenu={showMenuMobile}>
           <SearchBar />
           <ContainerDarkMode>
             <CheckBoxTheme />
             <Label>Dark Mode</Label>
           </ContainerDarkMode>
-          <Menu isMobile={isMobile} onClick={handleShowMenu}>
+          <Menu isMobile={showMenuMobile} onClick={handleShowMenu}>
             {menu.map((item) => {
-              /* if (item === 'agregar productos' && !isLogged) return; */
               if (item === 'favorites' && !isLogged) return;
               return (
                 <NavLink to={`/${item.replace(/ /g, '')}`} key={item} end>
@@ -102,8 +100,7 @@ const NavBar = () => {
         <UserContainer>
           <div
             onClick={() => {
-              setShowMenuCategory(false);
-              setShowMenuUser(false);
+              dispatch(hideMenus());
               dispatch(toggleVisibleCart());
             }}>
             <Badge itemsInCart={amountOfProductsInCart} card={false}>
@@ -125,10 +122,10 @@ const NavBar = () => {
           </ButtonUser>
         </UserContainer>
         <MobileIcon>
-          {isMobile ? <VscChromeClose onClick={handleShowMenu} /> : <VscMenu onClick={handleShowMenu} />}
+          {showMenuMobile ? <VscChromeClose onClick={handleShowMenu} /> : <VscMenu onClick={handleShowMenu} />}
         </MobileIcon>
       </WrapperNav>
-      {showMenuUser && <MenuUser setShowMenuUser={setShowMenuUser} />}
+      {showMenuUser && <MenuUser />}
     </Wrapper>
   );
 };

@@ -5,12 +5,15 @@ export const ContainerStyled = styled(motion.div)`
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 200;
+  z-index: 190;
+  margin: 0;
   width: 100%;
   height: 100vh;
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
 
   padding: 1rem;
   background-color: ${({ theme }) => theme.colors.background};
@@ -45,7 +48,7 @@ export const CardsContainer = styled.div`
 
 export const CardCartContainer = styled.div`
   width: 99%;
-  height: 180px;
+  height: 200px;
   background-color: ${({ theme }) => theme.colors.background02};
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.text2};
@@ -53,7 +56,7 @@ export const CardCartContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   @media screen and (min-width: 450px) {
-    height: 100px;
+    height: 120px;
   }
 `;
 
@@ -86,6 +89,7 @@ export const CardBody = styled.div`
   width: 100%;
   height: 100%;
   padding: 10px;
+  // overflow-y: auto;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -121,8 +125,6 @@ export const QuantityContainer = styled.div`
     line-height: 37px;
     font-size: 1rem;
     color: ${({ theme }) => theme.colors.text};
-    //background-color: ${({ theme }) => theme.colors.text2};
-    //border-radius: 5px;
   }
   @media screen and (min-width: 450px) {
     width: 45%;
@@ -216,8 +218,8 @@ export const CartFooter = styled.div`
 `;
 
 export const BodyFooter = styled.div`
-  margin-bottom: 10px;
-  padding: 10px;
+  margin: 0;
+  padding: 0 10px;
   display: flex;
   flex-direction: column;
   gap: 8px;

@@ -7,10 +7,15 @@ export const Category = ({ menu, text }) => {
   const { values } = useSelector((state) => state.categories);
   const { FilterCategory, FilterSubCategory } = useSelector((state) => state.filter);
 
+  const handleClickCategory = (e) => {
+    e.stopPropagation();
+    dispatch(addFilterCategory(text));
+  };
+
   return (
     <>
       <CategoryStyled
-        onClick={() => dispatch(addFilterCategory(text))}
+        onClick={handleClickCategory}
         selected={FilterCategory === text}
         menu={menu}
         noSelected={!!FilterCategory}>

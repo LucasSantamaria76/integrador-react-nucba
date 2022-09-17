@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 import { getOrCreateUserProfile, signIn, signInGoogle } from '../../firebase/firebase-utils';
 import { useRedirect } from '../../hooks/useRedirect';
 import { Toaster, toast } from 'react-hot-toast';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { hideMenus } from '../../redux/slices';
 
 const ERROR_CODES = {
   'auth/wrong-password': 'Contraseña incorrecta',
@@ -18,9 +19,10 @@ const ERROR_CODES = {
 const Login = () => {
   const { theme } = useSelector((state) => state.theme);
   useRedirect('/');
+  const dispatch = useDispatch();
 
   return (
-    <MainContainer>
+    <MainContainer onClick={() => dispatch(hideMenus())}>
       <FormWrapper>
         <h2 style={{ textAlign: 'center' }}>Iniciar Sesión</h2>
         <Formik
