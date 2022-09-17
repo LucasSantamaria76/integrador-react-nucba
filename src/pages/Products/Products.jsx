@@ -18,7 +18,12 @@ const Products = ({ isFavorites }) => {
       !!FilterCategory && (productsFiltered = productsFiltered?.filter((el) => el.category === FilterCategory));
       !!FilterSubCategory &&
         (productsFiltered = productsFiltered?.filter((el) => el.subCategory === FilterSubCategory));
-      productsFiltered = productsFiltered?.filter((el) => el.name.toLowerCase().startsWith(FilterSearch));
+
+      const matches = productsFiltered?.filter((el) => el.name.toLowerCase().startsWith(FilterSearch));
+      !!matches.length
+        ? (productsFiltered = matches)
+        : (productsFiltered = productsFiltered?.filter((el) => el.name.toLowerCase().includes(FilterSearch)));
+
       return productsFiltered;
     }
     return products;

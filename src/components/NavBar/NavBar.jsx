@@ -12,10 +12,11 @@ import {
   UserContainer,
   ButtonUser,
   MenuCategoryText,
+  Wrapper,
 } from './NavBar.styles';
 import imageLogo from '../../assets/Free-Market-1080x675.webp';
 import cartImg from '../../assets/cart.png';
-import { Badge, Cart, CheckBoxTheme, Overlay, Wrapper } from '../common';
+import { Badge, Cart, CheckBoxTheme, Overlay } from '../common';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { VscChromeClose, VscMenu } from 'react-icons/vsc';
 import { FaUserCircle } from 'react-icons/fa';

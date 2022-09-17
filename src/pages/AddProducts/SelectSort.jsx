@@ -22,9 +22,10 @@ const SelectSort = ({ setOrder }) => {
   return (
     <SelectStyled onChange={(e) => setOrder(e.target.value)}>
       <option value={'name'}>Nombre</option>
+      <option value={'stock'}>Stock (Asc.)</option>
       <option value={'id'}>Código de barras</option>
-      <option value={'price'}>Precio</option>
-      <option value={'discount'}>Descuento</option>
+      <option value={'price'}>Precio (Desc.)</option>
+      <option value={'discount'}>Descuento (Desc.)</option>
     </SelectStyled>
   );
 };
