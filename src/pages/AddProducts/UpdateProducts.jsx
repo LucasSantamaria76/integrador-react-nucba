@@ -17,9 +17,9 @@ import {
   UpImgWrapper,
   UpWrapperForm,
   BoxFlex,
-} from './UpdateProducts.styles';
+} from './Styled-Components';
 import { hideMenus, updateProductStore } from '../../redux/slices';
-import SelectSort from './SelectSort';
+import SelectSort from './components/SelectSort';
 
 let urlBase = '';
 
@@ -130,8 +130,7 @@ const UpdateProducts = () => {
                   </label>
                   <ComboBoxProduct>
                     {listProducts?.map((prod) => (
-                      <a
-                        href='#'
+                      <div
                         key={prod.id}
                         onClick={() => {
                           const product = listProducts.find((p) => p.id === prod.id);
@@ -142,7 +141,7 @@ const UpdateProducts = () => {
                           <img src={prod.urlPhoto} alt={prod.id} />
                           <h3>{prod.name}</h3>
                         </div>
-                      </a>
+                      </div>
                     ))}
                   </ComboBoxProduct>
                 </LisWrapper>
