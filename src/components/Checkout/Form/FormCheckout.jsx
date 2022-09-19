@@ -70,7 +70,6 @@ const FormCheckout = () => {
               background: theme === 'light' ? '#f1f1f1' : '#23292d',
               color: theme === 'light' ? '#000' : '#fff',
             });
-            alert('Hubo un error al crear la orden');
           }
         }}>
         {({ isSubmitting }) => (
