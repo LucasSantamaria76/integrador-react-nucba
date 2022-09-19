@@ -1,16 +1,15 @@
-import { FormWrapper } from './FormCheckout.styles';
 import { Form, Formik } from 'formik';
-import Input from './../../Input/Input';
-import { Button, Loader } from './../../common';
-import { checkoutValidationSchema } from '../../../formik/validationSchema';
 import { useDispatch, useSelector } from 'react-redux';
-import { createOrder } from '../../../redux/slices/ordersSlice';
-import { SHIPPING_COST } from '../../../utils';
 import { format } from 'date-fns';
-import { emptyCart } from '../../../redux/slices';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { useResize } from '../../../hooks/useResize';
+import { useResize } from './../../../hooks/useResize';
+import { FormWrapper } from '../Styled-Components';
+import { checkoutValidationSchema } from './../../../formik';
+import { createOrder, emptyCart } from '../../../redux/slices';
+import Input from './../../../components/Input/Input';
+import { Button, Loader } from '../../../components/common';
+import { SHIPPING_COST } from '../../../utils';
 
 const FormCheckout = () => {
   const navigate = useNavigate();
@@ -62,6 +61,7 @@ const FormCheckout = () => {
               color: theme === 'light' ? '#000' : '#fff',
             }).then(() => navigate('/productos'));
           } catch (error) {
+            console.log(error);
             Swal.fire({
               icon: 'error',
               title: 'Hubo un error al enviar el pedido',
