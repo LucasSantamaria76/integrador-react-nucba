@@ -155,15 +155,15 @@ const UpdateProducts = () => {
                     <div>
                       <label>
                         Precio
-                        <Input name={'price'} width={140} currency />
+                        <Input name={'price'} width='140px' currency />
                       </label>
                       <label>
                         Descuento en %
-                        <Input name={'discount'} width={140} />
+                        <Input name={'discount'} width='140px' />
                       </label>
                       <label>
                         Stock
-                        <Input name={'stock'} width={140} />
+                        <Input name={'stock'} width='140px' />
                       </label>
                     </div>
                     <Button type='submit'>Actualizar</Button>

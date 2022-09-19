@@ -21,7 +21,7 @@ export const UserForm = ({ id, name, address, email, phone }) => {
     phone,
   };
 
-  const inputWidth = isPhone ? 280 : 450;
+  const inputWidth = isPhone ? '280px' : '450px';
   const buttonWidth = isPhone ? '280px' : '100%';
 
   return (
@@ -56,7 +56,7 @@ export const UserForm = ({ id, name, address, email, phone }) => {
             <label>Dirección</label>
             <Input name={'address'} width={inputWidth} />
             <label>Teléfono</label>
-            <Input name={'phone'} width={280} />
+            <Input name={'phone'} width='280px' />
           </div>
           <Button type='submit' width={buttonWidth}>
             Enviar

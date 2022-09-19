@@ -4,8 +4,8 @@ import { addRemoveFavorite } from '../../redux/slices';
 import { useDispatch, useSelector } from 'react-redux';
 
 const StyledButton = styled.button`
-  width: ${({ width }) => (width ? width : '100%')};
-  height: ${({ height }) => (height ? height : '50px')};
+  width: ${({ width }) => width || '100%'};
+  height: ${({ height }) => height || '50px'};
   background: none;
   outline: none;
   border: 1px solid ${({ theme }) => theme.colors.text2};
