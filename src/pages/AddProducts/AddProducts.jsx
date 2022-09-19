@@ -2,7 +2,7 @@ import { Form, Formik, useFormikContext } from 'formik';
 import { useEffect } from 'react';
 import { Button } from '../../components/common';
 import Input from '../../components/Input/Input';
-import { Container, ContainerForm, DblClickForImg, ImgContainer, ImgWrapper, WrapperForm } from './AddProducts.styles';
+import { Container, ContainerForm, DblClickForImg, ImgContainer, ImgWrapper, WrapperForm } from './Styled-Components';
 import { useSelector, useDispatch } from 'react-redux';
 import Select from './../../components/Input/Select';
 import Swal from 'sweetalert2';

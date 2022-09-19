@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { ImgContainer } from './../../pages/AddProducts/AddProducts.styles';
+import { ImgContainer } from '../../pages/AddProducts/Styled-Components';
 
 export const InputContainerStyled = styled.div`
   position: relative;
