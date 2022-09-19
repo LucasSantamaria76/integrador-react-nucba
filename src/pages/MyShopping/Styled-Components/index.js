@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MainContainer } from '../../components/common';
+import { MainContainer } from '../../../components/common';
 
 export const MyShoppingWrapper = styled(MainContainer)`
   width: 98%;

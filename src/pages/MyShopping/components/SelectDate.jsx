@@ -1,4 +1,4 @@
-import { InputContainerStyled, SelectStyled } from '../../components/Input/Input.styles';
+import { InputContainerStyled, SelectStyled } from '../../../components/Input/Input.styles';
 
 const SelectDate = ({ name, options, placeholder, width, setDate }) => {
   return (
