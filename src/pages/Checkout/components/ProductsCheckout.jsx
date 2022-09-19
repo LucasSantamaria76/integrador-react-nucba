@@ -1,15 +1,20 @@
-import { ProductsCheckoutWrapper } from './ProductsCheckout.styles';
-import { formatPrice, SHIPPING_COST } from '../../../utils';
-import { BodyFooter, CardsContainer, CartFooter, CartTitle } from '../../CartDrawer/CartDrawer.styles';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import CardCart from './../../CartDrawer/CardCart';
-import { Button } from '../../common';
+import {
+  BodyFooter,
+  CardCartContainer,
+  CardsContainer,
+  CartFooter,
+  CartTitle,
+} from './../../../components/CartDrawer/CartDrawer.styles';
+import { ProductsCheckoutWrapper } from '../Styled-Components';
+import { formatPrice, SHIPPING_COST } from './../../../utils';
+import CardCart from './../../../components/CartDrawer/CardCart';
 
 const ProductsCheckout = () => {
   const { products } = useSelector((state) => state.products);
   const {
-    cart: { items, visible, totalDiscount, totalCost },
+    cart: { items, totalDiscount, totalCost },
   } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
