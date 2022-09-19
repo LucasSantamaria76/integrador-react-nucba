@@ -29,7 +29,7 @@ const FormCheckout = () => {
     phone,
   };
 
-  const inputWidth = isPhone ? 280 : 450;
+  const inputWidth = isPhone ? '280px' : '450px';
   const buttonWidth = isPhone ? '280px' : '100%';
 
   return (
@@ -82,7 +82,7 @@ const FormCheckout = () => {
               <label>Dirección de envío</label>
               <Input name={'address'} width={inputWidth} />
               <label>Teléfono de contacto</label>
-              <Input name={'phone'} width={280} />
+              <Input name={'phone'} width='280px' />
             </div>
             <Button type='submit' width={buttonWidth} disabled={!items.length}>
               {isSubmitting ? <Loader /> : 'Enviar Pedido'}

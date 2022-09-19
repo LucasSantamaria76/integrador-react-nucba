@@ -7,7 +7,7 @@ export const CheckoutWrapper = styled(MainContainer)`
   margin: 0;
   padding: 0 10px;
   display: flex;
-  flex-direction: Column;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: 15px;

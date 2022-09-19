@@ -110,12 +110,12 @@ const AddProducts = () => {
                 <ContainerForm>
                   <Input name={'name'} type='text' placeholder='Nombre' />
                   <div>
-                    <Input name={'id'} placeholder='Código de barras' width={170} />
-                    <Input name={'price'} placeholder='Precio' width={170} currency />
-                    <Input name={'discount'} placeholder='Descuento' width={170} />
-                    <Input name={'stock'} placeholder='Stock' width={170} />
-                    <Input name={'volume'} placeholder='Volumen' width={170} />
-                    <Select name={'unit'} placeholder='Unidad' options={unitsList} width={170} />
+                    <Input name={'id'} placeholder='Código de barras' width='170px' />
+                    <Input name={'price'} placeholder='Precio' width='170px' currency />
+                    <Input name={'discount'} placeholder='Descuento' width='170px' />
+                    <Input name={'stock'} placeholder='Stock' width='170px' />
+                    <Input name={'volume'} placeholder='Volumen' width='170px' />
+                    <Select name={'unit'} placeholder='Unidad' options={unitsList} width='170px' />
                   </div>
                   <UploadImage />
                   {!!category && (

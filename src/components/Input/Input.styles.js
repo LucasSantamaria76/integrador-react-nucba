@@ -4,7 +4,7 @@ import { ImgContainer } from '../../pages/AddProducts/Styled-Components';
 
 export const InputContainerStyled = styled.div`
   position: relative;
-  width: ${({ width }) => (width ? width + 50 + 'px' : '100%')};
+  width: ${({ width }) => (width ? `calc(${width} + 50px)` : '100%')};
   height: 68px;
 `;
 
@@ -12,7 +12,7 @@ export const InputStyled = styled.input`
   position: absolute;
   top: 0;
   left: 0;
-  width: ${({ width }) => (width ? width + 'px' : '100%')};
+  width: ${({ width }) => width || '100%'};
   height: 40px;
   font-size: 1.1rem;
   color: ${({ theme }) => theme.colors.text};
@@ -32,7 +32,7 @@ export const SelectStyled = styled.select`
   position: absolute;
   top: 0;
   left: 0;
-  width: ${({ width }) => (width ? width + 'px' : '100%')};
+  width: ${({ width }) => width || '100%'};
   height: 40px;
   font-size: 1.3rem;
   color: ${({ theme }) => theme.colors.text};
@@ -63,7 +63,7 @@ export const ErrorMessageStyled = styled.p`
 export const CloseIcon = styled(motion.span)`
   position: absolute;
   bottom: 33px;
-  left: ${({ width }) => (width ? width - 24 + 'px' : 'calc(100% - 24px)')};
+  left: ${({ width }) => (width ? `calc(${width} - 24px)` : 'calc(100% - 24px)')};
   color: ${({ theme }) => theme.colors.text};
   font-size: 1.2rem;
 
