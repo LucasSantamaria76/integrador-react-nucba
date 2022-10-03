@@ -1,13 +1,11 @@
 import { useEffect } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
+import { Button, Container, Header, Input, Navbar } from './components';
 import GlobalStyles from './styles/GlobalStyles';
 import { themes } from './styles/themes';
-import NavBar from './components/NavBar/NavBar';
-
+import Routes from './routes/Routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories, getProducts, setCart, setCurrentUser, setFavorites, setOrders } from './redux/slices';
-import Layout from './components/Layout/Layout';
-import Routes from './routes/Routes';
 import {
   auth,
   getDBCart,
@@ -58,14 +56,11 @@ const App = () => {
     });
     return () => unsuscribe();
   }, []);
-
   return (
     <ThemeProvider theme={themes[theme]}>
       <GlobalStyles />
-      <NavBar />
-      <Layout>
-        <Routes />
-      </Layout>
+      <Header />
+      <Routes />
     </ThemeProvider>
   );
 };

@@ -1,16 +1,17 @@
 import { Form, Formik, useFormikContext } from 'formik';
 import { useEffect } from 'react';
-import { Button } from '../../components/common';
-import Input from '../../components/Input/Input';
-import { Container, ContainerForm, DblClickForImg, ImgContainer, ImgWrapper, WrapperForm } from './AddProducts.styles';
+import { Button } from '../../components';
+import { Input } from '../../components';
+import { Container, ContainerForm, DblClickForImg, ImgContainer, ImgWrapper, WrapperForm } from './Styled-Components';
 import { useSelector, useDispatch } from 'react-redux';
-import Select from './../../components/Input/Select';
+import { Select } from './../../components';
 import Swal from 'sweetalert2';
 import toast, { Toaster } from 'react-hot-toast';
 import { addProductStore, hideMenus } from '../../redux/slices';
 import { addDbProduct } from '../../firebase/firebase-utils';
 import { productInitialValues } from './../../formik/initialValues';
 import { productSchema } from '../../formik/validationSchema';
+import backgroundImage from '../../assets/backgroundImage.jpg';
 
 let urlBase = '';
 
@@ -67,8 +68,8 @@ const AddProducts = () => {
   const unitsList = !!units && Object.keys(units);
 
   return (
-    <Container onClick={() => dispatch(hideMenus())}>
-      <WrapperForm>
+    <Container direction='column'>
+      <WrapperForm backgroundImage={backgroundImage}>
         <Formik
           initialValues={productInitialValues}
           validationSchema={productSchema}
@@ -108,27 +109,41 @@ const AddProducts = () => {
             return (
               <Form>
                 <ContainerForm>
-                  <Input name={'name'} type='text' placeholder='Nombre' />
-                  <div>
-                    <Input name={'id'} placeholder='Código de barras' width={170} />
-                    <Input name={'price'} placeholder='Precio' width={170} currency />
-                    <Input name={'discount'} placeholder='Descuento' width={170} />
-                    <Input name={'stock'} placeholder='Stock' width={170} />
-                    <Input name={'volume'} placeholder='Volumen' width={170} />
-                    <Select name={'unit'} placeholder='Unidad' options={unitsList} width={170} />
+                  <div className='input'>
+                    <Input name='name' label='Nombre' />
+                    <Input name='id' label='Código de barras' size={13} />
+                    <Input name='stock' label='stock' size={6} />
+                  </div>
+                  <div className='input'>
+                    <Input name='price' label='Precio' size={8} />
+                    <Input name='discount' label='Descuento' size={6} />
+                  </div>
+                  <div className='input'>
+                    <Input name='volume' label='Volumen' size={5} />
+                    <Select name={'unit'} label='Unidad' placeholder='Unidad' options={unitsList} size={6} />
                   </div>
                   <UploadImage />
                   {!!category && (
-                    <>
-                      <Select name={'category'} options={category} placeholder='Ingrese categoria' />
+                    <div className='selects'>
                       <Select
+                        name={'category'}
+                        options={category}
+                        label='Categoria'
+                        placeholder='Ingrese categoria'
+                        size={10}
+                      />
+                      <Select
+                        label='SubCategoria'
                         name={'subCategory'}
                         options={categories[values.category]}
                         placeholder='Ingrese subcategoria'
+                        size={10}
                       />
-                    </>
+                    </div>
                   )}
-                  <Button type='submit'>Agregar</Button>
+                  <Button type='submit' r='8px' bg='info' outline shadow>
+                    Agregar
+                  </Button>
                 </ContainerForm>
               </Form>
             );

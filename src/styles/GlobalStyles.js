@@ -1,18 +1,25 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+
+ html,body {
+  overflow-x :hidden !important;
+ }
+
 *{
   box-sizing: border-box;
 }
   body {
+    position: relative;
+    max-width: 100vw;
+    min-height: 100vh;
     background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
     transition: all 0.15s linear;
     margin: 0;
-    font-family: "Roboto";
-    user-select: none;
-    //overflow: hidden;
     padding: 0px;
+    font-family: "Roboto";
+    user-select: none;    
   }
   
   body::-webkit-scrollbar {
@@ -29,9 +36,16 @@ export default createGlobalStyle`
     margin: 0;
   }
   .page{
-    width: 100%;
+    width: 100%;    
+    position: absolute;
+    height: calc(100vh - 70px);
+    bottom: 0;
+    left: 0;
     display: flex;
     justify-content: center;
+    @media (min-width: 900px) {
+      height: calc(100vh - 150px);
+  }
   }  
 
  

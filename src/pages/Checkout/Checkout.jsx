@@ -1,8 +1,7 @@
-import FormCheckout from '../../components/Checkout/Form/FormCheckout';
-import { CheckoutWrapper } from './Checkout.styles';
-import ProductsCheckout from './../../components/Checkout/Products/ProductsCheckout';
-import { hideMenus } from '../../redux/slices';
 import { useDispatch } from 'react-redux';
+import FormCheckout from './components/FormCheckout';
+import { CheckoutWrapper } from './Styled-Components';
+import ProductsCheckout from './components/ProductsCheckout';
 
 const Checkout = () => {
   const dispatch = useDispatch();

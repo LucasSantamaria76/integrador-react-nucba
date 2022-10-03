@@ -1,25 +1,27 @@
 import { Form, Formik, useFormikContext } from 'formik';
 import { useEffect, useState } from 'react';
-import { Button } from '../../components/common';
-import Input from '../../components/Input/Input';
 import { useSelector, useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import toast, { Toaster } from 'react-hot-toast';
+import SelectSort from './components/SelectSort';
+import {
+  BoxFlex,
+  ComboBoxProduct,
+  Container,
+  ContainerForm,
+  DblClickForImg,
+  ImgContainer,
+  ImgWrapper,
+  LisContainer,
+  LisWrapper,
+  WrapperForm,
+} from './Styled-Components';
 import { productInitialValues } from '../../formik/initialValues';
 import { productSchema } from '../../formik/validationSchema';
-import {
-  LisWrapper,
-  ComboBoxProduct,
-  UpContainer,
-  UpContainerForm,
-  UpDblClickForImg,
-  UpImgContainer,
-  UpImgWrapper,
-  UpWrapperForm,
-  BoxFlex,
-} from './UpdateProducts.styles';
-import { hideMenus, updateProductStore } from '../../redux/slices';
-import SelectSort from './SelectSort';
+import { hideMenus, removeFilters, updateProductStore } from '../../redux/slices';
+import { Input } from '../../components';
+import { Button } from './../../components/Button/index';
+import backgroundImage from '../../assets/backgroundImage.jpg';
 
 let urlBase = '';
 
@@ -57,11 +59,11 @@ const UploadImage = () => {
   }, [id, urlPhoto]);
 
   return (
-    <UpImgWrapper>
-      {!urlPhoto && <UpDblClickForImg onDoubleClick={handleDblClick}>Doble click para Cargar imagen</UpDblClickForImg>}
+    <ImgWrapper update>
+      {!urlPhoto && <DblClickForImg onDoubleClick={handleDblClick}>Doble click para Cargar imagen</DblClickForImg>}
 
-      <UpImgContainer src={urlPhoto} onDoubleClick={handleDblClick} />
-    </UpImgWrapper>
+      <ImgContainer src={urlPhoto} onDoubleClick={handleDblClick} update />
+    </ImgWrapper>
   );
 };
 
@@ -71,6 +73,10 @@ const UpdateProducts = () => {
   const { theme } = useSelector((state) => state.theme);
   const { products } = useSelector((state) => state.products);
   const { FilterSearch } = useSelector((state) => state.filter);
+
+  useEffect(() => {
+    dispatch(removeFilters());
+  }, []);
 
   const filteredProducts = (prod) => {
     const compare = (a, b) => {
@@ -96,7 +102,7 @@ const UpdateProducts = () => {
   const listProducts = filteredProducts(products);
 
   return (
-    <UpContainer onClick={() => dispatch(hideMenus())}>
+    <Container onClick={() => dispatch(hideMenus())}>
       <Formik
         initialValues={productInitialValues}
         validationSchema={productSchema}
@@ -123,60 +129,51 @@ const UpdateProducts = () => {
           return (
             <Form style={{ width: '100%', height: '100%' }}>
               <BoxFlex>
-                <LisWrapper>
-                  <label>
-                    Ordenar por
-                    <SelectSort setOrder={setOrder} />
-                  </label>
-                  <ComboBoxProduct>
-                    {listProducts?.map((prod) => (
-                      <a
-                        href='#'
-                        key={prod.id}
-                        onClick={() => {
-                          const product = listProducts.find((p) => p.id === prod.id);
-                          urlBase = product.urlPhoto;
-                          Object.keys(product).map((key) => setFieldValue(key, product[key]));
-                        }}>
-                        <div className='option'>
-                          <img src={prod.urlPhoto} alt={prod.id} />
-                          <h3>{prod.name}</h3>
-                        </div>
-                      </a>
-                    ))}
-                  </ComboBoxProduct>
-                </LisWrapper>
-                <UpWrapperForm>
-                  <UpContainerForm>
-                    <UploadImage />
+                <LisWrapper backgroundImage={backgroundImage}>
+                  <LisContainer>
                     <label>
-                      Nombre
-                      <Input name={'name'} type='text' />
+                      Ordenar por
+                      <SelectSort setOrder={setOrder} />
                     </label>
-                    <div>
-                      <label>
-                        Precio
-                        <Input name={'price'} width={140} currency />
-                      </label>
-                      <label>
-                        Descuento en %
-                        <Input name={'discount'} width={140} />
-                      </label>
-                      <label>
-                        Stock
-                        <Input name={'stock'} width={140} />
-                      </label>
+                    <ComboBoxProduct>
+                      {listProducts?.map((prod) => (
+                        <div
+                          key={prod.id}
+                          onClick={() => {
+                            const product = listProducts.find((p) => p.id === prod.id);
+                            urlBase = product.urlPhoto;
+                            Object.keys(product).map((key) => setFieldValue(key, product[key]));
+                          }}>
+                          <div className='option'>
+                            <img src={prod.urlPhoto} alt={prod.id} />
+                            <h3>{prod.name}</h3>
+                          </div>
+                        </div>
+                      ))}
+                    </ComboBoxProduct>
+                  </LisContainer>
+                </LisWrapper>
+                <WrapperForm update backgroundImage={backgroundImage}>
+                  <ContainerForm update>
+                    <UploadImage />
+                    <Input name='name' label='Nombre' />
+                    <div className='input'>
+                      <Input name='price' label='Precio' size={8} />
+                      <Input name='discount' label='Descuento  en %' size={6} />
+                      <Input name='stock' label='stock' size={6} />
                     </div>
-                    <Button type='submit'>Actualizar</Button>
-                  </UpContainerForm>
-                </UpWrapperForm>
+                    <Button type='submit' r='8px' bg='info' outline shadow>
+                      Actualizar
+                    </Button>
+                  </ContainerForm>
+                </WrapperForm>
               </BoxFlex>
             </Form>
           );
         }}
       </Formik>
       <Toaster />
-    </UpContainer>
+    </Container>
   );
 };
 

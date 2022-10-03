@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { CardOrdersContainer, DetailProduct, ItemsContainer } from '../Styled-Components';
 import { formatPrice, limitString } from './../../../utils';
-import { CardImage } from './../../../components/CartDrawer/CartDrawer.styles';
+import { CardImage } from './../../../components/CartDrawer/styles';
 
 export const Items = ({ el }) => {
   const { products } = useSelector((state) => state.products);

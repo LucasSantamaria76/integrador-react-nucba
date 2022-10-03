@@ -1,15 +1,13 @@
-import { Form, Formik, useFormikContext } from 'formik';
-import { Button, MainContainer } from '../../components/common';
-import InputLogin from '../../components/Input/Input';
+import { Form, Formik } from 'formik';
 import { loginInitialValues, loginValidationSchema } from '../../formik';
 import { FormContainer, FormWrapper } from './auth.styles';
 import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
-import { getOrCreateUserProfile, signIn, signInGoogle } from '../../firebase/firebase-utils';
 import { useRedirect } from '../../hooks/useRedirect';
-import { Toaster, toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { hideMenus } from '../../redux/slices';
+import { Button, Container, Input } from '../../components';
+import { getOrCreateUserProfile, signIn, signInGoogle } from './../../firebase/firebase-utils';
+import backgroundImage from '../../assets/login-background-images-for-website-10.jpg';
 
 const ERROR_CODES = {
   'auth/wrong-password': 'Contraseña incorrecta',
@@ -22,9 +20,8 @@ const Login = () => {
   const dispatch = useDispatch();
 
   return (
-    <MainContainer onClick={() => dispatch(hideMenus())}>
-      <FormWrapper>
-        <h2 style={{ textAlign: 'center' }}>Iniciar Sesión</h2>
+    <Container justify='center'>
+      <FormWrapper backgroundImage={backgroundImage}>
         <Formik
           initialValues={loginInitialValues}
           validationSchema={loginValidationSchema}
@@ -32,32 +29,32 @@ const Login = () => {
             const { email, password } = values;
             try {
               const { user } = await signIn(email, password);
+              console.log(user);
               await getOrCreateUserProfile(user);
             } catch (error) {
-              toast.error(ERROR_CODES[error.code], {
-                position: 'top-center',
-                duration: 1000,
-                style: {
-                  padding: '10px',
-                  marginTop: '200px',
-                  borderRadius: '4px',
-                  background: theme === 'light' ? '#add1c7ca' : '#00313fca',
-                  color: theme === 'light' ? '#000' : '#fff',
-                  fontSize: '1.5rem',
-                },
-              });
+              console.log(error);
             }
           }}>
           {({ values }) => {
             return (
               <Form>
                 <FormContainer>
-                  <InputLogin type='email' name={'email'} placeholder='Ingrese su e-mail' />
-                  <InputLogin type='password' name={'password'} placeholder='Ingrese su contraseña' />
-                  <Button type='submit'>Enviar</Button>
+                  <h2 style={{ textAlign: 'center' }}>Iniciar Sesión</h2>
+                  {/*  the value of size is in length of characters  */}
+                  <Input
+                    type='email'
+                    name='email'
+                    label='Ingrese su e-mail'
+                    placeholder='example@example.com'
+                    size={25}
+                  />
+                  <Input type='password' name='password' label='Ingrese su contraseña' size={20} />
+                  <Button type='submit' r='8px' bg='info' shadow outline>
+                    Enviar
+                  </Button>
                   <div>
                     <h4 style={{ textAlign: 'center' }}>o puedes iniciar sesión con</h4>
-                    <Button type='button' handleClick={signInGoogle}>
+                    <Button type='button' handleClick={signInGoogle} r='8px' bg='info' shadow outline>
                       <div className='google'>
                         <FcGoogle />
                         <h4>oogle</h4>
@@ -73,8 +70,7 @@ const Login = () => {
           }}
         </Formik>
       </FormWrapper>
-      <Toaster />
-    </MainContainer>
+    </Container>
   );
 };
 

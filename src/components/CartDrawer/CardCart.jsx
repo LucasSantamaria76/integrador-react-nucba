@@ -9,12 +9,12 @@ import {
   QuantityContainer,
   StockStyled,
   SubTotal,
-} from './CartDrawer.styles';
+} from './styles';
 import { formatPrice } from './../../utils/formatPrice';
 import { BsCartDash, BsCartPlus, BsCartX } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { addProductToCart, reduceStockProduct, removeProductToCart, restoreStockProduct } from '../../redux/slices';
-import { BoxInfo } from '../common';
+import { BoxInfo } from '../BoxInfo';
 import { useResize } from './../../hooks/useResize';
 
 const CardCart = ({ discount, id, name, price, quantity, stock, urlPhoto }) => {

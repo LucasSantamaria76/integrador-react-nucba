@@ -1,54 +1,54 @@
 import styled from 'styled-components';
-import { MainContainer } from '../../../components/common';
+import { ContainerStyled } from './../../../components/Container/styles';
 
-export const MyShoppingWrapper = styled(MainContainer)`
-  width: 98%;
+export const MyShoppingWrapper = styled(ContainerStyled)`
+  width: 100%;
   padding: 0;
-  padding-top: 20px;
+  padding-top: 10px;
+
   h2 {
     font-size: 1.5rem;
-    color: ${({ theme }) => theme.colors.text2};
+    color: ${({ theme }) => theme.colors.secondaryText};
     text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
   }
-  h3 {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
+  & > h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 10px;
   }
-  #header {
-    width: 100%;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-  & > div {
-    display: flex;
-    //flex-direction: column;
-    align-items: center;
-    font-size: 1rem;
-    select {
-      text-align: center;
-      position: absolute;
-      left: 20px;
+
+  select {
+    text-align: center;
+    font-size: 1.5rem;
+    option {
+      font-size: 1.5rem;
     }
   }
+
   @media screen and (min-width: 900px) {
     h2 {
       font-size: 1.8rem;
       margin-bottom: 15px;
     }
-    #header {
-      height: 150px;
-    }
   }
 `;
+
+export const ShoppingWrapper = styled.div`
+  width: 94%;
+  background-image: url(${({ backgroundImage }) => backgroundImage});
+  box-shadow: ${({ theme }) => theme.shadow};
+  border-radius: 8px;
+  overflow: hidden;
+  @media screen and (min-width: 900px) {
+    height: 75%;
+  }
+`;
+
 export const ShoppingContainer = styled.div`
   width: 100%;
+  height: 100%;
   padding-top: 20px;
-  background-color: ${({ theme }) => theme.colors.surface};
-  box-shadow: ${({ theme }) => theme.boxShadow};
+  background-color: ${({ theme }) => theme.colors.backgroundHeader};
   display: flex;
-  // flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -56,20 +56,18 @@ export const ShoppingContainer = styled.div`
   gap: 10px;
 
   &::-webkit-scrollbar {
-    height: 1px;
-    width: 1px;
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: ${({ theme }) => theme.colors.background02};
+    border-radius: 10px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: transparent;
-  }
-  @media screen and (min-width: 900px) {
-    height: 65vh;
-    //padding: 0 20px;
-    //flex-direction: row;
-    //justify-content: center;
-    //    flex-wrap: wrap;
-    //gap: 10px;
+    background-color: ${({ theme }) => theme.colors.secondaryText};
+    border-radius: 10px;
   }
 `;
 
@@ -78,7 +76,8 @@ export const MyShoppingCard = styled.div`
   height: 100%;
   padding: 10px 5px;
   margin-bottom: 10px;
-  box-shadow: ${({ theme }) => theme.boxShadow};
+  box-shadow: ${({ theme }) => theme.shadow};
+  background-color: ${({ theme }) => theme.colors.background};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,7 +160,7 @@ export const CardOrdersContainer = styled.div`
   height: 110px;
   background-color: ${({ theme }) => theme.colors.background02};
   border-radius: 5px;
-  border: 1px solid ${({ theme }) => theme.colors.text2};
+  border: 1px solid ${({ theme }) => theme.colors.secondaryText};
   overflow: hidden;
   display: flex;
   justify-content: flex-start;
