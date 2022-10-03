@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const NUMBER = 'Solo puede contener un número positivo';
+const NUMBER = 'Solo puede contener un número';
 const REQUIRED = '* Campo Requerido';
 const ID_SIZE = 'El código debe ser de 13 números';
 const EMAIL = 'Correo electrónico inválido';
@@ -26,7 +26,10 @@ export const productSchema = Yup.object({
     .required(REQUIRED),
   name: Yup.string().trim().required(REQUIRED),
   description: Yup.string().trim(),
-  price: Yup.number().typeError(NUMBER).positive(NUMBER).required(REQUIRED),
+  price: Yup.string()
+    .trim()
+    .matches(/(?=.)^\$?(([1-9][0-9]{0,2}([0-9]{3})*)|0)?(\.[0-9]{1,2})?$/, NUMBER)
+    .required(REQUIRED),
   discount: Yup.string()
     .trim()
     .matches(/^[0-9]+$/, NUMBER),

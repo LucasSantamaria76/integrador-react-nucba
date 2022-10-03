@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addFilterCategory, addFilterSubCategory } from '../../redux/slices';
+import { addFilterCategory, addFilterSubCategory, hideMenus } from '../../redux/slices';
 import { CategoryStyled, SubCategoryStyled } from './category.styles';
 
 export const Category = ({ menu, text }) => {
@@ -10,6 +10,13 @@ export const Category = ({ menu, text }) => {
   const handleClickCategory = (e) => {
     e.stopPropagation();
     dispatch(addFilterCategory(text));
+    dispatch(hideMenus());
+  };
+
+  const handleClickSubCategory = (e, el) => {
+    e.stopPropagation();
+    dispatch(addFilterSubCategory(el));
+    dispatch(hideMenus());
   };
 
   return (
@@ -25,7 +32,7 @@ export const Category = ({ menu, text }) => {
         values[text]?.map((el) => (
           <SubCategoryStyled
             selected={FilterSubCategory === el}
-            onClick={() => dispatch(addFilterSubCategory(el))}
+            onClick={(e) => handleClickSubCategory(e, el)}
             key={el}>
             {el}
           </SubCategoryStyled>

@@ -24,7 +24,6 @@ import {
   query,
   collectionGroup,
 } from 'firebase/firestore';
-import { format } from 'date-fns';
 import { formatDate } from '../utils/formatDate';
 
 const app = initializeApp(firebaseConfig);

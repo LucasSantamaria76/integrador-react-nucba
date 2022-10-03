@@ -1,18 +1,11 @@
 import styled from 'styled-components';
+import { common } from './../../../components/FormikInput/styles';
 
 const SelectStyled = styled.select`
-  width: 100%;
-  height: 40px;
-  margin-left: 10px;
+  ${common}
   font-size: 1.3rem;
-  color: ${({ theme }) => theme.colors.text};
   padding: 0 10px;
-  background-color: ${({ theme }) => theme.colors.surface};
-  box-shadow: ${({ theme }) => theme.boxShadow};
-  border-radius: 3px;
-  outline: none;
-  border: ${({ isError }) => (!isError ? 'none' : '1px solid #ff0000')};
-
+  margin-left: 10px;
   option {
     font-size: 1.2rem;
   }

@@ -1,26 +1,34 @@
+import { objColors } from './objectAndFunctions';
+
 export const themes = {
   light: {
     colors: {
+      primary: '#d8f2f6',
+      secondary: '#03d7f5',
+      hover: '#03d7f545',
       background: '#f1f1f1',
+      backgroundHeader: '#d8f2f655',
       background02: '#d2d2d288',
-      surface: '#fff',
+      surface: '#ffffffaa',
       text: '#000',
-      text2: '#38997c',
-      primary: '#add1c7',
-      hover: '#8ecebc',
+      secondaryText: '#a7edfa',
+      ...objColors,
     },
-    boxShadow: '1px 1px 3px rgba(160,160,160, 0.5), 1px 1px 3px rgba(160,160,160, 0.6)',
+    shadow: '2px 2px 5px 1px rgba(100,100,100, 0.60),2px 2px 3px 1px rgba(100,100,100, 0.75)',
   },
   dark: {
     colors: {
+      primary: '#102e4c',
+      secondary: '#424242',
+      hover: '#42424245',
       background: '#23292d',
+      backgroundHeader: '#102e4c55',
       background02: '#505b6088',
-      surface: '#4b5052',
+      surface: '#4b5052aa',
       text: '#fff',
-      text2: '#317e94',
-      primary: '#091E2F',
-      hover: '#88bac7ee',
+      secondaryText: '#317e94',
+      ...objColors,
     },
-    boxShadow: '1px 1px 3px rgba(255, 255, 255, 0.7), 1px 1px 3px rgba(255, 255, 255, 0.8)',
+    shadow: '2px 2px 5px 1px rgba(220, 220, 220, 0.6), 2px 2px 3px 1px rgba(220, 220, 220, 0.75)',
   },
 };

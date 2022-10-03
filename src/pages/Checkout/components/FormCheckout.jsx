@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { useResize } from './../../../hooks/useResize';
 import { FormWrapper } from '../Styled-Components';
 import { checkoutValidationSchema } from './../../../formik';
 import { createOrder, emptyCart } from '../../../redux/slices';
-import Input from './../../../components/Input/Input';
-import { Button, Loader } from '../../../components/common';
 import { SHIPPING_COST } from '../../../utils';
+import { Button, Input } from './../../../components';
 
 const FormCheckout = () => {
   const navigate = useNavigate();
@@ -20,7 +18,6 @@ const FormCheckout = () => {
   } = useSelector((state) => state.user);
   const { orders } = useSelector((state) => state);
   const { theme } = useSelector((state) => state.theme);
-  const { isPhone } = useResize();
 
   const profileInitialValues = {
     name,
@@ -28,9 +25,6 @@ const FormCheckout = () => {
     address,
     phone,
   };
-
-  const inputWidth = isPhone ? '280px' : '450px';
-  const buttonWidth = isPhone ? '280px' : '100%';
 
   return (
     <FormWrapper>
@@ -75,17 +69,13 @@ const FormCheckout = () => {
         {({ isSubmitting }) => (
           <Form>
             <div>
-              <label>Nombre</label>
-              <Input name={'name'} width={inputWidth} />
-              <label>Correo electrónico</label>
-              <Input type='email' name={'email'} width={inputWidth} />
-              <label>Dirección de envío</label>
-              <Input name={'address'} width={inputWidth} />
-              <label>Teléfono de contacto</label>
-              <Input name={'phone'} width='280px' />
+              <Input name='name' label='Nombre' size={25} />
+              <Input type='email' name='email' label='Correo electrónico' size={25} />
+              <Input name='address' label='Dirección de envío' size={25} />
+              <Input name='phone' label='Teléfono de contacto' size={15} />
             </div>
-            <Button type='submit' width={buttonWidth} disabled={!items.length}>
-              {isSubmitting ? <Loader /> : 'Enviar Pedido'}
+            <Button type='submit' r='8px' bg='info' shadow outline disabled={!items.length}>
+              {isSubmitting ? 'Enviando...' : 'Enviar Pedido'}
             </Button>
           </Form>
         )}

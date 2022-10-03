@@ -1,15 +1,9 @@
 import styled from 'styled-components';
-import { MainContainer } from '../../../components/common';
+import { ContainerStyled } from '../../../components/Container/styles';
 
-export const CheckoutWrapper = styled(MainContainer)`
-  width: 100vw;
-  height: 100%;
-  margin: 0;
-  padding: 0 10px;
-  display: flex;
+export const CheckoutWrapper = styled(ContainerStyled)`
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
   gap: 15px;
   @media (min-width: 900px) {
     flex-direction: row;
@@ -19,41 +13,47 @@ export const CheckoutWrapper = styled(MainContainer)`
 
 export const FormWrapper = styled.div`
   width: 100%;
-  height: 90%;
-  margin-top: 150px;
-
+  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  form {
+    width: 90%;
+  }
   h2 {
     margin-bottom: 20px;
   }
+  /*
   div {
     padding-left: 40px;
-  }
+  } */
   button {
     margin: 0 auto;
   }
   @media screen and (min-width: 900px) {
-    width: 60%;
-    height: calc(100vh - 185px);
+    width: 50%;
+    height: calc(100vh - 160px);
+  }
+  @media (min-width: 1200px) {
+    form {
+      width: 70%;
+    }
   }
 `;
 
 export const ProductsCheckoutWrapper = styled.div`
-  width: 100vw;
+  width: 100%;
+  height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
   @media screen and (min-width: 900px) {
-    margin: 120px 0 0;
-    width: 40%;
-    height: calc(100vh - 80px);
-  }
-  @media (min-width: 1200px) {
     width: 50%;
+    height: 98%;
   }
+  /*   @media (min-width: 1200px) {
+  } */
 `;

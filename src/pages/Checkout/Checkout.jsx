@@ -1,7 +1,6 @@
-import { hideMenus } from '../../redux/slices';
 import { useDispatch } from 'react-redux';
-import { CheckoutWrapper } from './Styled-Components';
 import FormCheckout from './components/FormCheckout';
+import { CheckoutWrapper } from './Styled-Components';
 import ProductsCheckout from './components/ProductsCheckout';
 
 const Checkout = () => {

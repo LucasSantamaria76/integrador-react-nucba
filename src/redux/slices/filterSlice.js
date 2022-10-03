@@ -20,7 +20,10 @@ export const filterSlice = createSlice({
         ? (state.FilterSubCategory = '')
         : (state.FilterSubCategory = action.payload);
     },
+    removeFilters: (state) => {
+      (state.FilterSearch = ''), (state.FilterCategory = ''), (state.FilterSubCategory = '');
+    },
   },
 });
 
-export const { addFilterCategory, addFilterSearch, addFilterSubCategory } = filterSlice.actions;
+export const { addFilterCategory, addFilterSearch, addFilterSubCategory, removeFilters } = filterSlice.actions;

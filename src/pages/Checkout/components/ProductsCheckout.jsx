@@ -6,7 +6,7 @@ import {
   CardsContainer,
   CartFooter,
   CartTitle,
-} from './../../../components/CartDrawer/CartDrawer.styles';
+} from './../../../components/CartDrawer/styles';
 import { ProductsCheckoutWrapper } from '../Styled-Components';
 import { formatPrice, SHIPPING_COST } from './../../../utils';
 import CardCart from './../../../components/CartDrawer/CardCart';

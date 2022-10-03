@@ -27,13 +27,14 @@ export const SubCategoryStyled = styled(CategoryStyled)`
 
 export const MenuCategoryStyled = styled.div`
   position: absolute;
-  top: 141px;
-  left: 0;
-  z-index: 111;
+  top: 37px;
+  left: 10px;
+  z-index: 1101;
   display: flex;
   flex-direction: column;
   width: 310px;
   border: 1px solid ${({ theme }) => theme.colors.text};
+  border-radius: 5px;
   background: ${({ theme }) => theme.colors.primary};
   height: 50vh;
   overflow-y: auto;

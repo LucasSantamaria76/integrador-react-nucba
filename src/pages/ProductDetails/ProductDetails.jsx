@@ -1,26 +1,22 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ButtonFav, MainContainer } from '../../components/common';
-import {
-  addProductToCart,
-  hideMenus,
-  reduceStockProduct,
-  removeProductToCart,
-  restoreStockProduct,
-} from '../../redux/slices';
+import { addProductToCart, reduceStockProduct, removeProductToCart, restoreStockProduct } from '../../redux/slices';
 import toast, { Toaster } from 'react-hot-toast';
 import { Details } from './components/Details';
 import { ImageProduct } from './components/ImageProduct';
 import { ProductContainer } from './Styled-Components';
+import { Container } from '../../components';
 
 const ProductDetails = () => {
   const { Id } = useParams();
-  const { isLogged } = useSelector((state) => state.user);
+  const { isLogged, cart } = useSelector((state) => state.user);
   const { products } = useSelector((state) => state.products);
   const { theme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const product = products?.find((prod) => prod.id === Id);
   const { category, discount, id, name, price, stock, subCategory, unit, urlPhoto, volume } = product;
+
+  const amountOfProductInCart = cart.items?.find((item) => item.id === id)?.quantity || 0;
 
   const handleAddCart = () => {
     if (!isLogged) {
@@ -45,17 +41,19 @@ const ProductDetails = () => {
   };
 
   const handleRemoveCart = () => {
-    dispatch(removeProductToCart({ discount, id, price, quantity: 1 }));
-    !!amountOfProductInCart && dispatch(restoreStockProduct({ id, quantity: 1 }));
+    if (!!amountOfProductInCart) {
+      dispatch(removeProductToCart({ discount, id, price, quantity: 1 }));
+      dispatch(restoreStockProduct({ id, quantity: 1 }));
+    }
   };
 
   return (
-    <MainContainer onClick={() => dispatch(hideMenus())}>
+    <Container justify='center'>
       <ProductContainer>
         <ImageProduct discount={discount} stock={stock} urlPhoto={urlPhoto} />
         <Details {...product} handleRemoveCart={handleRemoveCart} handleAddCart={handleAddCart} />
       </ProductContainer>
-    </MainContainer>
+    </Container>
   );
 };
 
