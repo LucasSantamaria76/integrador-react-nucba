@@ -3,11 +3,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+<<<<<<< HEAD
 import { FormWrapper } from '../Styled-Components';
 import { checkoutValidationSchema } from './../../../formik';
 import { createOrder, emptyCart } from '../../../redux/slices';
 import { SHIPPING_COST } from '../../../utils';
 import { Button, Input } from './../../../components';
+=======
+import { useResize } from './../../../hooks/useResize';
+import { FormWrapper } from '../Styled-Components';
+import { checkoutValidationSchema } from './../../../formik';
+import { createOrder, emptyCart } from '../../../redux/slices';
+import Input from './../../../components/Input/Input';
+import { Button, Loader } from '../../../components/common';
+import { SHIPPING_COST } from '../../../utils';
+>>>>>>> refs/remotes/origin/master
 
 const FormCheckout = () => {
   const navigate = useNavigate();
@@ -26,6 +36,12 @@ const FormCheckout = () => {
     phone,
   };
 
+<<<<<<< HEAD
+=======
+  const inputWidth = isPhone ? '280px' : '450px';
+  const buttonWidth = isPhone ? '280px' : '100%';
+
+>>>>>>> refs/remotes/origin/master
   return (
     <FormWrapper>
       <h2>Ingresá tus datos</h2>
@@ -69,10 +85,21 @@ const FormCheckout = () => {
         {({ isSubmitting }) => (
           <Form>
             <div>
+<<<<<<< HEAD
               <Input name='name' label='Nombre' size={25} />
               <Input type='email' name='email' label='Correo electrónico' size={25} />
               <Input name='address' label='Dirección de envío' size={25} />
               <Input name='phone' label='Teléfono de contacto' size={15} />
+=======
+              <label>Nombre</label>
+              <Input name={'name'} width={inputWidth} />
+              <label>Correo electrónico</label>
+              <Input type='email' name={'email'} width={inputWidth} />
+              <label>Dirección de envío</label>
+              <Input name={'address'} width={inputWidth} />
+              <label>Teléfono de contacto</label>
+              <Input name={'phone'} width='280px' />
+>>>>>>> refs/remotes/origin/master
             </div>
             <Button type='submit' r='8px' bg='info' shadow outline disabled={!items.length}>
               {isSubmitting ? 'Enviando...' : 'Enviar Pedido'}

@@ -1,22 +1,43 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import { addProductToCart, reduceStockProduct, removeProductToCart, restoreStockProduct } from '../../redux/slices';
+=======
+import { ButtonFav, MainContainer } from '../../components/common';
+import {
+  addProductToCart,
+  hideMenus,
+  reduceStockProduct,
+  removeProductToCart,
+  restoreStockProduct,
+} from '../../redux/slices';
+>>>>>>> refs/remotes/origin/master
 import toast, { Toaster } from 'react-hot-toast';
 import { Details } from './components/Details';
 import { ImageProduct } from './components/ImageProduct';
 import { ProductContainer } from './Styled-Components';
+<<<<<<< HEAD
 import { Container } from '../../components';
 
 const ProductDetails = () => {
   const { Id } = useParams();
   const { isLogged, cart } = useSelector((state) => state.user);
+=======
+
+const ProductDetails = () => {
+  const { Id } = useParams();
+  const { isLogged } = useSelector((state) => state.user);
+>>>>>>> refs/remotes/origin/master
   const { products } = useSelector((state) => state.products);
   const { theme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
   const product = products?.find((prod) => prod.id === Id);
   const { category, discount, id, name, price, stock, subCategory, unit, urlPhoto, volume } = product;
+<<<<<<< HEAD
 
   const amountOfProductInCart = cart.items?.find((item) => item.id === id)?.quantity || 0;
+=======
+>>>>>>> refs/remotes/origin/master
 
   const handleAddCart = () => {
     if (!isLogged) {

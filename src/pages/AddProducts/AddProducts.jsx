@@ -1,7 +1,12 @@
 import { Form, Formik, useFormikContext } from 'formik';
 import { useEffect } from 'react';
+<<<<<<< HEAD
 import { Button } from '../../components';
 import { Input } from '../../components';
+=======
+import { Button } from '../../components/common';
+import Input from '../../components/Input/Input';
+>>>>>>> refs/remotes/origin/master
 import { Container, ContainerForm, DblClickForImg, ImgContainer, ImgWrapper, WrapperForm } from './Styled-Components';
 import { useSelector, useDispatch } from 'react-redux';
 import { Select } from './../../components';
@@ -109,6 +114,7 @@ const AddProducts = () => {
             return (
               <Form>
                 <ContainerForm>
+<<<<<<< HEAD
                   <div className='input'>
                     <Input name='name' label='Nombre' />
                     <Input name='id' label='Código de barras' size={13} />
@@ -121,6 +127,16 @@ const AddProducts = () => {
                   <div className='input'>
                     <Input name='volume' label='Volumen' size={5} />
                     <Select name={'unit'} label='Unidad' placeholder='Unidad' options={unitsList} size={6} />
+=======
+                  <Input name={'name'} type='text' placeholder='Nombre' />
+                  <div>
+                    <Input name={'id'} placeholder='Código de barras' width='170px' />
+                    <Input name={'price'} placeholder='Precio' width='170px' currency />
+                    <Input name={'discount'} placeholder='Descuento' width='170px' />
+                    <Input name={'stock'} placeholder='Stock' width='170px' />
+                    <Input name={'volume'} placeholder='Volumen' width='170px' />
+                    <Select name={'unit'} placeholder='Unidad' options={unitsList} width='170px' />
+>>>>>>> refs/remotes/origin/master
                   </div>
                   <UploadImage />
                   {!!category && (
