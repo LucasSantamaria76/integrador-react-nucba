@@ -2,11 +2,7 @@ import Barcode from 'react-barcode';
 import { formatPrice } from '../../../utils';
 import { BsCartDash, BsCartPlus } from 'react-icons/bs';
 import { BoxCart, BoxPrice, BtnCart, DetailsContainer } from '../Styled-Components';
-<<<<<<< HEAD
 import { ButtonFav } from '../../../components';
-=======
-import { ButtonFav } from '../../../components/common';
->>>>>>> refs/remotes/origin/master
 import { useSelector } from 'react-redux';
 
 const options = {

@@ -18,26 +18,10 @@ import {
 } from './Styled-Components';
 import { productInitialValues } from '../../formik/initialValues';
 import { productSchema } from '../../formik/validationSchema';
-<<<<<<< HEAD
 import { hideMenus, removeFilters, updateProductStore } from '../../redux/slices';
 import { Input } from '../../components';
 import { Button } from './../../components/Button/index';
 import backgroundImage from '../../assets/backgroundImage.jpg';
-=======
-import {
-  LisWrapper,
-  ComboBoxProduct,
-  UpContainer,
-  UpContainerForm,
-  UpDblClickForImg,
-  UpImgContainer,
-  UpImgWrapper,
-  UpWrapperForm,
-  BoxFlex,
-} from './Styled-Components';
-import { hideMenus, updateProductStore } from '../../redux/slices';
-import SelectSort from './components/SelectSort';
->>>>>>> refs/remotes/origin/master
 
 let urlBase = '';
 
@@ -145,41 +129,12 @@ const UpdateProducts = () => {
           return (
             <Form style={{ width: '100%', height: '100%' }}>
               <BoxFlex>
-<<<<<<< HEAD
                 <LisWrapper backgroundImage={backgroundImage}>
                   <LisContainer>
-=======
-                <LisWrapper>
-                  <label>
-                    Ordenar por
-                    <SelectSort setOrder={setOrder} />
-                  </label>
-                  <ComboBoxProduct>
-                    {listProducts?.map((prod) => (
-                      <div
-                        key={prod.id}
-                        onClick={() => {
-                          const product = listProducts.find((p) => p.id === prod.id);
-                          urlBase = product.urlPhoto;
-                          Object.keys(product).map((key) => setFieldValue(key, product[key]));
-                        }}>
-                        <div className='option'>
-                          <img src={prod.urlPhoto} alt={prod.id} />
-                          <h3>{prod.name}</h3>
-                        </div>
-                      </div>
-                    ))}
-                  </ComboBoxProduct>
-                </LisWrapper>
-                <UpWrapperForm>
-                  <UpContainerForm>
-                    <UploadImage />
->>>>>>> refs/remotes/origin/master
                     <label>
                       Ordenar por
                       <SelectSort setOrder={setOrder} />
                     </label>
-<<<<<<< HEAD
                     <ComboBoxProduct>
                       {listProducts?.map((prod) => (
                         <div
@@ -206,21 +161,6 @@ const UpdateProducts = () => {
                       <Input name='price' label='Precio' size={8} />
                       <Input name='discount' label='Descuento  en %' size={6} />
                       <Input name='stock' label='stock' size={6} />
-=======
-                    <div>
-                      <label>
-                        Precio
-                        <Input name={'price'} width='140px' currency />
-                      </label>
-                      <label>
-                        Descuento en %
-                        <Input name={'discount'} width='140px' />
-                      </label>
-                      <label>
-                        Stock
-                        <Input name={'stock'} width='140px' />
-                      </label>
->>>>>>> refs/remotes/origin/master
                     </div>
                     <Button type='submit' r='8px' bg='info' outline shadow>
                       Actualizar
