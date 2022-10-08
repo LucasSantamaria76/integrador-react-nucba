@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Container, Input } from '../../components';
 import { getOrCreateUserProfile, signIn, signInGoogle } from './../../firebase/firebase-utils';
 import backgroundImage from '../../assets/login-background-images-for-website-10.jpg';
+import { Loader } from '../../components';
 
 const ERROR_CODES = {
   'auth/wrong-password': 'Contraseña incorrecta',
@@ -29,13 +30,12 @@ const Login = () => {
             const { email, password } = values;
             try {
               const { user } = await signIn(email, password);
-              console.log(user);
               await getOrCreateUserProfile(user);
             } catch (error) {
               console.log(error);
             }
           }}>
-          {({ values }) => {
+          {({ isSubmitting }) => {
             return (
               <Form>
                 <FormContainer>
@@ -52,6 +52,7 @@ const Login = () => {
                   <Button type='submit' r='8px' bg='info' shadow outline>
                     Enviar
                   </Button>
+                  {isSubmitting && <Loader />}
                   <div>
                     <h4 style={{ textAlign: 'center' }}>o puedes iniciar sesión con</h4>
                     <Button type='button' handleClick={signInGoogle} r='8px' bg='info' shadow outline>

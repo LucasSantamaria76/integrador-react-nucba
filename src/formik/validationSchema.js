@@ -9,7 +9,9 @@ export const registerValidationSchema = Yup.object({
   name: Yup.string().required(REQUIRED),
   email: Yup.string().email(EMAIL).required(REQUIRED),
   password: Yup.string().min(6, 'Minimo 6 caracteres').required(REQUIRED),
-  RepeatPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Su contraseña no coincide'),
+  RepeatPassword: Yup.string()
+    .required(REQUIRED)
+    .oneOf([Yup.ref('password'), null], 'Su contraseña no coincide'),
 });
 
 export const loginValidationSchema = Yup.object({

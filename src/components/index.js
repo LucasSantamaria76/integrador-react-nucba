@@ -14,3 +14,4 @@ export * from './ProductsCard';
 export * from './Offers';
 export * from './Slider';
 export * from './CartDrawer';
+export * from './Loader';
