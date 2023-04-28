@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const SwitchContainer = styled.label`
   height: 50px;
@@ -7,13 +7,14 @@ export const SwitchContainer = styled.label`
     margin: 0;
     line-height: 50px;
     font-size: 1.5rem;
+    cursor: pointer;
   }
   @media (min-width: 900px) {
     grid-column: 1/2;
     grid-row: 1/2;
     place-self: center end;
   }
-`;
+`
 
 export const Switch = styled.label`
   align-self: center;
@@ -24,7 +25,7 @@ export const Switch = styled.label`
   background-color: ${({ toggle, color }) => (toggle ? color : 'white')};
   border-radius: 15px;
   transition: 0.4s;
-`;
+`
 
 export const Slider = styled.span`
   position: absolute;
@@ -52,11 +53,11 @@ export const Slider = styled.span`
 
     transition: 0.4s;
   }
-`;
+`
 
 export const Input = styled.input`
   display: none;
   &:checked + ${Slider}:before {
     transform: translateX(23.4px);
   }
-`;
+`

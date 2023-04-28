@@ -1,25 +1,32 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleTheme } from '../../redux/slices';
-import { Input, Slider, Switch, SwitchContainer } from './styles';
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleTheme } from '../../redux/slices'
+import { Input, Slider, Switch, SwitchContainer } from './styles'
 
 export const CheckBoxDarkMode = ({ color = '#000' }) => {
-  const dispatch = useDispatch();
-  const { theme } = useSelector((store) => store.theme);
-  const [toggle, setToggle] = useState(theme === 'dark');
+  const dispatch = useDispatch()
+  const { theme } = useSelector((store) => store.theme)
+  const [toggle, setToggle] = useState(theme === 'dark')
 
   useEffect(() => {
-    dispatch(toggleTheme(toggle));
-  }, [toggle]);
+    dispatch(toggleTheme(toggle))
+  }, [toggle])
 
   return (
     <SwitchContainer>
-      <p>☀️</p>
+      <p onClick={(e) => (toggle ? setToggle(false) : e.preventDefault())}>☀️</p>
       <Switch>
-        <Input {...{ color }} type='checkbox' defaultChecked={toggle} />
-        <Slider {...{ toggle, color }} onClick={() => setToggle(!toggle)} />
+        <Input
+          {...{ color }}
+          type='checkbox'
+          defaultChecked={toggle}
+        />
+        <Slider
+          {...{ toggle, color }}
+          onClick={() => setToggle(!toggle)}
+        />
       </Switch>
-      <p>🌑</p>
+      <p onClick={(e) => (!toggle ? setToggle(true) : e.preventDefault())}>🌑</p>
     </SwitchContainer>
-  );
-};
+  )
+}

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 export const Container = styled.div`
   position: relative;
@@ -38,6 +38,7 @@ export const Container = styled.div`
   img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
   }
 
   .refresh {
@@ -51,9 +52,9 @@ export const Container = styled.div`
     right: 10px;
     cursor: pointer;
   }
-`;
+`
 
 export const SliderStyled = styled(motion.img)`
   width: 100%;
   height: 100%;
-`;
+`
